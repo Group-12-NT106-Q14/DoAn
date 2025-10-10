@@ -1,6 +1,6 @@
 ﻿using chess;
 
-namespace WinFormsApp2
+namespace chess.chess
 {
     internal static class Program
     {

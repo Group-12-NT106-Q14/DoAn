@@ -37,3 +37,4 @@ D:\Group-12-NT106.Q14\DoAn\chess\obj\Debug\net10.0-windows\refint\chess.dll
 D:\Group-12-NT106.Q14\DoAn\chess\obj\Debug\net10.0-windows\chess.pdb
 D:\Group-12-NT106.Q14\DoAn\chess\obj\Debug\net10.0-windows\chess.genruntimeconfig.cache
 D:\Group-12-NT106.Q14\DoAn\chess\obj\Debug\net10.0-windows\ref\chess.dll
+D:\Group-12-NT106.Q14\DoAn\chess\obj\Debug\net10.0-windows\chess.sourcelink.json
