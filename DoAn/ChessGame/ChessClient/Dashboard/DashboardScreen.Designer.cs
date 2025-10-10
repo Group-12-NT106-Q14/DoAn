@@ -1,0 +1,398 @@
+﻿namespace chess
+{
+    partial class frmDashboardScreen
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboardScreen));
+            btnChoi = new Button();
+            btnCoChop = new Button();
+            btnVanCoMoi = new Button();
+            btnMay = new Button();
+            btnBan = new Button();
+            menuStrip1 = new MenuStrip();
+            setiingToolStripMenuItem = new ToolStripMenuItem();
+            bạnBèToolStripMenuItem = new ToolStripMenuItem();
+            tinNhắnToolStripMenuItem = new ToolStripMenuItem();
+            btnThuGon = new Button();
+            menuStrip2 = new MenuStrip();
+            chơiToolStripMenuItem = new ToolStripMenuItem();
+            chơiNgayToolStripMenuItem = new ToolStripMenuItem();
+            chơiVớiMáyToolStripMenuItem = new ToolStripMenuItem();
+            lịchSửVánĐấuToolStripMenuItem = new ToolStripMenuItem();
+            bảngXếpHạngToolStripMenuItem = new ToolStripMenuItem();
+            tinTứcToolStripMenuItem = new ToolStripMenuItem();
+            bảngXếpHạngToolStripMenuItem1 = new ToolStripMenuItem();
+            ngườiChơiDẫnĐầuToolStripMenuItem = new ToolStripMenuItem();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            btnCaiDat = new Button();
+            btnĐX = new Button();
+            menuStrip1.SuspendLayout();
+            menuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
+            // 
+            // btnChoi
+            // 
+            btnChoi.BackColor = Color.DarkGray;
+            btnChoi.FlatStyle = FlatStyle.Flat;
+            btnChoi.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnChoi.Location = new Point(202, 105);
+            btnChoi.Margin = new Padding(3, 4, 3, 4);
+            btnChoi.Name = "btnChoi";
+            btnChoi.Size = new Size(237, 56);
+            btnChoi.TabIndex = 0;
+            btnChoi.Text = "Chơi";
+            btnChoi.UseVisualStyleBackColor = false;
+            btnChoi.Click += btnChoi_Click;
+            // 
+            // btnCoChop
+            // 
+            btnCoChop.BackColor = Color.DarkGray;
+            btnCoChop.FlatStyle = FlatStyle.Flat;
+            btnCoChop.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCoChop.Location = new Point(203, 207);
+            btnCoChop.Margin = new Padding(3, 4, 3, 4);
+            btnCoChop.Name = "btnCoChop";
+            btnCoChop.Size = new Size(237, 56);
+            btnCoChop.TabIndex = 1;
+            btnCoChop.Text = "Cờ Chớp";
+            btnCoChop.UseVisualStyleBackColor = false;
+            // 
+            // btnVanCoMoi
+            // 
+            btnVanCoMoi.BackColor = Color.DarkGray;
+            btnVanCoMoi.FlatStyle = FlatStyle.Flat;
+            btnVanCoMoi.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVanCoMoi.Location = new Point(201, 315);
+            btnVanCoMoi.Margin = new Padding(3, 4, 3, 4);
+            btnVanCoMoi.Name = "btnVanCoMoi";
+            btnVanCoMoi.Size = new Size(237, 56);
+            btnVanCoMoi.TabIndex = 2;
+            btnVanCoMoi.Text = "Ván Cờ Mới";
+            btnVanCoMoi.UseVisualStyleBackColor = false;
+            // 
+            // btnMay
+            // 
+            btnMay.BackColor = Color.DarkGray;
+            btnMay.FlatStyle = FlatStyle.Flat;
+            btnMay.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnMay.Location = new Point(203, 438);
+            btnMay.Margin = new Padding(3, 4, 3, 4);
+            btnMay.Name = "btnMay";
+            btnMay.Size = new Size(237, 56);
+            btnMay.TabIndex = 3;
+            btnMay.Text = "Chơi Với Máy";
+            btnMay.UseVisualStyleBackColor = false;
+            // 
+            // btnBan
+            // 
+            btnBan.BackColor = Color.DarkGray;
+            btnBan.FlatStyle = FlatStyle.Flat;
+            btnBan.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBan.Location = new Point(203, 555);
+            btnBan.Margin = new Padding(3, 4, 3, 4);
+            btnBan.Name = "btnBan";
+            btnBan.Size = new Size(237, 56);
+            btnBan.TabIndex = 4;
+            btnBan.Text = "Chơi với bạn";
+            btnBan.UseVisualStyleBackColor = false;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Dock = DockStyle.Right;
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { setiingToolStripMenuItem, bạnBèToolStripMenuItem, tinNhắnToolStripMenuItem, toolStripMenuItem1, toolStripMenuItem2 });
+            menuStrip1.Location = new Point(1260, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(96, 1013);
+            menuStrip1.TabIndex = 11;
+            menuStrip1.Text = "menuStrip1";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
+            // 
+            // setiingToolStripMenuItem
+            // 
+            setiingToolStripMenuItem.Name = "setiingToolStripMenuItem";
+            setiingToolStripMenuItem.Size = new Size(7, 4);
+            // 
+            // bạnBèToolStripMenuItem
+            // 
+            bạnBèToolStripMenuItem.Name = "bạnBèToolStripMenuItem";
+            bạnBèToolStripMenuItem.Size = new Size(7, 4);
+            // 
+            // tinNhắnToolStripMenuItem
+            // 
+            tinNhắnToolStripMenuItem.Name = "tinNhắnToolStripMenuItem";
+            tinNhắnToolStripMenuItem.Size = new Size(7, 4);
+            // 
+            // btnThuGon
+            // 
+            btnThuGon.Location = new Point(1393, 932);
+            btnThuGon.Margin = new Padding(3, 4, 3, 4);
+            btnThuGon.Name = "btnThuGon";
+            btnThuGon.Size = new Size(48, 29);
+            btnThuGon.TabIndex = 12;
+            btnThuGon.Text = "button5";
+            btnThuGon.UseVisualStyleBackColor = true;
+            btnThuGon.Click += button5_Click;
+            // 
+            // menuStrip2
+            // 
+            menuStrip2.Dock = DockStyle.Left;
+            menuStrip2.ImageScalingSize = new Size(20, 20);
+            menuStrip2.Items.AddRange(new ToolStripItem[] { chơiToolStripMenuItem, tinTứcToolStripMenuItem });
+            menuStrip2.Location = new Point(0, 0);
+            menuStrip2.Name = "menuStrip2";
+            menuStrip2.Size = new Size(97, 1013);
+            menuStrip2.TabIndex = 13;
+            menuStrip2.Text = "menuStrip2";
+            // 
+            // chơiToolStripMenuItem
+            // 
+            chơiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chơiNgayToolStripMenuItem, chơiVớiMáyToolStripMenuItem, lịchSửVánĐấuToolStripMenuItem, bảngXếpHạngToolStripMenuItem });
+            chơiToolStripMenuItem.Image = (Image)resources.GetObject("chơiToolStripMenuItem.Image");
+            chơiToolStripMenuItem.Name = "chơiToolStripMenuItem";
+            chơiToolStripMenuItem.Size = new Size(84, 24);
+            chơiToolStripMenuItem.Text = "Chơi";
+            // 
+            // chơiNgayToolStripMenuItem
+            // 
+            chơiNgayToolStripMenuItem.Name = "chơiNgayToolStripMenuItem";
+            chơiNgayToolStripMenuItem.Size = new Size(198, 26);
+            chơiNgayToolStripMenuItem.Text = "Chơi Ngay";
+            // 
+            // chơiVớiMáyToolStripMenuItem
+            // 
+            chơiVớiMáyToolStripMenuItem.Name = "chơiVớiMáyToolStripMenuItem";
+            chơiVớiMáyToolStripMenuItem.Size = new Size(198, 26);
+            chơiVớiMáyToolStripMenuItem.Text = "Chơi Với Máy";
+            // 
+            // lịchSửVánĐấuToolStripMenuItem
+            // 
+            lịchSửVánĐấuToolStripMenuItem.Name = "lịchSửVánĐấuToolStripMenuItem";
+            lịchSửVánĐấuToolStripMenuItem.Size = new Size(198, 26);
+            lịchSửVánĐấuToolStripMenuItem.Text = "Lịch Sử Ván Đấu";
+            // 
+            // bảngXếpHạngToolStripMenuItem
+            // 
+            bảngXếpHạngToolStripMenuItem.Name = "bảngXếpHạngToolStripMenuItem";
+            bảngXếpHạngToolStripMenuItem.Size = new Size(198, 26);
+            bảngXếpHạngToolStripMenuItem.Text = "Bảng Xếp Hạng";
+            // 
+            // tinTứcToolStripMenuItem
+            // 
+            tinTứcToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bảngXếpHạngToolStripMenuItem1, ngườiChơiDẫnĐầuToolStripMenuItem });
+            tinTứcToolStripMenuItem.Image = (Image)resources.GetObject("tinTứcToolStripMenuItem.Image");
+            tinTứcToolStripMenuItem.Name = "tinTứcToolStripMenuItem";
+            tinTứcToolStripMenuItem.Size = new Size(84, 24);
+            tinTứcToolStripMenuItem.Text = "Tin Tức";
+            // 
+            // bảngXếpHạngToolStripMenuItem1
+            // 
+            bảngXếpHạngToolStripMenuItem1.Name = "bảngXếpHạngToolStripMenuItem1";
+            bảngXếpHạngToolStripMenuItem1.Size = new Size(224, 26);
+            bảngXếpHạngToolStripMenuItem1.Text = "Bảng xếp hạng";
+            // 
+            // ngườiChơiDẫnĐầuToolStripMenuItem
+            // 
+            ngườiChơiDẫnĐầuToolStripMenuItem.Name = "ngườiChơiDẫnĐầuToolStripMenuItem";
+            ngườiChơiDẫnĐầuToolStripMenuItem.Size = new Size(224, 26);
+            ngườiChơiDẫnĐầuToolStripMenuItem.Text = "Người chơi dẫn đầu";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(201, 315);
+            pictureBox2.Margin = new Padding(3, 4, 3, 4);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(55, 56);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 18;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(201, 438);
+            pictureBox3.Margin = new Padding(3, 4, 3, 4);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(55, 56);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 19;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = SystemColors.ButtonShadow;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(203, 105);
+            pictureBox4.Margin = new Padding(3, 4, 3, 4);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(52, 56);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox4.TabIndex = 20;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(203, 555);
+            pictureBox5.Margin = new Padding(3, 4, 3, 4);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(53, 56);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 21;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(203, 207);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(53, 55);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 22;
+            pictureBox1.TabStop = false;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Image = (Image)resources.GetObject("toolStripMenuItem1.Image");
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(83, 24);
+            toolStripMenuItem1.Text = "Setting";
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Image = (Image)resources.GetObject("toolStripMenuItem2.Image");
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(83, 24);
+            toolStripMenuItem2.Text = "Mess";
+            // 
+            // btnCaiDat
+            // 
+            btnCaiDat.Location = new Point(1164, 729);
+            btnCaiDat.Margin = new Padding(3, 4, 3, 4);
+            btnCaiDat.Name = "btnCaiDat";
+            btnCaiDat.Size = new Size(93, 29);
+            btnCaiDat.TabIndex = 15;
+            btnCaiDat.Text = "Settings";
+            btnCaiDat.UseVisualStyleBackColor = true;
+            // 
+            // btnĐX
+            // 
+            btnĐX.Location = new Point(1160, 670);
+            btnĐX.Margin = new Padding(3, 4, 3, 4);
+            btnĐX.Name = "btnĐX";
+            btnĐX.Size = new Size(97, 29);
+            btnĐX.TabIndex = 16;
+            btnĐX.Text = "Log Out";
+            btnĐX.UseVisualStyleBackColor = true;
+            // 
+            // frmDashboard
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1356, 1013);
+            Controls.Add(pictureBox1);
+            Controls.Add(pictureBox5);
+            Controls.Add(pictureBox4);
+            Controls.Add(pictureBox3);
+            Controls.Add(pictureBox2);
+            Controls.Add(btnĐX);
+            Controls.Add(btnCaiDat);
+            Controls.Add(btnThuGon);
+            Controls.Add(btnBan);
+            Controls.Add(btnMay);
+            Controls.Add(btnVanCoMoi);
+            Controls.Add(btnCoChop);
+            Controls.Add(btnChoi);
+            Controls.Add(menuStrip1);
+            Controls.Add(menuStrip2);
+            MainMenuStrip = menuStrip2;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "frmDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Dashboard";
+            Load += frmDashboard_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            menuStrip2.ResumeLayout(false);
+            menuStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button btnChoi;
+        private System.Windows.Forms.Button btnVanCoMoi;
+        private System.Windows.Forms.Button btnMay;
+        private System.Windows.Forms.Button btnBan;
+        private System.Windows.Forms.Button btnCoChop;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem setiingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bạnBèToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tinNhắnToolStripMenuItem;
+        private System.Windows.Forms.Button btnThuGon;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem chơiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chơiNgayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chơiVớiMáyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lịchSửVánĐấuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bảngXếpHạngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tinTứcToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem bảngXếpHạngToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ngườiChơiDẫnĐầuToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private Button btnCaiDat;
+        private Button btnĐX;
+    }
+}
