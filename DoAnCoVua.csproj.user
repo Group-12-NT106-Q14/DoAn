@@ -4,6 +4,18 @@
     <Compile Update="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="DoAn\ChessGame\ChessClient\Authentication\Forgotpassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DoAn\ChessGame\ChessClient\Authentication\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DoAn\ChessGame\ChessClient\Authentication\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DoAn\ChessGame\ChessClient\Dashboard\DashboardScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forgotpassword.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -41,12 +41,12 @@
             btnCaiDat = new Button();
             btnĐX = new Button();
             btnLichSu = new Button();
-            pictureBox1 = new PictureBox();
+            pictureBox6 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // btnChoi
@@ -188,14 +188,13 @@
             btnLichSu.Text = "Lịch Sử Trận Đấu";
             btnLichSu.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // pictureBox6
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(492, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(739, 664);
-            pictureBox1.TabIndex = 23;
-            pictureBox1.TabStop = false;
+            pictureBox6.Location = new Point(200, 621);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(57, 55);
+            pictureBox6.TabIndex = 24;
+            pictureBox6.TabStop = false;
             // 
             // frmDashboard
             // 
@@ -203,7 +202,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1345, 772);
-            Controls.Add(pictureBox1);
+            Controls.Add(pictureBox6);
             Controls.Add(btnLichSu);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox4);
@@ -225,7 +224,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
 
         }
@@ -244,6 +243,6 @@
         private Button btnCaiDat;
         private Button btnĐX;
         private Button btnLichSu;
-        private PictureBox pictureBox1;
+        private PictureBox pictureBox6;
     }
 }

@@ -1,0 +1,16 @@
+D:\DoAnNew\chess\bin\Debug\net8.0-windows\chess.exe
+D:\DoAnNew\chess\bin\Debug\net8.0-windows\chess.deps.json
+D:\DoAnNew\chess\bin\Debug\net8.0-windows\chess.runtimeconfig.json
+D:\DoAnNew\chess\bin\Debug\net8.0-windows\chess.dll
+D:\DoAnNew\chess\bin\Debug\net8.0-windows\chess.pdb
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.csproj.GenerateResource.cache
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.GeneratedMSBuildEditorConfig.editorconfig
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.AssemblyInfoInputs.cache
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.AssemblyInfo.cs
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.csproj.CoreCompileInputs.cache
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.dll
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\refint\chess.dll
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.pdb
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.genruntimeconfig.cache
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\ref\chess.dll
+D:\DoAnNew\chess\obj\Debug\net8.0-windows\chess.frmRegister.resources
