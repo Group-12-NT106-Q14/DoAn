@@ -184,7 +184,6 @@
             // chơiToolStripMenuItem
             // 
             chơiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chơiNgayToolStripMenuItem, chơiVớiMáyToolStripMenuItem, lịchSửVánĐấuToolStripMenuItem, bảngXếpHạngToolStripMenuItem });
-            chơiToolStripMenuItem.Image = (Image)resources.GetObject("chơiToolStripMenuItem.Image");
             chơiToolStripMenuItem.Name = "chơiToolStripMenuItem";
             chơiToolStripMenuItem.Size = new Size(84, 24);
             chơiToolStripMenuItem.Text = "Chơi";
@@ -216,7 +215,6 @@
             // tinTứcToolStripMenuItem
             // 
             tinTứcToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bảngXếpHạngToolStripMenuItem1, ngườiChơiDẫnĐầuToolStripMenuItem });
-            tinTứcToolStripMenuItem.Image = (Image)resources.GetObject("tinTứcToolStripMenuItem.Image");
             tinTứcToolStripMenuItem.Name = "tinTứcToolStripMenuItem";
             tinTứcToolStripMenuItem.Size = new Size(84, 24);
             tinTứcToolStripMenuItem.Text = "Tin Tức";
@@ -235,7 +233,6 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(201, 315);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
@@ -246,7 +243,6 @@
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(201, 438);
             pictureBox3.Margin = new Padding(3, 4, 3, 4);
             pictureBox3.Name = "pictureBox3";
@@ -258,7 +254,6 @@
             // pictureBox4
             // 
             pictureBox4.BackColor = SystemColors.ButtonShadow;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
             pictureBox4.Location = new Point(203, 105);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
@@ -269,7 +264,6 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
             pictureBox5.Location = new Point(203, 555);
             pictureBox5.Margin = new Padding(3, 4, 3, 4);
             pictureBox5.Name = "pictureBox5";
@@ -280,7 +274,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(203, 207);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
@@ -291,14 +284,12 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.Image = (Image)resources.GetObject("toolStripMenuItem1.Image");
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(83, 24);
             toolStripMenuItem1.Text = "Setting";
             // 
             // toolStripMenuItem2
             // 
-            toolStripMenuItem2.Image = (Image)resources.GetObject("toolStripMenuItem2.Image");
             toolStripMenuItem2.Name = "toolStripMenuItem2";
             toolStripMenuItem2.Size = new Size(83, 24);
             toolStripMenuItem2.Text = "Mess";
@@ -327,7 +318,6 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1356, 1013);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox5);

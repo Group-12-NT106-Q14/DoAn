@@ -142,7 +142,6 @@
             // 
             btnShow.BackColor = Color.DarkGray;
             btnShow.FlatStyle = FlatStyle.Flat;
-            btnShow.Image = (Image)resources.GetObject("btnShow.Image");
             btnShow.Location = new Point(509, 289);
             btnShow.Margin = new Padding(3, 4, 3, 4);
             btnShow.Name = "btnShow";
@@ -156,7 +155,6 @@
             // 
             btnHide.BackColor = Color.DarkGray;
             btnHide.FlatStyle = FlatStyle.Flat;
-            btnHide.Image = (Image)resources.GetObject("btnHide.Image");
             btnHide.Location = new Point(509, 289);
             btnHide.Margin = new Padding(3, 4, 3, 4);
             btnHide.Name = "btnHide";
@@ -183,7 +181,6 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(876, 807);
             Controls.Add(lblLuu);
             Controls.Add(btnHide);

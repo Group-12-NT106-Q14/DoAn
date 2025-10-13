@@ -139,7 +139,6 @@
             // btnShow1
             // 
             btnShow1.FlatStyle = FlatStyle.Flat;
-            btnShow1.Image = (Image)resources.GetObject("btnShow1.Image");
             btnShow1.Location = new Point(521, 242);
             btnShow1.Margin = new Padding(3, 4, 3, 4);
             btnShow1.Name = "btnShow1";
@@ -151,7 +150,6 @@
             // btnShow2
             // 
             btnShow2.FlatStyle = FlatStyle.Flat;
-            btnShow2.Image = (Image)resources.GetObject("btnShow2.Image");
             btnShow2.Location = new Point(521, 336);
             btnShow2.Margin = new Padding(3, 4, 3, 4);
             btnShow2.Name = "btnShow2";
@@ -163,7 +161,6 @@
             // btnHide1
             // 
             btnHide1.FlatStyle = FlatStyle.Flat;
-            btnHide1.Image = (Image)resources.GetObject("btnHide1.Image");
             btnHide1.Location = new Point(521, 242);
             btnHide1.Margin = new Padding(3, 4, 3, 4);
             btnHide1.Name = "btnHide1";
@@ -175,7 +172,6 @@
             // btnHide2
             // 
             btnHide2.FlatStyle = FlatStyle.Flat;
-            btnHide2.Image = (Image)resources.GetObject("btnHide2.Image");
             btnHide2.Location = new Point(521, 336);
             btnHide2.Margin = new Padding(3, 4, 3, 4);
             btnHide2.Name = "btnHide2";
@@ -192,7 +188,6 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 562);
             Controls.Add(btnHide2);
             Controls.Add(btnHide1);

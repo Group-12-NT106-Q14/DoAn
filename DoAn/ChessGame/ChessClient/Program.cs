@@ -1,6 +1,4 @@
-﻿using chess;
-
-namespace chess.chess
+namespace chess.ChessClient
 {
     internal static class Program
     {
