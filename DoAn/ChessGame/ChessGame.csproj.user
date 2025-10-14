@@ -1,16 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="ChessClient\Dashboard\DashboardScreen.cs">
+    <Compile Update="Dashboard\AccountSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ChessClient\Authentication\Forgotpassword.cs">
+    <Compile Update="Dashboard\AI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ChessClient\Authentication\Login.cs">
+    <Compile Update="Dashboard\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ChessClient\Authentication\Register.cs">
+    <Compile Update="Authentication\Forgotpassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Authentication\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Authentication\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard\History.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard\Match.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard\Ranking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard\Room.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Authentication\Recovery.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
