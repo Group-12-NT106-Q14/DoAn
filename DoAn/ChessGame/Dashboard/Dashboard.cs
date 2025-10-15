@@ -43,6 +43,7 @@ namespace ChessGame
         {
             this.Hide();
             new Match().ShowDialog();
+            this.Show();
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)
@@ -53,25 +54,29 @@ namespace ChessGame
         private void btnMay_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new AI().Show();
+            new AI().ShowDialog();
+            this.Show();
         }
 
         private void btnBan_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Room().Show();
+            new Friend().ShowDialog();
+            this.Show();
         }
 
         private void btnBXH_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Ranking().Show();
+            new Ranking().ShowDialog();
+            this.Show();
         }
 
         private void btnLichSu_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new History().Show();
+            new History().ShowDialog();
+            this.Show();
         }
 
         private void btnĐX_Click(object sender, EventArgs e)
@@ -82,7 +87,8 @@ namespace ChessGame
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new AccountSetting().Show();
+            new AccountSetting().ShowDialog();
+            this.Show();
         }
     }
 }

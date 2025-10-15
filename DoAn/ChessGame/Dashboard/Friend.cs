@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ChessGame
 {
-    public partial class Room : Form
+    public partial class Friend : Form
     {
-        public Room()
+        public Friend()
         {
             InitializeComponent();
         }

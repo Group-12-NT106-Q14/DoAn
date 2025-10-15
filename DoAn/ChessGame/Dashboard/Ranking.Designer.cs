@@ -17,9 +17,9 @@
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
             pnlTop = new Panel();
             lblTitle = new Label();
             cmbFilter = new ComboBox();
@@ -81,9 +81,9 @@
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(20, 22);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(354, 46);
+            lblTitle.Size = new Size(297, 46);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "🏆 BẢNG XẾP HẠNG";
+            lblTitle.Text = "BẢNG XẾP HẠNG";
             // 
             // cmbFilter
             // 
@@ -118,7 +118,7 @@
             txtSearch.ForeColor = Color.FromArgb(78, 49, 41);
             txtSearch.Location = new Point(780, 35);
             txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "🔍 Tìm kiếm người chơi...";
+            txtSearch.PlaceholderText = "Tìm kiếm người chơi...";
             txtSearch.Size = new Size(360, 25);
             txtSearch.TabIndex = 3;
             // 
@@ -163,9 +163,9 @@
             lblUserRank.ForeColor = Color.FromArgb(255, 223, 186);
             lblUserRank.Location = new Point(110, 55);
             lblUserRank.Name = "lblUserRank";
-            lblUserRank.Size = new Size(150, 28);
+            lblUserRank.Size = new Size(116, 28);
             lblUserRank.TabIndex = 2;
-            lblUserRank.Text = "🎖️ Hạng #123";
+            lblUserRank.Text = "Hạng #123";
             // 
             // lblUserRating
             // 
@@ -174,9 +174,9 @@
             lblUserRating.ForeColor = Color.White;
             lblUserRating.Location = new Point(110, 80);
             lblUserRating.Name = "lblUserRating";
-            lblUserRating.Size = new Size(136, 25);
+            lblUserRating.Size = new Size(115, 25);
             lblUserRating.TabIndex = 3;
-            lblUserRating.Text = "⭐ Rating: 1200";
+            lblUserRating.Text = "Rating: 1200";
             // 
             // lblUserStats
             // 
@@ -206,37 +206,37 @@
             lblRankingTitle.ForeColor = Color.White;
             lblRankingTitle.Location = new Point(20, 15);
             lblRankingTitle.Name = "lblRankingTitle";
-            lblRankingTitle.Size = new Size(325, 32);
+            lblRankingTitle.Size = new Size(284, 32);
             lblRankingTitle.TabIndex = 0;
-            lblRankingTitle.Text = "📊 Bảng Xếp Hạng Chi Tiết";
+            lblRankingTitle.Text = "Bảng Xếp Hạng Chi Tiết";
             // 
             // dgvRanking
             // 
             dgvRanking.AllowUserToAddRows = false;
             dgvRanking.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(240, 217, 181);
-            dgvRanking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.BackColor = Color.FromArgb(240, 217, 181);
+            dgvRanking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             dgvRanking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRanking.BackgroundColor = Color.FromArgb(247, 234, 214);
             dgvRanking.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(78, 49, 41);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvRanking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = Color.FromArgb(78, 49, 41);
+            dataGridViewCellStyle20.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            dataGridViewCellStyle20.ForeColor = Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.True;
+            dgvRanking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             dgvRanking.ColumnHeadersHeight = 35;
             dgvRanking.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(247, 234, 214);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(78, 49, 41);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(133, 181, 100);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvRanking.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = Color.FromArgb(247, 234, 214);
+            dataGridViewCellStyle21.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle21.ForeColor = Color.FromArgb(78, 49, 41);
+            dataGridViewCellStyle21.SelectionBackColor = Color.FromArgb(133, 181, 100);
+            dataGridViewCellStyle21.SelectionForeColor = Color.White;
+            dataGridViewCellStyle21.WrapMode = DataGridViewTriState.False;
+            dgvRanking.DefaultCellStyle = dataGridViewCellStyle21;
             dgvRanking.EnableHeadersVisualStyles = false;
             dgvRanking.Location = new Point(20, 55);
             dgvRanking.Name = "dgvRanking";
@@ -259,7 +259,7 @@
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(1120, 40);
             btnRefresh.TabIndex = 2;
-            btnRefresh.Text = "🔄 CẬP NHẬT BẢNG XẾP HẠNG";
+            btnRefresh.Text = "CẬP NHẬT BẢNG XẾP HẠNG";
             btnRefresh.UseVisualStyleBackColor = false;
             // 
             // pnlPodium
@@ -302,7 +302,7 @@
             lblSecond.Name = "lblSecond";
             lblSecond.Size = new Size(220, 20);
             lblSecond.TabIndex = 1;
-            lblSecond.Text = "\U0001f948 Player 2";
+            lblSecond.Text = "Player #2";
             lblSecond.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblSecondRating
@@ -313,7 +313,7 @@
             lblSecondRating.Name = "lblSecondRating";
             lblSecondRating.Size = new Size(220, 18);
             lblSecondRating.TabIndex = 2;
-            lblSecondRating.Text = "⭐ 2350";
+            lblSecondRating.Text = "2350";
             lblSecondRating.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlFirst
@@ -345,18 +345,18 @@
             lblFirst.Name = "lblFirst";
             lblFirst.Size = new Size(230, 30);
             lblFirst.TabIndex = 1;
-            lblFirst.Text = "\U0001f947 Player 1";
+            lblFirst.Text = "Player #1";
             lblFirst.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblFirstRating
             // 
             lblFirstRating.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblFirstRating.ForeColor = Color.FromArgb(78, 49, 41);
-            lblFirstRating.Location = new Point(10, 130);
+            lblFirstRating.Location = new Point(10, 128);
             lblFirstRating.Name = "lblFirstRating";
             lblFirstRating.Size = new Size(230, 20);
             lblFirstRating.TabIndex = 2;
-            lblFirstRating.Text = "⭐ 2500";
+            lblFirstRating.Text = "2500";
             lblFirstRating.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlThird
@@ -388,7 +388,7 @@
             lblThird.Name = "lblThird";
             lblThird.Size = new Size(220, 20);
             lblThird.TabIndex = 1;
-            lblThird.Text = "\U0001f949 Player 3";
+            lblThird.Text = "Player #3";
             lblThird.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblThirdRating
@@ -399,7 +399,7 @@
             lblThirdRating.Name = "lblThirdRating";
             lblThirdRating.Size = new Size(220, 18);
             lblThirdRating.TabIndex = 2;
-            lblThirdRating.Text = "⭐ 2280";
+            lblThirdRating.Text = "2280";
             lblThirdRating.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Ranking
@@ -416,7 +416,7 @@
             MaximizeBox = false;
             Name = "Ranking";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Bảng Xếp Hạng - Ranking";
+            Text = "Bảng Xếp Hạng";
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             pnlUserCard.ResumeLayout(false);

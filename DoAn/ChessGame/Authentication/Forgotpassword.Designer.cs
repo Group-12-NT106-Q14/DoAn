@@ -94,7 +94,7 @@
             btnGuiMa.Name = "btnGuiMa";
             btnGuiMa.Size = new Size(233, 45);
             btnGuiMa.TabIndex = 5;
-            btnGuiMa.Text = "📧 GỬI MÃ XÁC NHẬN";
+            btnGuiMa.Text = "GỬI MÃ XÁC NHẬN";
             btnGuiMa.UseVisualStyleBackColor = false;
             // 
             // lblMaXacNhan
@@ -149,7 +149,7 @@
             btnXacNhan.Name = "btnXacNhan";
             btnXacNhan.Size = new Size(408, 50);
             btnXacNhan.TabIndex = 10;
-            btnXacNhan.Text = "✅ TIẾP TỤC";
+            btnXacNhan.Text = "TIẾP TỤC";
             btnXacNhan.UseVisualStyleBackColor = false;
             // 
             // frmForgotpassword
@@ -173,7 +173,7 @@
             MaximizeBox = false;
             Name = "frmForgotpassword";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Chess - Quên Mật Khẩu";
+            Text = "Quên Mật Khẩu";
             Load += frmQuenMk_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -17,9 +17,9 @@
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             pnlTop = new Panel();
             lblTitle = new Label();
             lblFilter = new Label();
@@ -38,7 +38,6 @@
             pnlHistory = new Panel();
             lblHistoryTitle = new Label();
             dgvHistory = new DataGridView();
-            btnViewDetails = new Button();
             pnlTop.SuspendLayout();
             pnlStats.SuspendLayout();
             pnlHistory.SuspendLayout();
@@ -67,9 +66,9 @@
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(20, 30);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(392, 46);
+            lblTitle.Size = new Size(335, 46);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "📜 LỊCH SỬ TRẬN ĐẤU";
+            lblTitle.Text = "LỊCH SỬ TRẬN ĐẤU";
             // 
             // lblFilter
             // 
@@ -137,7 +136,7 @@
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(220, 45);
             btnSearch.TabIndex = 6;
-            btnSearch.Text = "🔍 TÌM KIẾM";
+            btnSearch.Text = "TÌM KIẾM";
             btnSearch.UseVisualStyleBackColor = false;
             // 
             // pnlStats
@@ -161,9 +160,9 @@
             lblStatsTitle.ForeColor = Color.White;
             lblStatsTitle.Location = new Point(20, 20);
             lblStatsTitle.Name = "lblStatsTitle";
-            lblStatsTitle.Size = new Size(184, 37);
+            lblStatsTitle.Size = new Size(139, 37);
             lblStatsTitle.TabIndex = 0;
-            lblStatsTitle.Text = "📊 Thống Kê";
+            lblStatsTitle.Text = "Thống Kê";
             // 
             // lblTotalGames
             // 
@@ -172,9 +171,9 @@
             lblTotalGames.ForeColor = Color.White;
             lblTotalGames.Location = new Point(20, 70);
             lblTotalGames.Name = "lblTotalGames";
-            lblTotalGames.Size = new Size(190, 30);
+            lblTotalGames.Size = new Size(153, 30);
             lblTotalGames.TabIndex = 1;
-            lblTotalGames.Text = "🎮 Tổng trận: 80";
+            lblTotalGames.Text = "Tổng trận: 80";
             // 
             // lblWins
             // 
@@ -183,9 +182,9 @@
             lblWins.ForeColor = Color.FromArgb(133, 181, 100);
             lblWins.Location = new Point(20, 110);
             lblWins.Name = "lblWins";
-            lblWins.Size = new Size(129, 28);
+            lblWins.Size = new Size(97, 28);
             lblWins.TabIndex = 2;
-            lblWins.Text = "✅ Thắng: 45";
+            lblWins.Text = "Thắng: 45";
             // 
             // lblDraws
             // 
@@ -194,9 +193,9 @@
             lblDraws.ForeColor = Color.FromArgb(255, 223, 186);
             lblDraws.Location = new Point(20, 145);
             lblDraws.Name = "lblDraws";
-            lblDraws.Size = new Size(111, 28);
+            lblDraws.Size = new Size(79, 28);
             lblDraws.TabIndex = 3;
-            lblDraws.Text = "➖ Hòa: 12";
+            lblDraws.Text = "Hòa: 12";
             // 
             // lblLosses
             // 
@@ -205,9 +204,9 @@
             lblLosses.ForeColor = Color.FromArgb(200, 100, 100);
             lblLosses.Location = new Point(20, 180);
             lblLosses.Name = "lblLosses";
-            lblLosses.Size = new Size(117, 28);
+            lblLosses.Size = new Size(85, 28);
             lblLosses.TabIndex = 4;
-            lblLosses.Text = "❌ Thua: 23";
+            lblLosses.Text = "Thua: 23";
             // 
             // lblWinRate
             // 
@@ -224,10 +223,9 @@
             pnlHistory.BackColor = Color.FromArgb(118, 74, 61);
             pnlHistory.Controls.Add(lblHistoryTitle);
             pnlHistory.Controls.Add(dgvHistory);
-            pnlHistory.Controls.Add(btnViewDetails);
             pnlHistory.Location = new Point(420, 140);
             pnlHistory.Name = "pnlHistory";
-            pnlHistory.Size = new Size(760, 590);
+            pnlHistory.Size = new Size(760, 559);
             pnlHistory.TabIndex = 2;
             // 
             // lblHistoryTitle
@@ -237,37 +235,37 @@
             lblHistoryTitle.ForeColor = Color.White;
             lblHistoryTitle.Location = new Point(20, 20);
             lblHistoryTitle.Name = "lblHistoryTitle";
-            lblHistoryTitle.Size = new Size(298, 32);
+            lblHistoryTitle.Size = new Size(257, 32);
             lblHistoryTitle.TabIndex = 0;
-            lblHistoryTitle.Text = "📋 Chi Tiết Các Trận Đấu";
+            lblHistoryTitle.Text = "Chi Tiết Các Trận Đấu";
             // 
             // dgvHistory
             // 
             dgvHistory.AllowUserToAddRows = false;
             dgvHistory.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(240, 217, 181);
-            dgvHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(240, 217, 181);
+            dgvHistory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvHistory.BackgroundColor = Color.FromArgb(247, 234, 214);
             dgvHistory.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(78, 49, 41);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(78, 49, 41);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvHistory.ColumnHeadersHeight = 35;
             dgvHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(247, 234, 214);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(78, 49, 41);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(133, 181, 100);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvHistory.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(247, 234, 214);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(78, 49, 41);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(133, 181, 100);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvHistory.DefaultCellStyle = dataGridViewCellStyle6;
             dgvHistory.EnableHeadersVisualStyles = false;
             dgvHistory.Location = new Point(20, 60);
             dgvHistory.Name = "dgvHistory";
@@ -278,20 +276,6 @@
             dgvHistory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvHistory.Size = new Size(720, 460);
             dgvHistory.TabIndex = 1;
-            // 
-            // btnViewDetails
-            // 
-            btnViewDetails.BackColor = Color.FromArgb(133, 181, 100);
-            btnViewDetails.FlatAppearance.BorderSize = 0;
-            btnViewDetails.FlatStyle = FlatStyle.Flat;
-            btnViewDetails.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnViewDetails.ForeColor = Color.White;
-            btnViewDetails.Location = new Point(20, 535);
-            btnViewDetails.Name = "btnViewDetails";
-            btnViewDetails.Size = new Size(720, 40);
-            btnViewDetails.TabIndex = 2;
-            btnViewDetails.Text = "👁️ XEM CHI TIẾT TRẬN ĐẤU";
-            btnViewDetails.UseVisualStyleBackColor = false;
             // 
             // History
             // 
@@ -306,7 +290,7 @@
             MaximizeBox = false;
             Name = "History";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Lịch Sử Trận Đấu - Match History";
+            Text = "Lịch Sử Trận Đấu";
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             pnlStats.ResumeLayout(false);
@@ -337,6 +321,5 @@
         private Panel pnlHistory;
         private Label lblHistoryTitle;
         private DataGridView dgvHistory;
-        private Button btnViewDetails;
     }
 }

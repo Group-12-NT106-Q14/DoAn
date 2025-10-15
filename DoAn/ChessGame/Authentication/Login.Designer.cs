@@ -18,7 +18,7 @@
         private void InitializeComponent()
         {
             pnlLeft = new Panel();
-            picLogo = new PictureBox();
+            lblKingIcon = new Label();
             lblQuote = new Label();
             pnlRight = new Panel();
             lblTieuDe = new Label();
@@ -37,14 +37,13 @@
             btnShow = new Button();
             btnHide = new Button();
             pnlLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlRight.SuspendLayout();
             SuspendLayout();
             // 
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.FromArgb(118, 74, 61);
-            pnlLeft.Controls.Add(picLogo);
+            pnlLeft.Controls.Add(lblKingIcon);
             pnlLeft.Controls.Add(lblQuote);
             pnlLeft.Dock = DockStyle.Left;
             pnlLeft.Location = new Point(0, 0);
@@ -52,16 +51,16 @@
             pnlLeft.Size = new Size(360, 600);
             pnlLeft.TabIndex = 0;
             // 
-            // picLogo
+            // lblKingIcon
             // 
-            picLogo.BackColor = Color.Transparent;
-            picLogo.Location = new Point(105, 180);
-            picLogo.Name = "picLogo";
-            picLogo.Size = new Size(150, 150);
-            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            picLogo.TabIndex = 0;
-            picLogo.TabStop = false;
-            picLogo.Click += picLogo_Click;
+            lblKingIcon.AutoSize = true;
+            lblKingIcon.Font = new Font("Segoe UI", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblKingIcon.ForeColor = Color.White;
+            lblKingIcon.Location = new Point(86, 201);
+            lblKingIcon.Name = "lblKingIcon";
+            lblKingIcon.Size = new Size(187, 159);
+            lblKingIcon.TabIndex = 2;
+            lblKingIcon.Text = "♔";
             // 
             // lblQuote
             // 
@@ -256,7 +255,7 @@
             btnShow.FlatStyle = FlatStyle.Flat;
             btnShow.Location = new Point(425, 252);
             btnShow.Name = "btnShow";
-            btnShow.Size = new Size(30, 25);
+            btnShow.Size = new Size(30, 30);
             btnShow.TabIndex = 7;
             btnShow.Text = "👁";
             btnShow.UseVisualStyleBackColor = false;
@@ -290,7 +289,7 @@
             Text = "Chess - Đăng Nhập";
             Load += frmDN_Load;
             pnlLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            pnlLeft.PerformLayout();
             pnlRight.ResumeLayout(false);
             pnlRight.PerformLayout();
             ResumeLayout(false);
@@ -299,8 +298,8 @@
         #endregion
 
         private Panel pnlLeft;
+        private Label lblKingIcon;
         private Panel pnlRight;
-        private PictureBox picLogo;
         private Label lblQuote;
         private Label lblTieuDe;
         private Label lblTKLabel;

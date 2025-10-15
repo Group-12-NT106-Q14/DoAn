@@ -36,7 +36,6 @@
             pnlNLMKUnderline = new Panel();
             btnShowNLMK = new Button();
             btnSave = new Button();
-            btnCancel = new Button();
             lblHuongDan = new Label();
             pnlAvatar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
@@ -47,11 +46,11 @@
             lblTieuDe.AutoSize = true;
             lblTieuDe.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTieuDe.ForeColor = Color.FromArgb(78, 49, 41);
-            lblTieuDe.Location = new Point(121, 19);
+            lblTieuDe.Location = new Point(148, 19);
             lblTieuDe.Name = "lblTieuDe";
-            lblTieuDe.Size = new Size(479, 54);
+            lblTieuDe.Size = new Size(412, 54);
             lblTieuDe.TabIndex = 0;
-            lblTieuDe.Text = "⚙ CÀI ĐẶT TÀI KHOẢN";
+            lblTieuDe.Text = "CÀI ĐẶT TÀI KHOẢN";
             // 
             // pnlAvatar
             // 
@@ -84,7 +83,7 @@
             btnChangeAvatar.Name = "btnChangeAvatar";
             btnChangeAvatar.Size = new Size(160, 35);
             btnChangeAvatar.TabIndex = 1;
-            btnChangeAvatar.Text = "📷 Đổi Avatar";
+            btnChangeAvatar.Text = "Đổi Avatar";
             btnChangeAvatar.UseVisualStyleBackColor = false;
             // 
             // lblUsername
@@ -246,24 +245,10 @@
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(202, 598);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(150, 45);
+            btnSave.Size = new Size(309, 45);
             btnSave.TabIndex = 17;
-            btnSave.Text = "✅ LƯU";
+            btnSave.Text = "Lưu";
             btnSave.UseVisualStyleBackColor = false;
-            // 
-            // btnCancel
-            // 
-            btnCancel.BackColor = Color.FromArgb(160, 106, 88);
-            btnCancel.FlatAppearance.BorderSize = 0;
-            btnCancel.FlatStyle = FlatStyle.Flat;
-            btnCancel.Font = new Font("Segoe UI", 14F);
-            btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(372, 598);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(130, 45);
-            btnCancel.TabIndex = 18;
-            btnCancel.Text = "❌ Hủy";
-            btnCancel.UseVisualStyleBackColor = false;
             // 
             // lblHuongDan
             // 
@@ -281,7 +266,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
             ClientSize = new Size(700, 650);
-            Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(lblHuongDan);
             Controls.Add(btnShowNLMK);
@@ -304,7 +288,7 @@
             MaximizeBox = false;
             Name = "AccountSetting";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Chess - Cài Đặt Tài Khoản";
+            Text = "Cài Đặt Tài Khoản";
             pnlAvatar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             ResumeLayout(false);
@@ -332,7 +316,6 @@
         private Panel pnlNLMKUnderline;
         private Button btnShowNLMK;
         private Button btnSave;
-        private Button btnCancel;
         private Label lblHuongDan;
     }
 }

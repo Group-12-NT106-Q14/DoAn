@@ -177,7 +177,7 @@
             btnXacNhan.Name = "btnXacNhan";
             btnXacNhan.Size = new Size(364, 50);
             btnXacNhan.TabIndex = 14;
-            btnXacNhan.Text = "✅ XÁC NHẬN";
+            btnXacNhan.Text = "XÁC NHẬN";
             btnXacNhan.UseVisualStyleBackColor = false;
             // 
             // Recovery
@@ -203,7 +203,7 @@
             MaximizeBox = false;
             Name = "Recovery";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Chess - Đặt Lại Mật Khẩu";
+            Text = "Đặt Lại Mật Khẩu";
             ResumeLayout(false);
             PerformLayout();
         }

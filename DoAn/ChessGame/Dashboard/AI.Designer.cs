@@ -32,16 +32,25 @@
             lblColorTitle = new Label();
             rbWhite = new RadioButton();
             rbBlack = new RadioButton();
-            rbRandom = new RadioButton();
             btnStart = new Button();
+            pnlTimeControl = new Panel();
+            lblTimeControlTitle = new Label();
+            btn1min = new Button();
+            btn3min = new Button();
+            btn6min = new Button();
+            btn10min = new Button();
+            lblCustomMin = new Label();
+            txtCustomMin = new TextBox();
             pnlMain.SuspendLayout();
             pnlDifficulty.SuspendLayout();
             pnlColor.SuspendLayout();
+            pnlTimeControl.SuspendLayout();
             SuspendLayout();
             // 
             // pnlMain
             // 
             pnlMain.BackColor = Color.FromArgb(240, 217, 181);
+            pnlMain.Controls.Add(pnlTimeControl);
             pnlMain.Controls.Add(lblTitle);
             pnlMain.Controls.Add(lblDescription);
             pnlMain.Controls.Add(pnlDifficulty);
@@ -59,9 +68,9 @@
             lblTitle.ForeColor = Color.FromArgb(78, 49, 41);
             lblTitle.Location = new Point(300, 20);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(429, 62);
+            lblTitle.Size = new Size(356, 62);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "🤖 CHƠI VỚI MÁY";
+            lblTitle.Text = "CHƠI VỚI MÁY";
             // 
             // lblDescription
             // 
@@ -96,9 +105,9 @@
             lblDifficultyTitle.ForeColor = Color.White;
             lblDifficultyTitle.Location = new Point(20, 20);
             lblDifficultyTitle.Name = "lblDifficultyTitle";
-            lblDifficultyTitle.Size = new Size(230, 37);
+            lblDifficultyTitle.Size = new Size(185, 37);
             lblDifficultyTitle.TabIndex = 0;
-            lblDifficultyTitle.Text = "🎯 Chọn Độ Khó";
+            lblDifficultyTitle.Text = "Chọn Độ Khó";
             // 
             // rbEasy
             // 
@@ -108,10 +117,10 @@
             rbEasy.ForeColor = Color.White;
             rbEasy.Location = new Point(30, 70);
             rbEasy.Name = "rbEasy";
-            rbEasy.Size = new Size(198, 32);
+            rbEasy.Size = new Size(164, 32);
             rbEasy.TabIndex = 1;
             rbEasy.TabStop = true;
-            rbEasy.Text = "😊 Dễ (Beginner)";
+            rbEasy.Text = "Dễ (Beginner)";
             rbEasy.UseVisualStyleBackColor = true;
             // 
             // lblEasyDesc
@@ -132,9 +141,9 @@
             rbMedium.ForeColor = Color.White;
             rbMedium.Location = new Point(30, 130);
             rbMedium.Name = "rbMedium";
-            rbMedium.Size = new Size(261, 32);
+            rbMedium.Size = new Size(227, 32);
             rbMedium.TabIndex = 3;
-            rbMedium.Text = "🙂 Trung Bình (Normal)";
+            rbMedium.Text = "Trung Bình (Normal)";
             rbMedium.UseVisualStyleBackColor = true;
             // 
             // lblMediumDesc
@@ -155,9 +164,9 @@
             rbHard.ForeColor = Color.White;
             rbHard.Location = new Point(30, 190);
             rbHard.Name = "rbHard";
-            rbHard.Size = new Size(170, 32);
+            rbHard.Size = new Size(136, 32);
             rbHard.TabIndex = 5;
-            rbHard.Text = "😤 Khó (Hard)";
+            rbHard.Text = "Khó (Hard)";
             rbHard.UseVisualStyleBackColor = true;
             // 
             // lblHardDesc
@@ -177,10 +186,9 @@
             pnlColor.Controls.Add(lblColorTitle);
             pnlColor.Controls.Add(rbWhite);
             pnlColor.Controls.Add(rbBlack);
-            pnlColor.Controls.Add(rbRandom);
             pnlColor.Location = new Point(500, 146);
             pnlColor.Name = "pnlColor";
-            pnlColor.Size = new Size(420, 200);
+            pnlColor.Size = new Size(420, 147);
             pnlColor.TabIndex = 4;
             // 
             // lblColorTitle
@@ -190,9 +198,9 @@
             lblColorTitle.ForeColor = Color.White;
             lblColorTitle.Location = new Point(20, 20);
             lblColorTitle.Name = "lblColorTitle";
-            lblColorTitle.Size = new Size(307, 37);
+            lblColorTitle.Size = new Size(262, 37);
             lblColorTitle.TabIndex = 0;
-            lblColorTitle.Text = "♟️ Chọn Màu Quân Cờ";
+            lblColorTitle.Text = "Chọn Màu Quân Cờ";
             // 
             // rbWhite
             // 
@@ -202,10 +210,10 @@
             rbWhite.ForeColor = Color.White;
             rbWhite.Location = new Point(30, 70);
             rbWhite.Name = "rbWhite";
-            rbWhite.Size = new Size(275, 32);
+            rbWhite.Size = new Size(241, 32);
             rbWhite.TabIndex = 1;
             rbWhite.TabStop = true;
-            rbWhite.Text = "⚪ Quân Trắng (Đi trước)";
+            rbWhite.Text = "Quân Trắng (Đi trước)";
             rbWhite.UseVisualStyleBackColor = true;
             // 
             // rbBlack
@@ -215,22 +223,10 @@
             rbBlack.ForeColor = Color.White;
             rbBlack.Location = new Point(30, 110);
             rbBlack.Name = "rbBlack";
-            rbBlack.Size = new Size(240, 32);
+            rbBlack.Size = new Size(206, 32);
             rbBlack.TabIndex = 2;
-            rbBlack.Text = "⚫ Quân Đen (Đi sau)";
+            rbBlack.Text = "Quân Đen (Đi sau)";
             rbBlack.UseVisualStyleBackColor = true;
-            // 
-            // rbRandom
-            // 
-            rbRandom.AutoSize = true;
-            rbRandom.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            rbRandom.ForeColor = Color.White;
-            rbRandom.Location = new Point(30, 150);
-            rbRandom.Name = "rbRandom";
-            rbRandom.Size = new Size(181, 32);
-            rbRandom.TabIndex = 3;
-            rbRandom.Text = "🎲 Ngẫu Nhiên";
-            rbRandom.UseVisualStyleBackColor = true;
             // 
             // btnStart
             // 
@@ -239,12 +235,111 @@
             btnStart.FlatStyle = FlatStyle.Flat;
             btnStart.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             btnStart.ForeColor = Color.White;
-            btnStart.Location = new Point(500, 364);
+            btnStart.Location = new Point(500, 313);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(420, 80);
             btnStart.TabIndex = 5;
-            btnStart.Text = "▶️ BẮT ĐẦU TRẬN ĐẤU";
+            btnStart.Text = "BẮT ĐẦU TRẬN ĐẤU";
             btnStart.UseVisualStyleBackColor = false;
+            // 
+            // pnlTimeControl
+            // 
+            pnlTimeControl.BackColor = Color.FromArgb(247, 234, 214);
+            pnlTimeControl.Controls.Add(lblTimeControlTitle);
+            pnlTimeControl.Controls.Add(btn1min);
+            pnlTimeControl.Controls.Add(btn3min);
+            pnlTimeControl.Controls.Add(btn6min);
+            pnlTimeControl.Controls.Add(btn10min);
+            pnlTimeControl.Controls.Add(lblCustomMin);
+            pnlTimeControl.Controls.Add(txtCustomMin);
+            pnlTimeControl.Location = new Point(200, 411);
+            pnlTimeControl.Name = "pnlTimeControl";
+            pnlTimeControl.Size = new Size(580, 80);
+            pnlTimeControl.TabIndex = 9;
+            // 
+            // lblTimeControlTitle
+            // 
+            lblTimeControlTitle.AutoSize = true;
+            lblTimeControlTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTimeControlTitle.ForeColor = Color.FromArgb(78, 49, 41);
+            lblTimeControlTitle.Location = new Point(15, 12);
+            lblTimeControlTitle.Name = "lblTimeControlTitle";
+            lblTimeControlTitle.Size = new Size(437, 28);
+            lblTimeControlTitle.TabIndex = 0;
+            lblTimeControlTitle.Text = "Thời gian chơi của mỗi bên (tính bằng phút):";
+            // 
+            // btn1min
+            // 
+            btn1min.BackColor = Color.White;
+            btn1min.FlatStyle = FlatStyle.Flat;
+            btn1min.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btn1min.ForeColor = Color.FromArgb(78, 49, 41);
+            btn1min.Location = new Point(15, 45);
+            btn1min.Name = "btn1min";
+            btn1min.Size = new Size(70, 30);
+            btn1min.TabIndex = 1;
+            btn1min.Text = "1 phút";
+            btn1min.UseVisualStyleBackColor = false;
+            // 
+            // btn3min
+            // 
+            btn3min.BackColor = Color.White;
+            btn3min.FlatStyle = FlatStyle.Flat;
+            btn3min.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btn3min.ForeColor = Color.FromArgb(78, 49, 41);
+            btn3min.Location = new Point(95, 45);
+            btn3min.Name = "btn3min";
+            btn3min.Size = new Size(70, 30);
+            btn3min.TabIndex = 2;
+            btn3min.Text = "3 phút";
+            btn3min.UseVisualStyleBackColor = false;
+            // 
+            // btn6min
+            // 
+            btn6min.BackColor = Color.White;
+            btn6min.FlatStyle = FlatStyle.Flat;
+            btn6min.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btn6min.ForeColor = Color.FromArgb(78, 49, 41);
+            btn6min.Location = new Point(175, 45);
+            btn6min.Name = "btn6min";
+            btn6min.Size = new Size(70, 30);
+            btn6min.TabIndex = 3;
+            btn6min.Text = "6 phút";
+            btn6min.UseVisualStyleBackColor = false;
+            // 
+            // btn10min
+            // 
+            btn10min.BackColor = Color.White;
+            btn10min.FlatStyle = FlatStyle.Flat;
+            btn10min.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btn10min.ForeColor = Color.FromArgb(78, 49, 41);
+            btn10min.Location = new Point(255, 45);
+            btn10min.Name = "btn10min";
+            btn10min.Size = new Size(75, 30);
+            btn10min.TabIndex = 4;
+            btn10min.Text = "10 phút";
+            btn10min.UseVisualStyleBackColor = false;
+            // 
+            // lblCustomMin
+            // 
+            lblCustomMin.AutoSize = true;
+            lblCustomMin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblCustomMin.ForeColor = Color.FromArgb(78, 49, 41);
+            lblCustomMin.Location = new Point(350, 50);
+            lblCustomMin.Name = "lblCustomMin";
+            lblCustomMin.Size = new Size(86, 23);
+            lblCustomMin.TabIndex = 5;
+            lblCustomMin.Text = "Tùy chọn:";
+            // 
+            // txtCustomMin
+            // 
+            txtCustomMin.Font = new Font("Segoe UI", 10F);
+            txtCustomMin.Location = new Point(442, 47);
+            txtCustomMin.Name = "txtCustomMin";
+            txtCustomMin.PlaceholderText = "phút";
+            txtCustomMin.Size = new Size(81, 30);
+            txtCustomMin.TabIndex = 6;
+            txtCustomMin.TextAlign = HorizontalAlignment.Center;
             // 
             // AI
             // 
@@ -257,13 +352,15 @@
             MaximizeBox = false;
             Name = "AI";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Chơi Với Máy - AI Challenge";
+            Text = "Chơi Với Máy";
             pnlMain.ResumeLayout(false);
             pnlMain.PerformLayout();
             pnlDifficulty.ResumeLayout(false);
             pnlDifficulty.PerformLayout();
             pnlColor.ResumeLayout(false);
             pnlColor.PerformLayout();
+            pnlTimeControl.ResumeLayout(false);
+            pnlTimeControl.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -284,7 +381,14 @@
         private Label lblColorTitle;
         private RadioButton rbWhite;
         private RadioButton rbBlack;
-        private RadioButton rbRandom;
         private Button btnStart;
+        private Panel pnlTimeControl;
+        private Label lblTimeControlTitle;
+        private Button btn1min;
+        private Button btn3min;
+        private Button btn6min;
+        private Button btn10min;
+        private Label lblCustomMin;
+        private TextBox txtCustomMin;
     }
 }
