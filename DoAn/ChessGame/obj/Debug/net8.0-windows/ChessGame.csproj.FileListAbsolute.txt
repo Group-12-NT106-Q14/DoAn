@@ -51,3 +51,4 @@ D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.His
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Match.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Ranking.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Friend.resources
+D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.GameBoard.resources

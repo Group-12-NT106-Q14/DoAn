@@ -389,7 +389,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmDashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Chess - Dashboard";
+            Text = "Dashboard";
             Load += frmDashboard_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();

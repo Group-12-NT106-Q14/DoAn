@@ -268,7 +268,7 @@
             lblSecond.ForeColor = Color.FromArgb(78, 49, 41);
             lblSecond.Location = new Point(3, 57);
             lblSecond.Name = "lblSecond";
-            lblSecond.Size = new Size(220, 20);
+            lblSecond.Size = new Size(220, 33);
             lblSecond.TabIndex = 1;
             lblSecond.Text = "Player #2";
             lblSecond.TextAlign = ContentAlignment.MiddleCenter;
@@ -277,7 +277,7 @@
             // 
             lblSecondRating.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblSecondRating.ForeColor = Color.FromArgb(78, 49, 41);
-            lblSecondRating.Location = new Point(3, 80);
+            lblSecondRating.Location = new Point(0, 90);
             lblSecondRating.Name = "lblSecondRating";
             lblSecondRating.Size = new Size(220, 18);
             lblSecondRating.TabIndex = 2;
@@ -332,7 +332,7 @@
             lblThird.ForeColor = Color.FromArgb(78, 49, 41);
             lblThird.Location = new Point(10, 67);
             lblThird.Name = "lblThird";
-            lblThird.Size = new Size(220, 20);
+            lblThird.Size = new Size(220, 31);
             lblThird.TabIndex = 1;
             lblThird.Text = "Player #3";
             lblThird.TextAlign = ContentAlignment.MiddleCenter;
@@ -341,7 +341,7 @@
             // 
             lblThirdRating.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblThirdRating.ForeColor = Color.FromArgb(78, 49, 41);
-            lblThirdRating.Location = new Point(10, 87);
+            lblThirdRating.Location = new Point(3, 98);
             lblThirdRating.Name = "lblThirdRating";
             lblThirdRating.Size = new Size(220, 18);
             lblThirdRating.TabIndex = 2;
