@@ -103,7 +103,7 @@ namespace ChessGame
         private void btnĐN_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new frmLogin().Show();
+            //new frmLogin().ShowDialog();
         }
     }
 }

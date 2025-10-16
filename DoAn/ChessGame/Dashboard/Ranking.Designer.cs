@@ -13,20 +13,17 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnlTop = new Panel();
             lblTitle = new Label();
             cmbFilter = new ComboBox();
             lblFilter = new Label();
             txtSearch = new TextBox();
             pnlUserCard = new Panel();
-            picUserAvatar = new PictureBox();
             lblUserName = new Label();
             lblUserRank = new Label();
             lblUserRating = new Label();
@@ -37,29 +34,22 @@
             btnRefresh = new Button();
             pnlPodium = new Panel();
             pnlSecond = new Panel();
-            picSecond = new PictureBox();
             lblSecond = new Label();
             lblSecondRating = new Label();
             pnlFirst = new Panel();
-            picFirst = new PictureBox();
             lblFirst = new Label();
             lblFirstRating = new Label();
             pnlThird = new Panel();
-            picThird = new PictureBox();
             lblThird = new Label();
             lblThirdRating = new Label();
             pnlTop.SuspendLayout();
             pnlUserCard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picUserAvatar).BeginInit();
             pnlRankingList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRanking).BeginInit();
             pnlPodium.SuspendLayout();
             pnlSecond.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picSecond).BeginInit();
             pnlFirst.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picFirst).BeginInit();
             pnlThird.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picThird).BeginInit();
             SuspendLayout();
             // 
             // pnlTop
@@ -125,7 +115,6 @@
             // pnlUserCard
             // 
             pnlUserCard.BackColor = Color.FromArgb(118, 74, 61);
-            pnlUserCard.Controls.Add(picUserAvatar);
             pnlUserCard.Controls.Add(lblUserName);
             pnlUserCard.Controls.Add(lblUserRank);
             pnlUserCard.Controls.Add(lblUserRating);
@@ -135,22 +124,12 @@
             pnlUserCard.Size = new Size(350, 180);
             pnlUserCard.TabIndex = 1;
             // 
-            // picUserAvatar
-            // 
-            picUserAvatar.BackColor = Color.White;
-            picUserAvatar.Location = new Point(20, 20);
-            picUserAvatar.Name = "picUserAvatar";
-            picUserAvatar.Size = new Size(80, 80);
-            picUserAvatar.SizeMode = PictureBoxSizeMode.Zoom;
-            picUserAvatar.TabIndex = 0;
-            picUserAvatar.TabStop = false;
-            // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
             lblUserName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblUserName.ForeColor = Color.White;
-            lblUserName.Location = new Point(110, 25);
+            lblUserName.Location = new Point(20, 25);
             lblUserName.Name = "lblUserName";
             lblUserName.Size = new Size(141, 32);
             lblUserName.TabIndex = 1;
@@ -161,7 +140,7 @@
             lblUserRank.AutoSize = true;
             lblUserRank.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblUserRank.ForeColor = Color.FromArgb(255, 223, 186);
-            lblUserRank.Location = new Point(110, 55);
+            lblUserRank.Location = new Point(20, 55);
             lblUserRank.Name = "lblUserRank";
             lblUserRank.Size = new Size(116, 28);
             lblUserRank.TabIndex = 2;
@@ -172,7 +151,7 @@
             lblUserRating.AutoSize = true;
             lblUserRating.Font = new Font("Segoe UI", 11F);
             lblUserRating.ForeColor = Color.White;
-            lblUserRating.Location = new Point(110, 80);
+            lblUserRating.Location = new Point(20, 80);
             lblUserRating.Name = "lblUserRating";
             lblUserRating.Size = new Size(115, 25);
             lblUserRating.TabIndex = 3;
@@ -214,29 +193,29 @@
             // 
             dgvRanking.AllowUserToAddRows = false;
             dgvRanking.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle19.BackColor = Color.FromArgb(240, 217, 181);
-            dgvRanking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(240, 217, 181);
+            dgvRanking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvRanking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRanking.BackgroundColor = Color.FromArgb(247, 234, 214);
             dgvRanking.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = Color.FromArgb(78, 49, 41);
-            dataGridViewCellStyle20.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            dataGridViewCellStyle20.ForeColor = Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.True;
-            dgvRanking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(78, 49, 41);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvRanking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvRanking.ColumnHeadersHeight = 35;
             dgvRanking.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = Color.FromArgb(247, 234, 214);
-            dataGridViewCellStyle21.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle21.ForeColor = Color.FromArgb(78, 49, 41);
-            dataGridViewCellStyle21.SelectionBackColor = Color.FromArgb(133, 181, 100);
-            dataGridViewCellStyle21.SelectionForeColor = Color.White;
-            dataGridViewCellStyle21.WrapMode = DataGridViewTriState.False;
-            dgvRanking.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(247, 234, 214);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(78, 49, 41);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(133, 181, 100);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvRanking.DefaultCellStyle = dataGridViewCellStyle3;
             dgvRanking.EnableHeadersVisualStyles = false;
             dgvRanking.Location = new Point(20, 55);
             dgvRanking.Name = "dgvRanking";
@@ -276,7 +255,6 @@
             // pnlSecond
             // 
             pnlSecond.BackColor = Color.FromArgb(192, 192, 192);
-            pnlSecond.Controls.Add(picSecond);
             pnlSecond.Controls.Add(lblSecond);
             pnlSecond.Controls.Add(lblSecondRating);
             pnlSecond.Location = new Point(10, 25);
@@ -284,21 +262,11 @@
             pnlSecond.Size = new Size(240, 145);
             pnlSecond.TabIndex = 1;
             // 
-            // picSecond
-            // 
-            picSecond.BackColor = Color.White;
-            picSecond.Location = new Point(80, 10);
-            picSecond.Name = "picSecond";
-            picSecond.Size = new Size(70, 70);
-            picSecond.SizeMode = PictureBoxSizeMode.Zoom;
-            picSecond.TabIndex = 0;
-            picSecond.TabStop = false;
-            // 
             // lblSecond
             // 
             lblSecond.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblSecond.ForeColor = Color.FromArgb(78, 49, 41);
-            lblSecond.Location = new Point(10, 85);
+            lblSecond.Location = new Point(3, 57);
             lblSecond.Name = "lblSecond";
             lblSecond.Size = new Size(220, 20);
             lblSecond.TabIndex = 1;
@@ -309,7 +277,7 @@
             // 
             lblSecondRating.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblSecondRating.ForeColor = Color.FromArgb(78, 49, 41);
-            lblSecondRating.Location = new Point(10, 108);
+            lblSecondRating.Location = new Point(3, 80);
             lblSecondRating.Name = "lblSecondRating";
             lblSecondRating.Size = new Size(220, 18);
             lblSecondRating.TabIndex = 2;
@@ -319,7 +287,6 @@
             // pnlFirst
             // 
             pnlFirst.BackColor = Color.FromArgb(255, 215, 0);
-            pnlFirst.Controls.Add(picFirst);
             pnlFirst.Controls.Add(lblFirst);
             pnlFirst.Controls.Add(lblFirstRating);
             pnlFirst.Location = new Point(270, 3);
@@ -327,21 +294,11 @@
             pnlFirst.Size = new Size(250, 167);
             pnlFirst.TabIndex = 0;
             // 
-            // picFirst
-            // 
-            picFirst.BackColor = Color.White;
-            picFirst.Location = new Point(85, 15);
-            picFirst.Name = "picFirst";
-            picFirst.Size = new Size(80, 80);
-            picFirst.SizeMode = PictureBoxSizeMode.Zoom;
-            picFirst.TabIndex = 0;
-            picFirst.TabStop = false;
-            // 
             // lblFirst
             // 
             lblFirst.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblFirst.ForeColor = Color.FromArgb(78, 49, 41);
-            lblFirst.Location = new Point(10, 100);
+            lblFirst.Location = new Point(3, 52);
             lblFirst.Name = "lblFirst";
             lblFirst.Size = new Size(230, 30);
             lblFirst.TabIndex = 1;
@@ -352,7 +309,7 @@
             // 
             lblFirstRating.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblFirstRating.ForeColor = Color.FromArgb(78, 49, 41);
-            lblFirstRating.Location = new Point(10, 128);
+            lblFirstRating.Location = new Point(3, 80);
             lblFirstRating.Name = "lblFirstRating";
             lblFirstRating.Size = new Size(230, 20);
             lblFirstRating.TabIndex = 2;
@@ -362,7 +319,6 @@
             // pnlThird
             // 
             pnlThird.BackColor = Color.FromArgb(205, 127, 50);
-            pnlThird.Controls.Add(picThird);
             pnlThird.Controls.Add(lblThird);
             pnlThird.Controls.Add(lblThirdRating);
             pnlThird.Location = new Point(540, 35);
@@ -370,21 +326,11 @@
             pnlThird.Size = new Size(240, 135);
             pnlThird.TabIndex = 2;
             // 
-            // picThird
-            // 
-            picThird.BackColor = Color.White;
-            picThird.Location = new Point(85, 10);
-            picThird.Name = "picThird";
-            picThird.Size = new Size(70, 70);
-            picThird.SizeMode = PictureBoxSizeMode.Zoom;
-            picThird.TabIndex = 0;
-            picThird.TabStop = false;
-            // 
             // lblThird
             // 
             lblThird.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblThird.ForeColor = Color.FromArgb(78, 49, 41);
-            lblThird.Location = new Point(10, 85);
+            lblThird.Location = new Point(10, 67);
             lblThird.Name = "lblThird";
             lblThird.Size = new Size(220, 20);
             lblThird.TabIndex = 1;
@@ -395,7 +341,7 @@
             // 
             lblThirdRating.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblThirdRating.ForeColor = Color.FromArgb(78, 49, 41);
-            lblThirdRating.Location = new Point(10, 105);
+            lblThirdRating.Location = new Point(10, 87);
             lblThirdRating.Name = "lblThirdRating";
             lblThirdRating.Size = new Size(220, 18);
             lblThirdRating.TabIndex = 2;
@@ -421,21 +367,15 @@
             pnlTop.PerformLayout();
             pnlUserCard.ResumeLayout(false);
             pnlUserCard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picUserAvatar).EndInit();
             pnlRankingList.ResumeLayout(false);
             pnlRankingList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRanking).EndInit();
             pnlPodium.ResumeLayout(false);
             pnlSecond.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picSecond).EndInit();
             pnlFirst.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picFirst).EndInit();
             pnlThird.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picThird).EndInit();
             ResumeLayout(false);
         }
-
-        #endregion
 
         private Panel pnlTop;
         private Label lblTitle;
@@ -443,22 +383,18 @@
         private Label lblFilter;
         private TextBox txtSearch;
         private Panel pnlUserCard;
-        private PictureBox picUserAvatar;
         private Label lblUserName;
         private Label lblUserRank;
         private Label lblUserRating;
         private Label lblUserStats;
         private Panel pnlPodium;
         private Panel pnlFirst;
-        private PictureBox picFirst;
         private Label lblFirst;
         private Label lblFirstRating;
         private Panel pnlSecond;
-        private PictureBox picSecond;
         private Label lblSecond;
         private Label lblSecondRating;
         private Panel pnlThird;
-        private PictureBox picThird;
         private Label lblThird;
         private Label lblThirdRating;
         private Panel pnlRankingList;

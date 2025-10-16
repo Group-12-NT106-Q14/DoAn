@@ -13,8 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             pnlLeft = new Panel();
@@ -39,9 +37,7 @@
             pnlLeft.SuspendLayout();
             pnlRight.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlLeft
-            // 
+
             pnlLeft.BackColor = Color.FromArgb(118, 74, 61);
             pnlLeft.Controls.Add(lblKingIcon);
             pnlLeft.Controls.Add(lblQuote);
@@ -50,9 +46,7 @@
             pnlLeft.Name = "pnlLeft";
             pnlLeft.Size = new Size(360, 600);
             pnlLeft.TabIndex = 0;
-            // 
-            // lblKingIcon
-            // 
+
             lblKingIcon.AutoSize = true;
             lblKingIcon.Font = new Font("Segoe UI", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblKingIcon.ForeColor = Color.White;
@@ -61,9 +55,7 @@
             lblKingIcon.Size = new Size(187, 159);
             lblKingIcon.TabIndex = 2;
             lblKingIcon.Text = "♔";
-            // 
-            // lblQuote
-            // 
+
             lblQuote.Font = new Font("Segoe UI", 12F, FontStyle.Italic);
             lblQuote.ForeColor = Color.White;
             lblQuote.Location = new Point(30, 360);
@@ -72,9 +64,7 @@
             lblQuote.TabIndex = 1;
             lblQuote.Text = "\"Người thành công là người có lối đi riêng\"";
             lblQuote.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnlRight
-            // 
+
             pnlRight.BackColor = Color.FromArgb(240, 217, 181);
             pnlRight.Controls.Add(lblTieuDe);
             pnlRight.Controls.Add(lblTKLabel);
@@ -95,9 +85,7 @@
             pnlRight.Name = "pnlRight";
             pnlRight.Size = new Size(540, 600);
             pnlRight.TabIndex = 1;
-            // 
-            // lblTieuDe
-            // 
+
             lblTieuDe.AutoSize = true;
             lblTieuDe.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTieuDe.ForeColor = Color.FromArgb(78, 49, 41);
@@ -106,9 +94,7 @@
             lblTieuDe.Size = new Size(268, 54);
             lblTieuDe.TabIndex = 0;
             lblTieuDe.Text = "ĐĂNG NHẬP";
-            // 
-            // lblTKLabel
-            // 
+
             lblTKLabel.AutoSize = true;
             lblTKLabel.Font = new Font("Segoe UI", 10F);
             lblTKLabel.ForeColor = Color.FromArgb(78, 49, 41);
@@ -117,9 +103,7 @@
             lblTKLabel.Size = new Size(82, 23);
             lblTKLabel.TabIndex = 1;
             lblTKLabel.Text = "Tài khoản";
-            // 
-            // txtTK
-            // 
+
             txtTK.BackColor = Color.FromArgb(247, 234, 214);
             txtTK.BorderStyle = BorderStyle.None;
             txtTK.Font = new Font("Segoe UI", 12F);
@@ -128,17 +112,13 @@
             txtTK.Name = "txtTK";
             txtTK.Size = new Size(380, 27);
             txtTK.TabIndex = 2;
-            // 
-            // pnlTKUnderline
-            // 
+
             pnlTKUnderline.BackColor = Color.FromArgb(118, 74, 61);
             pnlTKUnderline.Location = new Point(80, 200);
             pnlTKUnderline.Name = "pnlTKUnderline";
             pnlTKUnderline.Size = new Size(380, 1);
             pnlTKUnderline.TabIndex = 3;
-            // 
-            // lblMKLabel
-            // 
+
             lblMKLabel.AutoSize = true;
             lblMKLabel.Font = new Font("Segoe UI", 10F);
             lblMKLabel.ForeColor = Color.FromArgb(78, 49, 41);
@@ -147,9 +127,7 @@
             lblMKLabel.Size = new Size(82, 23);
             lblMKLabel.TabIndex = 4;
             lblMKLabel.Text = "Mật khẩu";
-            // 
-            // txtMK
-            // 
+
             txtMK.BackColor = Color.FromArgb(247, 234, 214);
             txtMK.BorderStyle = BorderStyle.None;
             txtMK.Font = new Font("Segoe UI", 12F);
@@ -160,17 +138,13 @@
             txtMK.TabIndex = 5;
             txtMK.UseSystemPasswordChar = true;
             txtMK.TextChanged += txtMK_TextChanged;
-            // 
-            // pnlMKUnderline
-            // 
+
             pnlMKUnderline.BackColor = Color.FromArgb(118, 74, 61);
             pnlMKUnderline.Location = new Point(80, 280);
             pnlMKUnderline.Name = "pnlMKUnderline";
             pnlMKUnderline.Size = new Size(380, 1);
             pnlMKUnderline.TabIndex = 6;
-            // 
-            // chkLuu
-            // 
+
             chkLuu.AutoSize = true;
             chkLuu.Location = new Point(80, 310);
             chkLuu.Name = "chkLuu";
@@ -178,9 +152,7 @@
             chkLuu.TabIndex = 9;
             chkLuu.UseVisualStyleBackColor = true;
             chkLuu.CheckedChanged += chkLuu_CheckedChanged;
-            // 
-            // lblLuu
-            // 
+
             lblLuu.AutoSize = true;
             lblLuu.Font = new Font("Segoe UI", 10F);
             lblLuu.ForeColor = Color.FromArgb(78, 49, 41);
@@ -190,9 +162,7 @@
             lblLuu.TabIndex = 10;
             lblLuu.Text = "Nhớ tôi";
             lblLuu.Click += lblLuu_Click;
-            // 
-            // btnĐăngNhập
-            // 
+
             btnĐăngNhập.BackColor = Color.FromArgb(133, 181, 100);
             btnĐăngNhập.FlatAppearance.BorderSize = 0;
             btnĐăngNhập.FlatStyle = FlatStyle.Flat;
@@ -205,9 +175,7 @@
             btnĐăngNhập.Text = "ĐĂNG NHẬP";
             btnĐăngNhập.UseVisualStyleBackColor = false;
             btnĐăngNhập.Click += btnĐăngNhập_Click;
-            // 
-            // lblMoiDen
-            // 
+
             lblMoiDen.AutoSize = true;
             lblMoiDen.Font = new Font("Segoe UI", 10F);
             lblMoiDen.ForeColor = Color.FromArgb(78, 49, 41);
@@ -217,9 +185,7 @@
             lblMoiDen.TabIndex = 13;
             lblMoiDen.Text = "Chưa có tài khoản?";
             lblMoiDen.Click += lblMoiDen_Click;
-            // 
-            // btnĐK
-            // 
+
             btnĐK.BackColor = Color.Transparent;
             btnĐK.FlatAppearance.BorderSize = 0;
             btnĐK.FlatStyle = FlatStyle.Flat;
@@ -232,9 +198,7 @@
             btnĐK.Text = "Đăng ký ngay";
             btnĐK.UseVisualStyleBackColor = false;
             btnĐK.Click += btnĐK_Click;
-            // 
-            // btnQMK
-            // 
+
             btnQMK.BackColor = Color.Transparent;
             btnQMK.FlatAppearance.BorderSize = 0;
             btnQMK.FlatStyle = FlatStyle.Flat;
@@ -247,9 +211,7 @@
             btnQMK.Text = "Quên mật khẩu?";
             btnQMK.UseVisualStyleBackColor = false;
             btnQMK.Click += btnQMK_Click;
-            // 
-            // btnShow
-            // 
+
             btnShow.BackColor = Color.Transparent;
             btnShow.FlatAppearance.BorderSize = 0;
             btnShow.FlatStyle = FlatStyle.Flat;
@@ -260,9 +222,7 @@
             btnShow.Text = "👁";
             btnShow.UseVisualStyleBackColor = false;
             btnShow.Click += btnShow_Click;
-            // 
-            // btnHide
-            // 
+
             btnHide.BackColor = Color.Transparent;
             btnHide.FlatAppearance.BorderSize = 0;
             btnHide.FlatStyle = FlatStyle.Flat;
@@ -274,9 +234,7 @@
             btnHide.UseVisualStyleBackColor = false;
             btnHide.Visible = false;
             btnHide.Click += btnHide_Click;
-            // 
-            // frmLogin
-            // 
+
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
@@ -294,8 +252,6 @@
             pnlRight.PerformLayout();
             ResumeLayout(false);
         }
-
-        #endregion
 
         private Panel pnlLeft;
         private Label lblKingIcon;

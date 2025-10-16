@@ -13,8 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
@@ -43,9 +41,7 @@
             pnlHistory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvHistory).BeginInit();
             SuspendLayout();
-            // 
-            // pnlTop
-            // 
+
             pnlTop.BackColor = Color.FromArgb(118, 74, 61);
             pnlTop.Controls.Add(lblTitle);
             pnlTop.Controls.Add(lblFilter);
@@ -58,9 +54,7 @@
             pnlTop.Name = "pnlTop";
             pnlTop.Size = new Size(1160, 100);
             pnlTop.TabIndex = 0;
-            // 
-            // lblTitle
-            // 
+
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
@@ -69,9 +63,7 @@
             lblTitle.Size = new Size(335, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "LỊCH SỬ TRẬN ĐẤU";
-            // 
-            // lblFilter
-            // 
+
             lblFilter.AutoSize = true;
             lblFilter.Font = new Font("Segoe UI", 10F);
             lblFilter.ForeColor = Color.White;
@@ -80,9 +72,7 @@
             lblFilter.Size = new Size(80, 23);
             lblFilter.TabIndex = 1;
             lblFilter.Text = "Lọc theo:";
-            // 
-            // cmbFilterType
-            // 
+
             cmbFilterType.BackColor = Color.FromArgb(247, 234, 214);
             cmbFilterType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFilterType.FlatStyle = FlatStyle.Flat;
@@ -93,9 +83,7 @@
             cmbFilterType.Name = "cmbFilterType";
             cmbFilterType.Size = new Size(180, 31);
             cmbFilterType.TabIndex = 2;
-            // 
-            // lblDateRange
-            // 
+
             lblDateRange.AutoSize = true;
             lblDateRange.Font = new Font("Segoe UI", 10F);
             lblDateRange.ForeColor = Color.White;
@@ -104,9 +92,7 @@
             lblDateRange.Size = new Size(146, 23);
             lblDateRange.TabIndex = 3;
             lblDateRange.Text = "Khoảng thời gian:";
-            // 
-            // dtpFrom
-            // 
+
             dtpFrom.CalendarMonthBackground = Color.FromArgb(247, 234, 214);
             dtpFrom.Font = new Font("Segoe UI", 9F);
             dtpFrom.Format = DateTimePickerFormat.Short;
@@ -114,9 +100,7 @@
             dtpFrom.Name = "dtpFrom";
             dtpFrom.Size = new Size(130, 27);
             dtpFrom.TabIndex = 4;
-            // 
-            // dtpTo
-            // 
+
             dtpTo.CalendarMonthBackground = Color.FromArgb(247, 234, 214);
             dtpTo.Font = new Font("Segoe UI", 9F);
             dtpTo.Format = DateTimePickerFormat.Short;
@@ -124,9 +108,7 @@
             dtpTo.Name = "dtpTo";
             dtpTo.Size = new Size(130, 27);
             dtpTo.TabIndex = 5;
-            // 
-            // btnSearch
-            // 
+
             btnSearch.BackColor = Color.FromArgb(133, 181, 100);
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
@@ -138,9 +120,7 @@
             btnSearch.TabIndex = 6;
             btnSearch.Text = "TÌM KIẾM";
             btnSearch.UseVisualStyleBackColor = false;
-            // 
-            // pnlStats
-            // 
+
             pnlStats.BackColor = Color.FromArgb(118, 74, 61);
             pnlStats.Controls.Add(lblStatsTitle);
             pnlStats.Controls.Add(lblTotalGames);
@@ -152,9 +132,7 @@
             pnlStats.Name = "pnlStats";
             pnlStats.Size = new Size(380, 261);
             pnlStats.TabIndex = 1;
-            // 
-            // lblStatsTitle
-            // 
+
             lblStatsTitle.AutoSize = true;
             lblStatsTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblStatsTitle.ForeColor = Color.White;
@@ -163,9 +141,7 @@
             lblStatsTitle.Size = new Size(139, 37);
             lblStatsTitle.TabIndex = 0;
             lblStatsTitle.Text = "Thống Kê";
-            // 
-            // lblTotalGames
-            // 
+
             lblTotalGames.AutoSize = true;
             lblTotalGames.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblTotalGames.ForeColor = Color.White;
@@ -174,9 +150,7 @@
             lblTotalGames.Size = new Size(153, 30);
             lblTotalGames.TabIndex = 1;
             lblTotalGames.Text = "Tổng trận: 80";
-            // 
-            // lblWins
-            // 
+
             lblWins.AutoSize = true;
             lblWins.Font = new Font("Segoe UI", 12F);
             lblWins.ForeColor = Color.FromArgb(133, 181, 100);
@@ -185,9 +159,7 @@
             lblWins.Size = new Size(97, 28);
             lblWins.TabIndex = 2;
             lblWins.Text = "Thắng: 45";
-            // 
-            // lblDraws
-            // 
+
             lblDraws.AutoSize = true;
             lblDraws.Font = new Font("Segoe UI", 12F);
             lblDraws.ForeColor = Color.FromArgb(255, 223, 186);
@@ -196,9 +168,7 @@
             lblDraws.Size = new Size(79, 28);
             lblDraws.TabIndex = 3;
             lblDraws.Text = "Hòa: 12";
-            // 
-            // lblLosses
-            // 
+
             lblLosses.AutoSize = true;
             lblLosses.Font = new Font("Segoe UI", 12F);
             lblLosses.ForeColor = Color.FromArgb(200, 100, 100);
@@ -207,9 +177,7 @@
             lblLosses.Size = new Size(85, 28);
             lblLosses.TabIndex = 4;
             lblLosses.Text = "Thua: 23";
-            // 
-            // lblWinRate
-            // 
+
             lblWinRate.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblWinRate.ForeColor = Color.FromArgb(255, 223, 186);
             lblWinRate.Location = new Point(20, 220);
@@ -217,9 +185,7 @@
             lblWinRate.Size = new Size(340, 41);
             lblWinRate.TabIndex = 5;
             lblWinRate.Text = "Tỷ lệ thắng: 56.2%";
-            // 
-            // pnlHistory
-            // 
+
             pnlHistory.BackColor = Color.FromArgb(118, 74, 61);
             pnlHistory.Controls.Add(lblHistoryTitle);
             pnlHistory.Controls.Add(dgvHistory);
@@ -227,9 +193,7 @@
             pnlHistory.Name = "pnlHistory";
             pnlHistory.Size = new Size(760, 559);
             pnlHistory.TabIndex = 2;
-            // 
-            // lblHistoryTitle
-            // 
+
             lblHistoryTitle.AutoSize = true;
             lblHistoryTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblHistoryTitle.ForeColor = Color.White;
@@ -238,9 +202,7 @@
             lblHistoryTitle.Size = new Size(257, 32);
             lblHistoryTitle.TabIndex = 0;
             lblHistoryTitle.Text = "Chi Tiết Các Trận Đấu";
-            // 
-            // dgvHistory
-            // 
+
             dgvHistory.AllowUserToAddRows = false;
             dgvHistory.AllowUserToDeleteRows = false;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(240, 217, 181);
@@ -276,9 +238,7 @@
             dgvHistory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvHistory.Size = new Size(720, 460);
             dgvHistory.TabIndex = 1;
-            // 
-            // History
-            // 
+
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
@@ -300,8 +260,6 @@
             ((System.ComponentModel.ISupportInitialize)dgvHistory).EndInit();
             ResumeLayout(false);
         }
-
-        #endregion
 
         private Panel pnlTop;
         private Label lblTitle;

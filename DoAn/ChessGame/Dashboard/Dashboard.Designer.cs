@@ -13,25 +13,20 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             btnChoi = new Button();
             btnBXH = new Button();
-            btnMay = new Button();
             btnBan = new Button();
             btnThuGon = new Button();
             btnCaiDat = new Button();
             btnĐX = new Button();
             btnLichSu = new Button();
             pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox6 = new PictureBox();
             pnlUserProfile = new Panel();
-            picAvatar = new PictureBox();
             lblUsername = new Label();
             lblUserRank = new Label();
             pnlOnlinePlayers = new Panel();
@@ -46,12 +41,10 @@
             btnEmoji = new Button();
             pnlEmojiPicker = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             pnlUserProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             pnlOnlinePlayers.SuspendLayout();
             pnlChat.SuspendLayout();
             SuspendLayout();
@@ -79,7 +72,7 @@
             btnBXH.FlatStyle = FlatStyle.Flat;
             btnBXH.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnBXH.ForeColor = Color.White;
-            btnBXH.Location = new Point(400, 340);
+            btnBXH.Location = new Point(400, 252);
             btnBXH.Margin = new Padding(3, 4, 3, 4);
             btnBXH.Name = "btnBXH";
             btnBXH.Size = new Size(284, 60);
@@ -88,22 +81,6 @@
             btnBXH.UseVisualStyleBackColor = false;
             btnBXH.Click += btnBXH_Click;
             // 
-            // btnMay
-            // 
-            btnMay.BackColor = Color.FromArgb(160, 106, 88);
-            btnMay.FlatAppearance.BorderSize = 0;
-            btnMay.FlatStyle = FlatStyle.Flat;
-            btnMay.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            btnMay.ForeColor = Color.White;
-            btnMay.Location = new Point(400, 160);
-            btnMay.Margin = new Padding(3, 4, 3, 4);
-            btnMay.Name = "btnMay";
-            btnMay.Size = new Size(284, 60);
-            btnMay.TabIndex = 1;
-            btnMay.Text = "Chơi Với Máy";
-            btnMay.UseVisualStyleBackColor = false;
-            btnMay.Click += btnMay_Click;
-            // 
             // btnBan
             // 
             btnBan.BackColor = Color.FromArgb(160, 106, 88);
@@ -111,7 +88,7 @@
             btnBan.FlatStyle = FlatStyle.Flat;
             btnBan.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnBan.ForeColor = Color.White;
-            btnBan.Location = new Point(400, 250);
+            btnBan.Location = new Point(400, 162);
             btnBan.Margin = new Padding(3, 4, 3, 4);
             btnBan.Name = "btnBan";
             btnBan.Size = new Size(284, 60);
@@ -170,7 +147,7 @@
             btnLichSu.FlatStyle = FlatStyle.Flat;
             btnLichSu.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnLichSu.ForeColor = Color.White;
-            btnLichSu.Location = new Point(400, 430);
+            btnLichSu.Location = new Point(400, 342);
             btnLichSu.Margin = new Padding(3, 4, 3, 4);
             btnLichSu.Name = "btnLichSu";
             btnLichSu.Size = new Size(284, 60);
@@ -182,24 +159,13 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.FromArgb(160, 106, 88);
-            pictureBox2.Location = new Point(345, 340);
+            pictureBox2.Location = new Point(345, 252);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(52, 60);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 18;
             pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.FromArgb(160, 106, 88);
-            pictureBox3.Location = new Point(345, 160);
-            pictureBox3.Margin = new Padding(3, 4, 3, 4);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(52, 60);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 19;
-            pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -215,7 +181,7 @@
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.FromArgb(160, 106, 88);
-            pictureBox5.Location = new Point(345, 250);
+            pictureBox5.Location = new Point(345, 162);
             pictureBox5.Margin = new Padding(3, 4, 3, 4);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(52, 60);
@@ -226,7 +192,7 @@
             // pictureBox6
             // 
             pictureBox6.BackColor = Color.FromArgb(160, 106, 88);
-            pictureBox6.Location = new Point(345, 430);
+            pictureBox6.Location = new Point(345, 342);
             pictureBox6.Margin = new Padding(3, 4, 3, 4);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(52, 60);
@@ -237,7 +203,6 @@
             // pnlUserProfile
             // 
             pnlUserProfile.BackColor = Color.FromArgb(118, 74, 61);
-            pnlUserProfile.Controls.Add(picAvatar);
             pnlUserProfile.Controls.Add(lblUsername);
             pnlUserProfile.Controls.Add(lblUserRank);
             pnlUserProfile.Location = new Point(30, 20);
@@ -245,22 +210,12 @@
             pnlUserProfile.Size = new Size(280, 110);
             pnlUserProfile.TabIndex = 100;
             // 
-            // picAvatar
-            // 
-            picAvatar.BackColor = Color.White;
-            picAvatar.Location = new Point(12, 15);
-            picAvatar.Name = "picAvatar";
-            picAvatar.Size = new Size(75, 75);
-            picAvatar.SizeMode = PictureBoxSizeMode.Zoom;
-            picAvatar.TabIndex = 0;
-            picAvatar.TabStop = false;
-            // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(95, 25);
+            lblUsername.Location = new Point(72, 23);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(145, 30);
             lblUsername.TabIndex = 1;
@@ -271,7 +226,7 @@
             lblUserRank.AutoSize = true;
             lblUserRank.Font = new Font("Segoe UI", 9F);
             lblUserRank.ForeColor = Color.FromArgb(255, 223, 186);
-            lblUserRank.Location = new Point(95, 55);
+            lblUserRank.Location = new Point(72, 53);
             lblUserRank.Name = "lblUserRank";
             lblUserRank.Size = new Size(91, 20);
             lblUserRank.TabIndex = 2;
@@ -423,12 +378,10 @@
             Controls.Add(btnLichSu);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox4);
-            Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(btnCaiDat);
             Controls.Add(btnThuGon);
             Controls.Add(btnBan);
-            Controls.Add(btnMay);
             Controls.Add(btnBXH);
             Controls.Add(btnChoi);
             Controls.Add(pnlUserProfile);
@@ -439,13 +392,11 @@
             Text = "Chess - Dashboard";
             Load += frmDashboard_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             pnlUserProfile.ResumeLayout(false);
             pnlUserProfile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             pnlOnlinePlayers.ResumeLayout(false);
             pnlOnlinePlayers.PerformLayout();
             pnlChat.ResumeLayout(false);
@@ -479,15 +430,11 @@
             }
         }
 
-        #endregion
-
         private Button btnChoi;
         private Button btnBXH;
-        private Button btnMay;
         private Button btnBan;
         private Button btnThuGon;
         private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
         private Button btnCaiDat;
@@ -495,7 +442,6 @@
         private Button btnLichSu;
         private PictureBox pictureBox6;
         private Panel pnlUserProfile;
-        private PictureBox picAvatar;
         private Label lblUsername;
         private Label lblUserRank;
         private Panel pnlOnlinePlayers;

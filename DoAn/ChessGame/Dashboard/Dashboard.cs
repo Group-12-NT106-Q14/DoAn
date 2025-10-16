@@ -51,13 +51,6 @@ namespace ChessGame
 
         }
 
-        private void btnMay_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new AI().ShowDialog();
-            this.Show();
-        }
-
         private void btnBan_Click(object sender, EventArgs e)
         {
             this.Hide();

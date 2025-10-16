@@ -10,8 +10,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             lblTitle = new Label();
@@ -22,12 +20,10 @@
             btnRefresh = new Button();
             pnlPlayerA = new Panel();
             lblPlayerATitle = new Label();
-            picPlayerA = new PictureBox();
             lblPlayerAName = new Label();
             lblPlayerARating = new Label();
             pnlPlayerB = new Panel();
             lblPlayerBTitle = new Label();
-            picPlayerB = new PictureBox();
             lblPlayerBName = new Label();
             lblPlayerBRating = new Label();
             pnlChat = new Panel();
@@ -48,9 +44,7 @@
             txtCustomMin = new TextBox();
             pnlRoomList.SuspendLayout();
             pnlPlayerA.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlayerA).BeginInit();
             pnlPlayerB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlayerB).BeginInit();
             pnlChat.SuspendLayout();
             pnlTimeControl.SuspendLayout();
             SuspendLayout();
@@ -131,7 +125,6 @@
             // 
             pnlPlayerA.BackColor = Color.FromArgb(118, 74, 61);
             pnlPlayerA.Controls.Add(lblPlayerATitle);
-            pnlPlayerA.Controls.Add(picPlayerA);
             pnlPlayerA.Controls.Add(lblPlayerAName);
             pnlPlayerA.Controls.Add(lblPlayerARating);
             pnlPlayerA.Location = new Point(370, 110);
@@ -150,22 +143,12 @@
             lblPlayerATitle.TabIndex = 0;
             lblPlayerATitle.Text = "NGƯỜI CHƠI A (Trắng)";
             // 
-            // picPlayerA
-            // 
-            picPlayerA.BackColor = Color.White;
-            picPlayerA.Location = new Point(70, 70);
-            picPlayerA.Name = "picPlayerA";
-            picPlayerA.Size = new Size(140, 140);
-            picPlayerA.SizeMode = PictureBoxSizeMode.Zoom;
-            picPlayerA.TabIndex = 1;
-            picPlayerA.TabStop = false;
-            // 
             // lblPlayerAName
             // 
             lblPlayerAName.AutoSize = true;
             lblPlayerAName.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblPlayerAName.ForeColor = Color.White;
-            lblPlayerAName.Location = new Point(80, 230);
+            lblPlayerAName.Location = new Point(73, 141);
             lblPlayerAName.Name = "lblPlayerAName";
             lblPlayerAName.Size = new Size(145, 30);
             lblPlayerAName.TabIndex = 2;
@@ -176,7 +159,7 @@
             lblPlayerARating.AutoSize = true;
             lblPlayerARating.Font = new Font("Segoe UI", 11F);
             lblPlayerARating.ForeColor = Color.FromArgb(255, 223, 186);
-            lblPlayerARating.Location = new Point(85, 265);
+            lblPlayerARating.Location = new Point(78, 176);
             lblPlayerARating.Name = "lblPlayerARating";
             lblPlayerARating.Size = new Size(136, 25);
             lblPlayerARating.TabIndex = 3;
@@ -186,7 +169,6 @@
             // 
             pnlPlayerB.BackColor = Color.FromArgb(118, 74, 61);
             pnlPlayerB.Controls.Add(lblPlayerBTitle);
-            pnlPlayerB.Controls.Add(picPlayerB);
             pnlPlayerB.Controls.Add(lblPlayerBName);
             pnlPlayerB.Controls.Add(lblPlayerBRating);
             pnlPlayerB.Location = new Point(670, 110);
@@ -205,22 +187,12 @@
             lblPlayerBTitle.TabIndex = 0;
             lblPlayerBTitle.Text = "NGƯỜI CHƠI B (Đen)";
             // 
-            // picPlayerB
-            // 
-            picPlayerB.BackColor = Color.FromArgb(200, 200, 200);
-            picPlayerB.Location = new Point(70, 70);
-            picPlayerB.Name = "picPlayerB";
-            picPlayerB.Size = new Size(140, 140);
-            picPlayerB.SizeMode = PictureBoxSizeMode.Zoom;
-            picPlayerB.TabIndex = 1;
-            picPlayerB.TabStop = false;
-            // 
             // lblPlayerBName
             // 
             lblPlayerBName.AutoSize = true;
             lblPlayerBName.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblPlayerBName.ForeColor = Color.FromArgb(200, 200, 200);
-            lblPlayerBName.Location = new Point(85, 230);
+            lblPlayerBName.Location = new Point(80, 141);
             lblPlayerBName.Name = "lblPlayerBName";
             lblPlayerBName.Size = new Size(130, 30);
             lblPlayerBName.TabIndex = 2;
@@ -231,7 +203,7 @@
             lblPlayerBRating.AutoSize = true;
             lblPlayerBRating.Font = new Font("Segoe UI", 11F);
             lblPlayerBRating.ForeColor = Color.FromArgb(200, 200, 200);
-            lblPlayerBRating.Location = new Point(110, 265);
+            lblPlayerBRating.Location = new Point(105, 176);
             lblPlayerBRating.Name = "lblPlayerBRating";
             lblPlayerBRating.Size = new Size(57, 25);
             lblPlayerBRating.TabIndex = 3;
@@ -443,7 +415,7 @@
             txtCustomMin.TabIndex = 6;
             txtCustomMin.TextAlign = HorizontalAlignment.Center;
             // 
-            // Room
+            // Friend
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -459,17 +431,15 @@
             Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "Room";
+            Name = "Friend";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chơi Với Bạn";
             pnlRoomList.ResumeLayout(false);
             pnlRoomList.PerformLayout();
             pnlPlayerA.ResumeLayout(false);
             pnlPlayerA.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlayerA).EndInit();
             pnlPlayerB.ResumeLayout(false);
             pnlPlayerB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlayerB).EndInit();
             pnlChat.ResumeLayout(false);
             pnlChat.PerformLayout();
             pnlTimeControl.ResumeLayout(false);
@@ -478,38 +448,28 @@
             PerformLayout();
         }
 
-        #endregion
-
         private Label lblTitle;
-        // Room List
         private Panel pnlRoomList;
         private Label lblRoomListTitle;
         private TextBox txtSearchRoom;
         private ListBox lstRooms;
         private Button btnRefresh;
-        // Player A
         private Panel pnlPlayerA;
         private Label lblPlayerATitle;
-        private PictureBox picPlayerA;
         private Label lblPlayerAName;
         private Label lblPlayerARating;
-        // Player B
         private Panel pnlPlayerB;
         private Label lblPlayerBTitle;
-        private PictureBox picPlayerB;
         private Label lblPlayerBName;
         private Label lblPlayerBRating;
-        // Chat
         private Panel pnlChat;
         private Label lblChatTitle;
         private RichTextBox rtbChat;
         private TextBox txtChat;
         private Button btnSendChat;
         private Button btnEmoji;
-        // Actions
         private Button btnStartGame;
         private Button btnLeaveRoom;
-        // Time Control (MỚI)
         private Panel pnlTimeControl;
         private Label lblTimeControlTitle;
         private Button btn1min;

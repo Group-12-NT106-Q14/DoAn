@@ -4,9 +4,6 @@
     <Compile Update="Dashboard\AccountSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Dashboard\AI.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Dashboard\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>

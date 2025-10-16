@@ -13,14 +13,9 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             lblTieuDe = new Label();
-            pnlAvatar = new Panel();
-            picAvatar = new PictureBox();
-            btnChangeAvatar = new Button();
             lblUsername = new Label();
             txtUsername = new TextBox();
             pnlUsernameUnderline = new Panel();
@@ -37,8 +32,6 @@
             btnShowNLMK = new Button();
             btnSave = new Button();
             lblHuongDan = new Label();
-            pnlAvatar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             SuspendLayout();
             // 
             // lblTieuDe
@@ -52,46 +45,12 @@
             lblTieuDe.TabIndex = 0;
             lblTieuDe.Text = "CÀI ĐẶT TÀI KHOẢN";
             // 
-            // pnlAvatar
-            // 
-            pnlAvatar.BackColor = Color.FromArgb(118, 74, 61);
-            pnlAvatar.Controls.Add(picAvatar);
-            pnlAvatar.Controls.Add(btnChangeAvatar);
-            pnlAvatar.Location = new Point(250, 85);
-            pnlAvatar.Name = "pnlAvatar";
-            pnlAvatar.Size = new Size(200, 170);
-            pnlAvatar.TabIndex = 1;
-            // 
-            // picAvatar
-            // 
-            picAvatar.BackColor = Color.White;
-            picAvatar.Location = new Point(50, 20);
-            picAvatar.Name = "picAvatar";
-            picAvatar.Size = new Size(100, 100);
-            picAvatar.SizeMode = PictureBoxSizeMode.Zoom;
-            picAvatar.TabIndex = 0;
-            picAvatar.TabStop = false;
-            // 
-            // btnChangeAvatar
-            // 
-            btnChangeAvatar.BackColor = Color.FromArgb(133, 181, 100);
-            btnChangeAvatar.FlatAppearance.BorderSize = 0;
-            btnChangeAvatar.FlatStyle = FlatStyle.Flat;
-            btnChangeAvatar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnChangeAvatar.ForeColor = Color.White;
-            btnChangeAvatar.Location = new Point(20, 130);
-            btnChangeAvatar.Name = "btnChangeAvatar";
-            btnChangeAvatar.Size = new Size(160, 35);
-            btnChangeAvatar.TabIndex = 1;
-            btnChangeAvatar.Text = "Đổi Avatar";
-            btnChangeAvatar.UseVisualStyleBackColor = false;
-            // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblUsername.ForeColor = Color.FromArgb(78, 49, 41);
-            lblUsername.Location = new Point(100, 280);
+            lblUsername.Location = new Point(108, 85);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(131, 28);
             lblUsername.TabIndex = 2;
@@ -103,7 +62,7 @@
             txtUsername.BorderStyle = BorderStyle.None;
             txtUsername.Font = new Font("Segoe UI", 12F);
             txtUsername.ForeColor = Color.FromArgb(78, 49, 41);
-            txtUsername.Location = new Point(100, 310);
+            txtUsername.Location = new Point(108, 115);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(500, 27);
             txtUsername.TabIndex = 3;
@@ -112,7 +71,7 @@
             // pnlUsernameUnderline
             // 
             pnlUsernameUnderline.BackColor = Color.FromArgb(118, 74, 61);
-            pnlUsernameUnderline.Location = new Point(100, 335);
+            pnlUsernameUnderline.Location = new Point(108, 140);
             pnlUsernameUnderline.Name = "pnlUsernameUnderline";
             pnlUsernameUnderline.Size = new Size(500, 1);
             pnlUsernameUnderline.TabIndex = 4;
@@ -122,7 +81,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblEmail.ForeColor = Color.FromArgb(78, 49, 41);
-            lblEmail.Location = new Point(100, 360);
+            lblEmail.Location = new Point(108, 165);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(64, 28);
             lblEmail.TabIndex = 5;
@@ -134,7 +93,7 @@
             txtEmail.BorderStyle = BorderStyle.None;
             txtEmail.Font = new Font("Segoe UI", 12F);
             txtEmail.ForeColor = Color.FromArgb(78, 49, 41);
-            txtEmail.Location = new Point(100, 390);
+            txtEmail.Location = new Point(108, 195);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(500, 27);
             txtEmail.TabIndex = 6;
@@ -143,7 +102,7 @@
             // pnlEmailUnderline
             // 
             pnlEmailUnderline.BackColor = Color.FromArgb(118, 74, 61);
-            pnlEmailUnderline.Location = new Point(100, 415);
+            pnlEmailUnderline.Location = new Point(108, 220);
             pnlEmailUnderline.Name = "pnlEmailUnderline";
             pnlEmailUnderline.Size = new Size(500, 1);
             pnlEmailUnderline.TabIndex = 7;
@@ -153,7 +112,7 @@
             lblMatKhauMoi.AutoSize = true;
             lblMatKhauMoi.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblMatKhauMoi.ForeColor = Color.FromArgb(78, 49, 41);
-            lblMatKhauMoi.Location = new Point(100, 440);
+            lblMatKhauMoi.Location = new Point(108, 245);
             lblMatKhauMoi.Name = "lblMatKhauMoi";
             lblMatKhauMoi.Size = new Size(240, 28);
             lblMatKhauMoi.TabIndex = 8;
@@ -165,7 +124,7 @@
             txtMatKhauMoi.BorderStyle = BorderStyle.None;
             txtMatKhauMoi.Font = new Font("Segoe UI", 12F);
             txtMatKhauMoi.ForeColor = Color.FromArgb(78, 49, 41);
-            txtMatKhauMoi.Location = new Point(100, 470);
+            txtMatKhauMoi.Location = new Point(108, 275);
             txtMatKhauMoi.Name = "txtMatKhauMoi";
             txtMatKhauMoi.Size = new Size(460, 27);
             txtMatKhauMoi.TabIndex = 9;
@@ -174,7 +133,7 @@
             // pnlMKMoiUnderline
             // 
             pnlMKMoiUnderline.BackColor = Color.FromArgb(118, 74, 61);
-            pnlMKMoiUnderline.Location = new Point(100, 495);
+            pnlMKMoiUnderline.Location = new Point(108, 300);
             pnlMKMoiUnderline.Name = "pnlMKMoiUnderline";
             pnlMKMoiUnderline.Size = new Size(500, 1);
             pnlMKMoiUnderline.TabIndex = 10;
@@ -185,7 +144,7 @@
             btnShowMKMoi.FlatAppearance.BorderSize = 0;
             btnShowMKMoi.FlatStyle = FlatStyle.Flat;
             btnShowMKMoi.Font = new Font("Segoe UI", 10F);
-            btnShowMKMoi.Location = new Point(565, 467);
+            btnShowMKMoi.Location = new Point(573, 272);
             btnShowMKMoi.Name = "btnShowMKMoi";
             btnShowMKMoi.Size = new Size(30, 25);
             btnShowMKMoi.TabIndex = 11;
@@ -197,7 +156,7 @@
             lblNhapLaiMK.AutoSize = true;
             lblNhapLaiMK.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblNhapLaiMK.ForeColor = Color.FromArgb(78, 49, 41);
-            lblNhapLaiMK.Location = new Point(100, 510);
+            lblNhapLaiMK.Location = new Point(108, 315);
             lblNhapLaiMK.Name = "lblNhapLaiMK";
             lblNhapLaiMK.Size = new Size(194, 28);
             lblNhapLaiMK.TabIndex = 12;
@@ -209,7 +168,7 @@
             txtNhapLaiMK.BorderStyle = BorderStyle.None;
             txtNhapLaiMK.Font = new Font("Segoe UI", 12F);
             txtNhapLaiMK.ForeColor = Color.FromArgb(78, 49, 41);
-            txtNhapLaiMK.Location = new Point(100, 540);
+            txtNhapLaiMK.Location = new Point(108, 345);
             txtNhapLaiMK.Name = "txtNhapLaiMK";
             txtNhapLaiMK.Size = new Size(460, 27);
             txtNhapLaiMK.TabIndex = 13;
@@ -218,7 +177,7 @@
             // pnlNLMKUnderline
             // 
             pnlNLMKUnderline.BackColor = Color.FromArgb(118, 74, 61);
-            pnlNLMKUnderline.Location = new Point(100, 565);
+            pnlNLMKUnderline.Location = new Point(108, 370);
             pnlNLMKUnderline.Name = "pnlNLMKUnderline";
             pnlNLMKUnderline.Size = new Size(500, 1);
             pnlNLMKUnderline.TabIndex = 14;
@@ -229,7 +188,7 @@
             btnShowNLMK.FlatAppearance.BorderSize = 0;
             btnShowNLMK.FlatStyle = FlatStyle.Flat;
             btnShowNLMK.Font = new Font("Segoe UI", 10F);
-            btnShowNLMK.Location = new Point(565, 537);
+            btnShowNLMK.Location = new Point(573, 342);
             btnShowNLMK.Name = "btnShowNLMK";
             btnShowNLMK.Size = new Size(30, 25);
             btnShowNLMK.TabIndex = 15;
@@ -243,7 +202,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(202, 598);
+            btnSave.Location = new Point(210, 403);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(309, 45);
             btnSave.TabIndex = 17;
@@ -254,7 +213,7 @@
             // 
             lblHuongDan.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblHuongDan.ForeColor = Color.FromArgb(118, 74, 61);
-            lblHuongDan.Location = new Point(100, 575);
+            lblHuongDan.Location = new Point(108, 380);
             lblHuongDan.Name = "lblHuongDan";
             lblHuongDan.Size = new Size(500, 20);
             lblHuongDan.TabIndex = 16;
@@ -282,25 +241,17 @@
             Controls.Add(pnlUsernameUnderline);
             Controls.Add(txtUsername);
             Controls.Add(lblUsername);
-            Controls.Add(pnlAvatar);
             Controls.Add(lblTieuDe);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "AccountSetting";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cài Đặt Tài Khoản";
-            pnlAvatar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        #endregion
-
         private Label lblTieuDe;
-        private Panel pnlAvatar;
-        private PictureBox picAvatar;
-        private Button btnChangeAvatar;
         private Label lblUsername;
         private TextBox txtUsername;
         private Panel pnlUsernameUnderline;

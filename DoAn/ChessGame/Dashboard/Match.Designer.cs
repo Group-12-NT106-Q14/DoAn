@@ -13,8 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             lblTitle = new Label();
@@ -319,10 +317,7 @@
             PerformLayout();
         }
 
-        #endregion
-
         private Label lblTitle;
-        // Time Selection Panel (MỚI)
         private Panel pnlTimeSelection;
         private Label lblTimeTitle;
         private Button btn1min;

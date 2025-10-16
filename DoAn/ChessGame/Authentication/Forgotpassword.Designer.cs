@@ -13,8 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             lblTieuDe = new Label();
@@ -29,9 +27,7 @@
             lblHuongDan = new Label();
             btnXacNhan = new Button();
             SuspendLayout();
-            // 
-            // lblTieuDe
-            // 
+
             lblTieuDe.AutoSize = true;
             lblTieuDe.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTieuDe.ForeColor = Color.FromArgb(78, 49, 41);
@@ -40,9 +36,7 @@
             lblTieuDe.Size = new Size(360, 54);
             lblTieuDe.TabIndex = 0;
             lblTieuDe.Text = "QUÊN MẬT KHẨU";
-            // 
-            // lblMoTa
-            // 
+
             lblMoTa.Font = new Font("Segoe UI", 11F);
             lblMoTa.ForeColor = Color.FromArgb(78, 49, 41);
             lblMoTa.Location = new Point(100, 95);
@@ -51,9 +45,7 @@
             lblMoTa.TabIndex = 1;
             lblMoTa.Text = "Nhập email để nhận mã xác nhận khôi phục mật khẩu";
             lblMoTa.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblQuenMK
-            // 
+
             lblQuenMK.AutoSize = true;
             lblQuenMK.Font = new Font("Segoe UI", 11F);
             lblQuenMK.ForeColor = Color.FromArgb(78, 49, 41);
@@ -62,9 +54,7 @@
             lblQuenMK.Size = new Size(58, 25);
             lblQuenMK.TabIndex = 2;
             lblQuenMK.Text = "Email";
-            // 
-            // txtQuenMK
-            // 
+
             txtQuenMK.BackColor = Color.FromArgb(247, 234, 214);
             txtQuenMK.BorderStyle = BorderStyle.None;
             txtQuenMK.Font = new Font("Segoe UI", 12F);
@@ -74,17 +64,13 @@
             txtQuenMK.Size = new Size(500, 27);
             txtQuenMK.TabIndex = 3;
             txtQuenMK.TextChanged += txtQuenMK_TextChanged;
-            // 
-            // pnlEmailUnderline
-            // 
+
             pnlEmailUnderline.BackColor = Color.FromArgb(118, 74, 61);
             pnlEmailUnderline.Location = new Point(100, 200);
             pnlEmailUnderline.Name = "pnlEmailUnderline";
             pnlEmailUnderline.Size = new Size(500, 1);
             pnlEmailUnderline.TabIndex = 4;
-            // 
-            // btnGuiMa
-            // 
+
             btnGuiMa.BackColor = Color.FromArgb(133, 181, 100);
             btnGuiMa.FlatAppearance.BorderSize = 0;
             btnGuiMa.FlatStyle = FlatStyle.Flat;
@@ -96,9 +82,7 @@
             btnGuiMa.TabIndex = 5;
             btnGuiMa.Text = "GỬI MÃ XÁC NHẬN";
             btnGuiMa.UseVisualStyleBackColor = false;
-            // 
-            // lblMaXacNhan
-            // 
+
             lblMaXacNhan.AutoSize = true;
             lblMaXacNhan.Font = new Font("Segoe UI", 11F);
             lblMaXacNhan.ForeColor = Color.FromArgb(78, 49, 41);
@@ -107,9 +91,7 @@
             lblMaXacNhan.Size = new Size(125, 25);
             lblMaXacNhan.TabIndex = 6;
             lblMaXacNhan.Text = "Mã Xác Nhận";
-            // 
-            // txtMaXacNhan
-            // 
+
             txtMaXacNhan.BackColor = Color.FromArgb(247, 234, 214);
             txtMaXacNhan.BorderStyle = BorderStyle.None;
             txtMaXacNhan.Font = new Font("Segoe UI", 12F);
@@ -119,17 +101,13 @@
             txtMaXacNhan.Name = "txtMaXacNhan";
             txtMaXacNhan.Size = new Size(500, 27);
             txtMaXacNhan.TabIndex = 7;
-            // 
-            // pnlMaUnderline
-            // 
+
             pnlMaUnderline.BackColor = Color.FromArgb(118, 74, 61);
             pnlMaUnderline.Location = new Point(100, 340);
             pnlMaUnderline.Name = "pnlMaUnderline";
             pnlMaUnderline.Size = new Size(500, 1);
             pnlMaUnderline.TabIndex = 8;
-            // 
-            // lblHuongDan
-            // 
+
             lblHuongDan.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblHuongDan.ForeColor = Color.FromArgb(118, 74, 61);
             lblHuongDan.Location = new Point(100, 350);
@@ -137,9 +115,7 @@
             lblHuongDan.Size = new Size(500, 20);
             lblHuongDan.TabIndex = 9;
             lblHuongDan.Text = "Nhập mã 6 chữ số được gửi đến email của bạn";
-            // 
-            // btnXacNhan
-            // 
+
             btnXacNhan.BackColor = Color.FromArgb(133, 181, 100);
             btnXacNhan.FlatAppearance.BorderSize = 0;
             btnXacNhan.FlatStyle = FlatStyle.Flat;
@@ -151,9 +127,7 @@
             btnXacNhan.TabIndex = 10;
             btnXacNhan.Text = "TIẾP TỤC";
             btnXacNhan.UseVisualStyleBackColor = false;
-            // 
-            // frmForgotpassword
-            // 
+
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
@@ -178,8 +152,6 @@
             ResumeLayout(false);
             PerformLayout();
         }
-
-        #endregion
 
         private Label lblTieuDe;
         private Label lblMoTa;

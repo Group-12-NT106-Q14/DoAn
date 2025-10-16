@@ -27,7 +27,6 @@ D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.frm
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmLogin.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmRegister.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmDashboard.resources
-D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Properties.Resources.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.csproj.GenerateResource.cache
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.GeneratedMSBuildEditorConfig.editorconfig
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.AssemblyInfoInputs.cache
@@ -48,7 +47,6 @@ D:\phamtai\obj\Debug\net8.0-windows\ChessGame.Recovery.resources
 D:\phamtai\obj\Debug\net8.0-windows\ChessGame.AccountSetting.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Recovery.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.AccountSetting.resources
-D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.AI.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.History.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Match.resources
 D:\Group-12-NT106.Q14\DoAn\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Ranking.resources
