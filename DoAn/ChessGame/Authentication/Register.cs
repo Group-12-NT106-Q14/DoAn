@@ -59,7 +59,7 @@ namespace ChessGame
                 MessageBox.Show("Đăng kí thành công");
                 this.Hide();
                 frmLogin frm = new frmLogin();
-                frm.ShowDialog();
+                frm.Show();
             }
             else
             {
@@ -103,7 +103,7 @@ namespace ChessGame
         private void btnĐN_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new frmLogin().ShowDialog();
+            new frmLogin().Show();
         }
     }
 }

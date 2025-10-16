@@ -35,11 +35,11 @@
             lblTieuDe.AutoSize = true;
             lblTieuDe.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTieuDe.ForeColor = Color.FromArgb(78, 49, 41);
-            lblTieuDe.Location = new Point(150, 30);
+            lblTieuDe.Location = new Point(160, 30);
             lblTieuDe.Name = "lblTieuDe";
-            lblTieuDe.Size = new Size(378, 54);
+            lblTieuDe.Size = new Size(360, 54);
             lblTieuDe.TabIndex = 0;
-            lblTieuDe.Text = "QUÊN MẬT KHẨU?";
+            lblTieuDe.Text = "QUÊN MẬT KHẨU";
             // 
             // lblMoTa
             // 

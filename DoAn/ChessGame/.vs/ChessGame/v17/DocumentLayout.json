@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\doan\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\doan\\chessgame\\authentication\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,14 +27,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Dashboard.cs [Design]",
-              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
-              "RelativeDocumentMoniker": "Dashboard\\Dashboard.cs",
-              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs [Design]",
-              "RelativeToolTip": "Dashboard\\Dashboard.cs [Design]",
+              "Title": "Register.cs",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\Authentication\\Register.cs",
+              "RelativeDocumentMoniker": "Authentication\\Register.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\Authentication\\Register.cs",
+              "RelativeToolTip": "Authentication\\Register.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T07:19:58.045Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-10-16T03:10:00.928Z",
+              "EditorCaption": ""
             }
           ]
         }
