@@ -1,8 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "c5WMExpIgtc=",
+  "dgSpecHash": "vilfy8lDqD8=",
   "success": true,
   "projectFilePath": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\ChessGame.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "C:\\Users\\Shiba\\.nuget\\packages\\stub.system.data.sqlite.core.netframework\\1.0.119\\stub.system.data.sqlite.core.netframework.1.0.119.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Stub.System.Data.SQLite.Core.NetFramework 1.0.119' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "projectPath": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\ChessGame.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Group-12-NT106.Q14\\DoAn\\DoAn\\ChessGame\\ChessGame.csproj",
+      "libraryId": "Stub.System.Data.SQLite.Core.NetFramework",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
 }
