@@ -212,9 +212,9 @@
             btnQMK.FlatStyle = FlatStyle.Flat;
             btnQMK.Font = new Font("Segoe UI", 9F, FontStyle.Underline);
             btnQMK.ForeColor = Color.FromArgb(78, 49, 41);
-            btnQMK.Location = new Point(80, 298);
+            btnQMK.Location = new Point(80, 297);
             btnQMK.Name = "btnQMK";
-            btnQMK.Size = new Size(150, 30);
+            btnQMK.Size = new Size(130, 30);
             btnQMK.TabIndex = 11;
             btnQMK.Text = "Quên mật khẩu?";
             btnQMK.UseVisualStyleBackColor = false;

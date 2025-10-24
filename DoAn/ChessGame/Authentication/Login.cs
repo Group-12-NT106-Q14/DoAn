@@ -93,14 +93,6 @@ namespace ChessGame
 
         }
 
-        private void chkLuu_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkLuu.Checked)
-            {
-
-            }
-        }
-
         private void frmDN_Load(object sender, EventArgs e)
         {
 

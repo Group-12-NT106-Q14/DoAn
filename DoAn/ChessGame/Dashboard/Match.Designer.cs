@@ -16,12 +16,6 @@
         private void InitializeComponent()
         {
             lblTitle = new Label();
-            pnlTimeSelection = new Panel();
-            lblTimeTitle = new Label();
-            btn1min = new Button();
-            btn3min = new Button();
-            btn6min = new Button();
-            btn10min = new Button();
             pnlQuickMatch = new Panel();
             lblOnlineCount = new Label();
             btnStartMatch = new Button();
@@ -36,7 +30,6 @@
             lblOpponentRating = new Label();
             lblCountdown = new Label();
             lblActiveUsers = new Label();
-            pnlTimeSelection.SuspendLayout();
             pnlQuickMatch.SuspendLayout();
             pnlSearching.SuspendLayout();
             pnlMatchFound.SuspendLayout();
@@ -54,89 +47,13 @@
             lblTitle.TabIndex = 0;
             lblTitle.Text = "CHƠI NGAY";
             // 
-            // pnlTimeSelection
-            // 
-            pnlTimeSelection.BackColor = Color.FromArgb(247, 234, 214);
-            pnlTimeSelection.Controls.Add(lblTimeTitle);
-            pnlTimeSelection.Controls.Add(btn1min);
-            pnlTimeSelection.Controls.Add(btn3min);
-            pnlTimeSelection.Controls.Add(btn6min);
-            pnlTimeSelection.Controls.Add(btn10min);
-            pnlTimeSelection.Location = new Point(214, 93);
-            pnlTimeSelection.Name = "pnlTimeSelection";
-            pnlTimeSelection.Size = new Size(500, 90);
-            pnlTimeSelection.TabIndex = 2;
-            // 
-            // lblTimeTitle
-            // 
-            lblTimeTitle.AutoSize = true;
-            lblTimeTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblTimeTitle.ForeColor = Color.FromArgb(78, 49, 41);
-            lblTimeTitle.Location = new Point(19, 15);
-            lblTimeTitle.Name = "lblTimeTitle";
-            lblTimeTitle.Size = new Size(480, 30);
-            lblTimeTitle.TabIndex = 0;
-            lblTimeTitle.Text = "Chọn thời gian của mỗi bên (tính bằng phút):";
-            // 
-            // btn1min
-            // 
-            btn1min.BackColor = Color.White;
-            btn1min.FlatStyle = FlatStyle.Flat;
-            btn1min.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btn1min.ForeColor = Color.FromArgb(78, 49, 41);
-            btn1min.Location = new Point(30, 48);
-            btn1min.Name = "btn1min";
-            btn1min.Size = new Size(100, 35);
-            btn1min.TabIndex = 1;
-            btn1min.Text = "1";
-            btn1min.UseVisualStyleBackColor = false;
-            // 
-            // btn3min
-            // 
-            btn3min.BackColor = Color.White;
-            btn3min.FlatStyle = FlatStyle.Flat;
-            btn3min.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btn3min.ForeColor = Color.FromArgb(78, 49, 41);
-            btn3min.Location = new Point(140, 48);
-            btn3min.Name = "btn3min";
-            btn3min.Size = new Size(100, 35);
-            btn3min.TabIndex = 2;
-            btn3min.Text = "3";
-            btn3min.UseVisualStyleBackColor = false;
-            // 
-            // btn6min
-            // 
-            btn6min.BackColor = Color.White;
-            btn6min.FlatStyle = FlatStyle.Flat;
-            btn6min.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btn6min.ForeColor = Color.FromArgb(78, 49, 41);
-            btn6min.Location = new Point(250, 48);
-            btn6min.Name = "btn6min";
-            btn6min.Size = new Size(100, 35);
-            btn6min.TabIndex = 3;
-            btn6min.Text = "6";
-            btn6min.UseVisualStyleBackColor = false;
-            // 
-            // btn10min
-            // 
-            btn10min.BackColor = Color.White;
-            btn10min.FlatStyle = FlatStyle.Flat;
-            btn10min.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btn10min.ForeColor = Color.FromArgb(78, 49, 41);
-            btn10min.Location = new Point(360, 48);
-            btn10min.Name = "btn10min";
-            btn10min.Size = new Size(110, 35);
-            btn10min.TabIndex = 4;
-            btn10min.Text = "10";
-            btn10min.UseVisualStyleBackColor = false;
-            // 
             // pnlQuickMatch
             // 
             pnlQuickMatch.BackColor = Color.FromArgb(118, 74, 61);
             pnlQuickMatch.Controls.Add(lblOnlineCount);
             pnlQuickMatch.Controls.Add(btnStartMatch);
             pnlQuickMatch.Controls.Add(pnlSearching);
-            pnlQuickMatch.Location = new Point(214, 198);
+            pnlQuickMatch.Location = new Point(211, 118);
             pnlQuickMatch.Name = "pnlQuickMatch";
             pnlQuickMatch.Size = new Size(500, 180);
             pnlQuickMatch.TabIndex = 3;
@@ -220,7 +137,7 @@
             pnlMatchFound.Controls.Add(lblOpponentName);
             pnlMatchFound.Controls.Add(lblOpponentRating);
             pnlMatchFound.Controls.Add(lblCountdown);
-            pnlMatchFound.Location = new Point(214, 183);
+            pnlMatchFound.Location = new Point(211, 103);
             pnlMatchFound.Name = "pnlMatchFound";
             pnlMatchFound.Size = new Size(500, 237);
             pnlMatchFound.TabIndex = 5;
@@ -284,7 +201,7 @@
             // 
             lblActiveUsers.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblActiveUsers.ForeColor = Color.FromArgb(118, 74, 61);
-            lblActiveUsers.Location = new Point(12, 433);
+            lblActiveUsers.Location = new Point(9, 353);
             lblActiveUsers.Name = "lblActiveUsers";
             lblActiveUsers.Size = new Size(900, 25);
             lblActiveUsers.TabIndex = 6;
@@ -300,15 +217,12 @@
             Controls.Add(lblActiveUsers);
             Controls.Add(pnlMatchFound);
             Controls.Add(pnlQuickMatch);
-            Controls.Add(pnlTimeSelection);
             Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Match";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chơi Ngay";
-            pnlTimeSelection.ResumeLayout(false);
-            pnlTimeSelection.PerformLayout();
             pnlQuickMatch.ResumeLayout(false);
             pnlSearching.ResumeLayout(false);
             pnlMatchFound.ResumeLayout(false);
@@ -318,12 +232,6 @@
         }
 
         private Label lblTitle;
-        private Panel pnlTimeSelection;
-        private Label lblTimeTitle;
-        private Button btn1min;
-        private Button btn3min;
-        private Button btn6min;
-        private Button btn10min;
         private Panel pnlQuickMatch;
         private Label lblOnlineCount;
         private Button btnStartMatch;

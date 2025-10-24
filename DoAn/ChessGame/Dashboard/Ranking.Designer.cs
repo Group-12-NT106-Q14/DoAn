@@ -20,8 +20,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnlTop = new Panel();
             lblTitle = new Label();
-            cmbFilter = new ComboBox();
-            lblFilter = new Label();
             txtSearch = new TextBox();
             pnlUserCard = new Panel();
             lblUserName = new Label();
@@ -56,8 +54,6 @@
             // 
             pnlTop.BackColor = Color.FromArgb(118, 74, 61);
             pnlTop.Controls.Add(lblTitle);
-            pnlTop.Controls.Add(cmbFilter);
-            pnlTop.Controls.Add(lblFilter);
             pnlTop.Controls.Add(txtSearch);
             pnlTop.Location = new Point(20, 20);
             pnlTop.Name = "pnlTop";
@@ -74,31 +70,6 @@
             lblTitle.Size = new Size(297, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "BẢNG XẾP HẠNG";
-            // 
-            // cmbFilter
-            // 
-            cmbFilter.BackColor = Color.FromArgb(247, 234, 214);
-            cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbFilter.FlatStyle = FlatStyle.Flat;
-            cmbFilter.Font = new Font("Segoe UI", 10F);
-            cmbFilter.ForeColor = Color.FromArgb(78, 49, 41);
-            cmbFilter.FormattingEnabled = true;
-            cmbFilter.Items.AddRange(new object[] { "Tất cả", "Top 10", "Top 50", "Top 100" });
-            cmbFilter.Location = new Point(600, 35);
-            cmbFilter.Name = "cmbFilter";
-            cmbFilter.Size = new Size(150, 31);
-            cmbFilter.TabIndex = 2;
-            // 
-            // lblFilter
-            // 
-            lblFilter.AutoSize = true;
-            lblFilter.Font = new Font("Segoe UI", 11F);
-            lblFilter.ForeColor = Color.White;
-            lblFilter.Location = new Point(600, 10);
-            lblFilter.Name = "lblFilter";
-            lblFilter.Size = new Size(68, 25);
-            lblFilter.TabIndex = 1;
-            lblFilter.Text = "Bộ lọc:";
             // 
             // txtSearch
             // 
@@ -379,8 +350,6 @@
 
         private Panel pnlTop;
         private Label lblTitle;
-        private ComboBox cmbFilter;
-        private Label lblFilter;
         private TextBox txtSearch;
         private Panel pnlUserCard;
         private Label lblUserName;
