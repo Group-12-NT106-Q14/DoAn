@@ -247,6 +247,7 @@
             Name = "AccountSetting";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cài Đặt Tài Khoản";
+            Load += AccountSetting_Load;
             ResumeLayout(false);
             PerformLayout();
         }

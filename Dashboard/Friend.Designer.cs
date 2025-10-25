@@ -290,7 +290,6 @@
             // btnStartGame
             // 
             btnStartGame.BackColor = Color.FromArgb(133, 181, 100);
-            btnStartGame.Enabled = true;
             btnStartGame.FlatAppearance.BorderSize = 0;
             btnStartGame.FlatStyle = FlatStyle.Flat;
             btnStartGame.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
@@ -434,6 +433,7 @@
             Name = "Friend";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chơi Với Bạn";
+            Load += Friend_Load;
             pnlRoomList.ResumeLayout(false);
             pnlRoomList.PerformLayout();
             pnlPlayerA.ResumeLayout(false);

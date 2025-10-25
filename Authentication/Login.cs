@@ -102,5 +102,10 @@ namespace ChessGame
         {
 
         }
+
+        private void pnlRight_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

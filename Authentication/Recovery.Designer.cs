@@ -29,7 +29,9 @@
             btnHideNLMK = new Button();
             btnXacNhan = new Button();
             SuspendLayout();
-
+            // 
+            // lblTieuDe
+            // 
             lblTieuDe.AutoSize = true;
             lblTieuDe.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTieuDe.ForeColor = Color.FromArgb(78, 49, 41);
@@ -38,7 +40,9 @@
             lblTieuDe.Size = new Size(401, 54);
             lblTieuDe.TabIndex = 0;
             lblTieuDe.Text = "ĐẶT LẠI MẬT KHẨU";
-
+            // 
+            // lblMoTa
+            // 
             lblMoTa.Font = new Font("Segoe UI", 11F);
             lblMoTa.ForeColor = Color.FromArgb(78, 49, 41);
             lblMoTa.Location = new Point(150, 95);
@@ -47,7 +51,9 @@
             lblMoTa.TabIndex = 1;
             lblMoTa.Text = "Nhập mật khẩu mới cho tài khoản của bạn";
             lblMoTa.TextAlign = ContentAlignment.MiddleCenter;
-
+            // 
+            // lblMatKhauMoi
+            // 
             lblMatKhauMoi.AutoSize = true;
             lblMatKhauMoi.Font = new Font("Segoe UI", 11F);
             lblMatKhauMoi.ForeColor = Color.FromArgb(78, 49, 41);
@@ -56,7 +62,9 @@
             lblMatKhauMoi.Size = new Size(131, 25);
             lblMatKhauMoi.TabIndex = 3;
             lblMatKhauMoi.Text = "Mật Khẩu Mới";
-
+            // 
+            // txtMatKhauMoi
+            // 
             txtMatKhauMoi.BackColor = Color.FromArgb(247, 234, 214);
             txtMatKhauMoi.BorderStyle = BorderStyle.None;
             txtMatKhauMoi.Font = new Font("Segoe UI", 12F);
@@ -66,13 +74,17 @@
             txtMatKhauMoi.Size = new Size(460, 27);
             txtMatKhauMoi.TabIndex = 4;
             txtMatKhauMoi.UseSystemPasswordChar = true;
-
+            // 
+            // pnlMKMoiUnderline
+            // 
             pnlMKMoiUnderline.BackColor = Color.FromArgb(118, 74, 61);
             pnlMKMoiUnderline.Location = new Point(99, 186);
             pnlMKMoiUnderline.Name = "pnlMKMoiUnderline";
             pnlMKMoiUnderline.Size = new Size(500, 1);
             pnlMKMoiUnderline.TabIndex = 5;
-
+            // 
+            // btnShowMKMoi
+            // 
             btnShowMKMoi.BackColor = Color.Transparent;
             btnShowMKMoi.FlatAppearance.BorderSize = 0;
             btnShowMKMoi.FlatStyle = FlatStyle.Flat;
@@ -82,7 +94,9 @@
             btnShowMKMoi.TabIndex = 6;
             btnShowMKMoi.Text = "👁";
             btnShowMKMoi.UseVisualStyleBackColor = false;
-
+            // 
+            // btnHideMKMoi
+            // 
             btnHideMKMoi.BackColor = Color.Transparent;
             btnHideMKMoi.FlatAppearance.BorderSize = 0;
             btnHideMKMoi.FlatStyle = FlatStyle.Flat;
@@ -93,7 +107,9 @@
             btnHideMKMoi.Text = "👁‍🗨";
             btnHideMKMoi.UseVisualStyleBackColor = false;
             btnHideMKMoi.Visible = false;
-
+            // 
+            // lblNhapLaiMK
+            // 
             lblNhapLaiMK.AutoSize = true;
             lblNhapLaiMK.Font = new Font("Segoe UI", 11F);
             lblNhapLaiMK.ForeColor = Color.FromArgb(78, 49, 41);
@@ -102,7 +118,9 @@
             lblNhapLaiMK.Size = new Size(173, 25);
             lblNhapLaiMK.TabIndex = 8;
             lblNhapLaiMK.Text = "Nhập Lại Mật Khẩu";
-
+            // 
+            // txtNhapLaiMK
+            // 
             txtNhapLaiMK.BackColor = Color.FromArgb(247, 234, 214);
             txtNhapLaiMK.BorderStyle = BorderStyle.None;
             txtNhapLaiMK.Font = new Font("Segoe UI", 12F);
@@ -112,13 +130,17 @@
             txtNhapLaiMK.Size = new Size(460, 27);
             txtNhapLaiMK.TabIndex = 9;
             txtNhapLaiMK.UseSystemPasswordChar = true;
-
+            // 
+            // pnlNLMKUnderline
+            // 
             pnlNLMKUnderline.BackColor = Color.FromArgb(118, 74, 61);
             pnlNLMKUnderline.Location = new Point(99, 256);
             pnlNLMKUnderline.Name = "pnlNLMKUnderline";
             pnlNLMKUnderline.Size = new Size(500, 1);
             pnlNLMKUnderline.TabIndex = 10;
-
+            // 
+            // btnShowNLMK
+            // 
             btnShowNLMK.BackColor = Color.Transparent;
             btnShowNLMK.FlatAppearance.BorderSize = 0;
             btnShowNLMK.FlatStyle = FlatStyle.Flat;
@@ -128,7 +150,9 @@
             btnShowNLMK.TabIndex = 11;
             btnShowNLMK.Text = "👁";
             btnShowNLMK.UseVisualStyleBackColor = false;
-
+            // 
+            // btnHideNLMK
+            // 
             btnHideNLMK.BackColor = Color.Transparent;
             btnHideNLMK.FlatAppearance.BorderSize = 0;
             btnHideNLMK.FlatStyle = FlatStyle.Flat;
@@ -139,7 +163,9 @@
             btnHideNLMK.Text = "👁‍🗨";
             btnHideNLMK.UseVisualStyleBackColor = false;
             btnHideNLMK.Visible = false;
-
+            // 
+            // btnXacNhan
+            // 
             btnXacNhan.BackColor = Color.FromArgb(133, 181, 100);
             btnXacNhan.FlatAppearance.BorderSize = 0;
             btnXacNhan.FlatStyle = FlatStyle.Flat;
@@ -151,7 +177,9 @@
             btnXacNhan.TabIndex = 14;
             btnXacNhan.Text = "XÁC NHẬN";
             btnXacNhan.UseVisualStyleBackColor = false;
-
+            // 
+            // Recovery
+            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
@@ -174,6 +202,7 @@
             Name = "Recovery";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Đặt Lại Mật Khẩu";
+            Load += Recovery_Load;
             ResumeLayout(false);
             PerformLayout();
         }

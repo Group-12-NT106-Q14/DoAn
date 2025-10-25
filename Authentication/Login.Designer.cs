@@ -89,6 +89,7 @@
             pnlRight.Name = "pnlRight";
             pnlRight.Size = new Size(540, 600);
             pnlRight.TabIndex = 1;
+            pnlRight.Paint += pnlRight_Paint;
             // 
             // lblTieuDe
             // 

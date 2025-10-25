@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             btnChoi = new Button();
             btnBXH = new Button();
             btnBan = new Button();
@@ -159,6 +160,7 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.FromArgb(160, 106, 88);
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(345, 252);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
@@ -170,6 +172,7 @@
             // pictureBox4
             // 
             pictureBox4.BackColor = Color.FromArgb(133, 181, 100);
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
             pictureBox4.Location = new Point(345, 70);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
@@ -181,6 +184,7 @@
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.FromArgb(160, 106, 88);
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
             pictureBox5.Location = new Point(345, 162);
             pictureBox5.Margin = new Padding(3, 4, 3, 4);
             pictureBox5.Name = "pictureBox5";
@@ -192,6 +196,7 @@
             // pictureBox6
             // 
             pictureBox6.BackColor = Color.FromArgb(160, 106, 88);
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
             pictureBox6.Location = new Point(345, 342);
             pictureBox6.Margin = new Padding(3, 4, 3, 4);
             pictureBox6.Name = "pictureBox6";

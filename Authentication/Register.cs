@@ -105,5 +105,10 @@ namespace ChessGame
             this.Hide();
             //new frmLogin().ShowDialog();
         }
+
+        private void pnlRight_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

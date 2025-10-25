@@ -16,5 +16,10 @@ namespace ChessGame
         {
             InitializeComponent();
         }
+
+        private void Recovery_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

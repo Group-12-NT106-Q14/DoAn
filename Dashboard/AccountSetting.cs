@@ -16,5 +16,10 @@ namespace ChessGame
         {
             InitializeComponent();
         }
+
+        private void AccountSetting_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
