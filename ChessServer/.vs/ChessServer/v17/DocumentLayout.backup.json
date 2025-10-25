@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4D03A92C-9ED0-44A0-89A0-883E76CE14EA}|ChessServer.csproj|d:\\doantest\\chessserver\\tcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D03A92C-9ED0-44A0-89A0-883E76CE14EA}|ChessServer.csproj|solutionrelative:tcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D03A92C-9ED0-44A0-89A0-883E76CE14EA}|ChessServer.csproj|d:\\doantest\\chessserver\\database\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D03A92C-9ED0-44A0-89A0-883E76CE14EA}|ChessServer.csproj|solutionrelative:database\\userrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,22 +32,9 @@
               "RelativeDocumentMoniker": "TCPServer.cs",
               "ToolTip": "D:\\DoAnTest\\ChessServer\\TCPServer.cs",
               "RelativeToolTip": "TCPServer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAIwLQAAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-25T16:13:16.435Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserRepo.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessServer\\Database\\UserRepo.cs",
-              "RelativeDocumentMoniker": "Database\\UserRepo.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessServer\\Database\\UserRepo.cs",
-              "RelativeToolTip": "Database\\UserRepo.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAcwLkAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T14:56:47.474Z",
               "EditorCaption": ""
             }
           ]

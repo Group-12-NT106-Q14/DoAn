@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "CvCEAl+2peM=",
+  "dgSpecHash": "NJXm+3a8bag=",
   "success": true,
   "projectFilePath": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Shiba\\.nuget\\packages\\bouncycastle.cryptography\\2.6.1\\bouncycastle.cryptography.2.6.1.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\mailkit\\4.14.1\\mailkit.4.14.1.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\mimekit\\4.14.0\\mimekit.4.14.0.nupkg.sha512",
     "C:\\Users\\Shiba\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.118\\stub.system.data.sqlite.core.netstandard.1.0.118.nupkg.sha512",
-    "C:\\Users\\Shiba\\.nuget\\packages\\system.data.sqlite.core\\1.0.118\\system.data.sqlite.core.1.0.118.nupkg.sha512"
+    "C:\\Users\\Shiba\\.nuget\\packages\\system.data.sqlite.core\\1.0.118\\system.data.sqlite.core.1.0.118.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\system.formats.asn1\\8.0.1\\system.formats.asn1.8.0.1.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512"
   ],
   "logs": []
 }

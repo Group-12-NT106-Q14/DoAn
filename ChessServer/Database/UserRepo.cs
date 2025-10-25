@@ -72,6 +72,21 @@ namespace ChessServer
             }
             return null;
         }
+        public bool ResetPassword(string email, string newPassword)
+        {
+            using (var conn = Database.GetConnection())
+            {
+                conn.Open();
+                string hashedPassword = HashPasswordSHA256(newPassword);
+                string query = "UPDATE Users SET Password = @Password WHERE Email = @Email";
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
         public bool IsUsernameExists(string username)
         {
             using (SQLiteConnection conn = Database.GetConnection())

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MimeKit;
+using MailKit.Net.Smtp;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -11,6 +13,7 @@ namespace ChessServer
     {
         private TcpListener tcpListener;
         private UserRepo userRepo;
+        private static Dictionary<string, (string Otp, DateTime Expiry)> otpStore = new();
         public TCPServer()
         {
             userRepo = new UserRepo();
@@ -72,6 +75,9 @@ namespace ChessServer
                         "LOGIN" => HandleLogin(root),
                         "GET_USER_INFO" => HandleGetUserInfo(),
                         "UPDATE_ACCOUNT" => HandleUpdateAccount(root),
+                        "REQUEST_OTP" => HandleRequestOtp(root),
+                        "RESET_PASSWORD" => HandleResetPassword(root),
+                        "VERIFY_OTP" => HandleVerifyOtp(root),
                         _ => ""
                     };
                 }
@@ -115,6 +121,76 @@ namespace ChessServer
                     });
                 }
                 return CreateResponse(false, "Sai tài khoản hoặc mật khẩu");
+            }
+            private string HandleRequestOtp(JsonElement req)
+            {
+                string email = req.GetProperty("email").GetString();
+                UserRepo repo = server.GetUserRepo();
+                if (!repo.IsEmailExists(email)) return CreateResponse(false, "Email không tồn tại!");
+                string otp = new Random().Next(100000, 999999).ToString();
+                DateTime expiry = DateTime.Now.AddMinutes(10); 
+                otpStore[email] = (otp, expiry);
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Nhóm 12 Lập trình mạng căn bản (NT106.Q14)", "group12.nt106.q14@gmail.com"));
+                message.To.Add(new MailboxAddress("", email));
+                message.Subject = "Mã xác nhận đổi mật khẩu đồ án Trò chơi Cờ vua chơi qua mạng";
+                var builder = new BodyBuilder
+                {
+                    TextBody = $@"Xin chào,
+Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn tại hệ thống Trò chơi Cờ vua chơi qua mạng.
+
+MÃ XÁC NHẬN (OTP): {otp}
+
+Mã này có hiệu lực trong vòng 10 phút kể từ thời điểm gửi. Vui lòng sử dụng mã trên để xác minh và đặt lại mật khẩu.
+LƯU Ý:
+• Tuyệt đối không chia sẻ mã xác nhận này với bất kỳ ai, kể cả người tự xưng là nhân viên hỗ trợ.
+• Mỗi mã OTP chỉ được sử dụng một lần duy nhất.
+• Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua email này.
+
+Trân trọng,
+Nhóm 12 - Đồ án Lập trình mạng căn bản (NT106.Q14)
+Trò chơi Cờ vua chơi qua mạng
+---
+Email này được gửi tự động, vui lòng không trả lời trực tiếp."
+                };
+                message.Body = builder.ToMessageBody();
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                    client.Authenticate("group12.nt106.q14@gmail.com", "tmjx bacw rvsg dybr");
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+                Console.WriteLine($"[{clientIP}] Gửi OTP đến {email}");
+                return CreateResponse(true, "Đã gửi mã xác nhận qua email!");
+            }
+            private string HandleVerifyOtp(JsonElement req)
+            {
+                string email = req.GetProperty("email").GetString();
+                string otp = req.GetProperty("otp").GetString();
+                if (!otpStore.ContainsKey(email))
+                    return CreateResponse(false, "Vui lòng yêu cầu mã mới!");
+                var otpData = otpStore[email];
+                if (DateTime.Now > otpData.Expiry)
+                {
+                    otpStore.Remove(email);
+                    return CreateResponse(false, "Mã đã hết hạn, vui lòng yêu cầu mã mới!");
+                }
+                if (otpData.Otp != otp) return CreateResponse(false, "Mã xác nhận không đúng!");
+                otpStore.Remove(email);
+                Console.WriteLine($"[{clientIP}] Email {email} đã xác nhận otp thành công!");
+                return CreateResponse(true, "Bạn đã xác nhận thành công. Bây giờ bạn có thẻ đổi mật khẩu!");
+            }
+            private string HandleResetPassword(JsonElement req)
+            {
+                string email = req.GetProperty("email").GetString();
+                string newPassword = req.GetProperty("newPassword").GetString();
+                UserRepo repo = server.GetUserRepo();
+                ClassUser user = repo.GetAllUsers().FirstOrDefault(u => u.Email == email);
+                string username = user.Username;
+                repo.ResetPassword(email, newPassword);
+                Console.WriteLine($"[{clientIP}] Reset Password: {username}");
+                return CreateResponse(true, "Đổi mật khẩu thành công!");
             }
             private string HandleUpdateAccount(JsonElement req)
             {

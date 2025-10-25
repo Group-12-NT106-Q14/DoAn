@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Authentication\Forgotpassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Dashboard\AccountSetting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Dashboard\Dashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Authentication\Forgotpassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Authentication\Login.cs">
