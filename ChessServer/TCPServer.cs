@@ -78,6 +78,7 @@ namespace ChessServer
                         "REQUEST_OTP" => HandleRequestOtp(root),
                         "RESET_PASSWORD" => HandleResetPassword(root),
                         "VERIFY_OTP" => HandleVerifyOtp(root),
+                        "LOGOUT" => HandleLogout(root),
                         _ => ""
                     };
                 }
@@ -224,6 +225,13 @@ Email này được gửi tự động, vui lòng không trả lời trực ti�
                         elo = loggedInUser.Elo
                     } : null
                 });
+            }
+            private string HandleLogout(JsonElement req)
+            {
+                string? username = null;
+                if (req.TryGetProperty("username", out JsonElement userProp)) username = userProp.GetString();
+                Console.WriteLine($"[{clientIP}] Logout: {username}");
+                return CreateResponse(true, "Đăng xuất thành công!");
             }
             private string CreateResponse(bool success, string message)
             {

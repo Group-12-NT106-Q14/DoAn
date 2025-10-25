@@ -76,6 +76,7 @@ namespace ChessGame
                         frm.Elo = elo;
                         frm.UserId = userId;
                         frm.Email = email;
+                        frm.Username = txtTK.Text;
                         frm.ShowDialog();
                     }
                     else

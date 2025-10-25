@@ -16,6 +16,7 @@ namespace ChessGame
         public int Elo { get; set; }
         public int UserId { get; set; }
         public string Email { get; set; }
+        public string Username { get; set; }
         public frmDashboard()
         {
             InitializeComponent();
@@ -79,9 +80,21 @@ namespace ChessGame
 
         private void btnĐX_Click(object sender, EventArgs e)
         {
-
+            TCPClient client = new TCPClient();
+            client.Connect();
+            var request = new
+            {
+                action = "LOGOUT",
+                username = Username
+            };
+            string response = client.SendRequest(request);
+            client.Disconnect();
+            MessageBox.Show("Đăng xuất thành công!");
+            this.Hide();
+            frmLogin login = new frmLogin();
+            login.ShowDialog();
+            this.Close();
         }
-
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
             AccountSetting frm = new AccountSetting();
@@ -89,8 +102,6 @@ namespace ChessGame
             frm.CurrentDisplayName = this.DisplayName;
             frm.CurrentEmail = this.Email;
             frm.ShowDialog();
-
-            // ✅ CẬP NHẬT LẠI SAU KHI ĐÓNG
             if (frm.IsUpdated)
             {
                 this.DisplayName = frm.CurrentDisplayName;

@@ -1,42 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\DoAnTest\\ChessGame\\",
+  "WorkspaceRootPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\authentication\\recovery.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\recovery.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\authentication\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\authentication\\forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\authentication\\recovery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\recovery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\authentication\\recovery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\recovery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\dashboard\\accountsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\accountsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\dashboard\\accountsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\accountsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\authentication\\forgotpassword.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\forgotpassword.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\authentication\\forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\forgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,6 +29,19 @@
           "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.cs",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Authentication\\Login.cs",
+              "RelativeDocumentMoniker": "Authentication\\Login.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Authentication\\Login.cs",
+              "RelativeToolTip": "Authentication\\Login.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAQwE4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T18:47:41.937Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
@@ -58,115 +51,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Register.cs [Design]",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Authentication\\Register.cs",
-              "RelativeDocumentMoniker": "Authentication\\Register.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Authentication\\Register.cs [Design]",
-              "RelativeToolTip": "Authentication\\Register.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T18:01:33.176Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Recovery.Designer.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Authentication\\Recovery.Designer.cs",
-              "RelativeDocumentMoniker": "Authentication\\Recovery.Designer.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Authentication\\Recovery.Designer.cs",
-              "RelativeToolTip": "Authentication\\Recovery.Designer.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAkwIMAAAA2AAAAAAAAAA==",
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard\\Dashboard.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
+              "RelativeToolTip": "Dashboard\\Dashboard.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAiwFcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:43:08.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Forgotpassword.Designer.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Authentication\\Forgotpassword.Designer.cs",
-              "RelativeDocumentMoniker": "Authentication\\Forgotpassword.Designer.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Authentication\\Forgotpassword.Designer.cs",
-              "RelativeToolTip": "Authentication\\Forgotpassword.Designer.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAkwI0AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:42:35.114Z",
+              "WhenOpened": "2025-10-25T18:38:58.304Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Forgotpassword.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Authentication\\Forgotpassword.cs",
-              "RelativeDocumentMoniker": "Authentication\\Forgotpassword.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Authentication\\Forgotpassword.cs",
-              "RelativeToolTip": "Authentication\\Forgotpassword.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEoAAAAMAAAAAAAAAA==",
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Authentication\\Login.cs",
+              "RelativeDocumentMoniker": "Authentication\\Login.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Authentication\\Login.cs [Design]",
+              "RelativeToolTip": "Authentication\\Login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:39:32.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Recovery.cs [Design]",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Authentication\\Recovery.cs",
-              "RelativeDocumentMoniker": "Authentication\\Recovery.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Authentication\\Recovery.cs [Design]",
-              "RelativeToolTip": "Authentication\\Recovery.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:39:29.724Z",
+              "WhenOpened": "2025-10-25T18:47:41.045Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Recovery.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Authentication\\Recovery.cs",
-              "RelativeDocumentMoniker": "Authentication\\Recovery.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Authentication\\Recovery.cs",
-              "RelativeToolTip": "Authentication\\Recovery.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAYwDUAAAAJAAAAAAAAAA==",
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard\\Dashboard.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Dashboard\\Dashboard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:39:31.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AccountSetting.cs [Design]",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Dashboard\\AccountSetting.cs",
-              "RelativeDocumentMoniker": "Dashboard\\AccountSetting.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Dashboard\\AccountSetting.cs [Design]",
-              "RelativeToolTip": "Dashboard\\AccountSetting.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:56:03.237Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AccountSetting.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Dashboard\\AccountSetting.cs",
-              "RelativeDocumentMoniker": "Dashboard\\AccountSetting.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Dashboard\\AccountSetting.cs",
-              "RelativeToolTip": "Dashboard\\AccountSetting.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:56:06.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Forgotpassword.cs [Design]",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Authentication\\Forgotpassword.cs",
-              "RelativeDocumentMoniker": "Authentication\\Forgotpassword.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Authentication\\Forgotpassword.cs [Design]",
-              "RelativeToolTip": "Authentication\\Forgotpassword.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T17:39:28.915Z",
+              "WhenOpened": "2025-10-25T18:38:56.958Z",
               "EditorCaption": " [Design]"
             }
           ]
