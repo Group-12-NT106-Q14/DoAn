@@ -18,10 +18,9 @@ namespace ChessServer
         public void Start(int port)
         {
             Database.Initialize();
-            Console.WriteLine($"✓ Server khởi động trên port {port}\n");
+            Console.WriteLine($"Server khởi động trên port {port}\n");
             tcpListener = new TcpListener(IPAddress.Any, port);
             new Thread(ListenForClients) { IsBackground = true }.Start();
-
             Thread.Sleep(Timeout.Infinite);
         }
         private void ListenForClients()
@@ -71,8 +70,8 @@ namespace ChessServer
                     {
                         "REGISTER" => HandleRegister(root),
                         "LOGIN" => HandleLogin(root),
-                        "LOGOUT" => HandleLogout(),
                         "GET_USER_INFO" => HandleGetUserInfo(),
+                        "UPDATE_ACCOUNT" => HandleUpdateAccount(root),
                         _ => ""
                     };
                 }
@@ -117,14 +116,22 @@ namespace ChessServer
                 }
                 return CreateResponse(false, "Sai tài khoản hoặc mật khẩu");
             }
-            private string HandleLogout()
+            private string HandleUpdateAccount(JsonElement req)
             {
-                if (loggedInUser != null)
+                int userId = req.GetProperty("userId").GetInt32();
+                string newDisplayName = req.GetProperty("displayName").GetString();
+                string newEmail = req.GetProperty("email").GetString();
+                string newPassword = null;
+                if (req.TryGetProperty("password", out JsonElement pwdElement))
                 {
-                    Console.WriteLine($"[{clientIP}] Logout: {loggedInUser.Username}");
-                    loggedInUser = null;
+                    newPassword = pwdElement.GetString();
                 }
-                return CreateResponse(true, "Đăng xuất thành công");
+                UserRepo repo = server.GetUserRepo();
+                ClassUser currentUser = repo.GetUserById(userId);
+                string username = currentUser.Username;
+                repo.UpdateUserAccount(userId, newDisplayName, newEmail, newPassword);
+                Console.WriteLine($"[{clientIP}] Account Setting: {username}");
+                return CreateResponse(true, "Cập nhật thành công");  
             }
             private string HandleGetUserInfo()
             {

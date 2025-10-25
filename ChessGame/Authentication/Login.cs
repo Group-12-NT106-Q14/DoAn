@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ChessGame
 {
@@ -60,7 +62,6 @@ namespace ChessGame
                     JsonElement root = doc.RootElement;
                     bool success = root.GetProperty("success").GetBoolean();
                     string message = root.GetProperty("message").GetString();
-
                     if (success)
                     {
                         MessageBox.Show("Đăng nhập thành công");
@@ -69,8 +70,12 @@ namespace ChessGame
                         JsonElement userElement = root.GetProperty("user");
                         string displayName = userElement.GetProperty("displayName").GetString();
                         int elo = userElement.GetProperty("elo").GetInt32();
+                        int userId = userElement.GetProperty("userId").GetInt32();
+                        string email = userElement.GetProperty("email").GetString();
                         frm.DisplayName = displayName;
                         frm.Elo = elo;
+                        frm.UserId = userId;
+                        frm.Email = email;
                         frm.ShowDialog();
                     }
                     else

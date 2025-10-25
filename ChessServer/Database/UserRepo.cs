@@ -128,6 +128,32 @@ namespace ChessServer
             }
             return null;
         }
+        public bool UpdateUserAccount(int userId, string newDisplayName, string newEmail, string newPassword = null)
+        {
+            using (SQLiteConnection conn = Database.GetConnection())
+            {
+                conn.Open();
+                string query;
+                SQLiteCommand cmd;
+                if (!string.IsNullOrEmpty(newPassword)) //không đổi mật khẩu
+                {
+                    string hashedPassword = HashPasswordSHA256(newPassword);
+                    query = "UPDATE Users SET DisplayName = @DisplayName, Email = @Email, Password = @Password WHERE UserID = @UserID";
+                    cmd = new SQLiteCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                }
+                else //có đổi mật khẩu
+                {
+                    query = "UPDATE Users SET DisplayName = @DisplayName, Email = @Email WHERE UserID = @UserID";
+                    cmd = new SQLiteCommand(query, conn);
+                }
+                cmd.Parameters.AddWithValue("@DisplayName", newDisplayName);
+                cmd.Parameters.AddWithValue("@Email", newEmail);
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                int rowsAffected = cmd.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+        }
         public bool UpdateElo(int userId, int newElo)
         {
             using (SQLiteConnection conn = Database.GetConnection())

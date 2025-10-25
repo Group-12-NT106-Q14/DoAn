@@ -67,6 +67,7 @@
             txtUsername.Size = new Size(500, 27);
             txtUsername.TabIndex = 3;
             txtUsername.Text = "Player123";
+            txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // pnlUsernameUnderline
             // 
@@ -98,6 +99,7 @@
             txtEmail.Size = new Size(500, 27);
             txtEmail.TabIndex = 6;
             txtEmail.Text = "player@example.com";
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // pnlEmailUnderline
             // 
@@ -129,6 +131,7 @@
             txtMatKhauMoi.Size = new Size(460, 27);
             txtMatKhauMoi.TabIndex = 9;
             txtMatKhauMoi.UseSystemPasswordChar = true;
+            txtMatKhauMoi.TextChanged += txtMatKhauMoi_TextChanged;
             // 
             // pnlMKMoiUnderline
             // 
@@ -173,6 +176,7 @@
             txtNhapLaiMK.Size = new Size(460, 27);
             txtNhapLaiMK.TabIndex = 13;
             txtNhapLaiMK.UseSystemPasswordChar = true;
+            txtNhapLaiMK.TextChanged += txtNhapLaiMK_TextChanged;
             // 
             // pnlNLMKUnderline
             // 
@@ -208,6 +212,7 @@
             btnSave.TabIndex = 17;
             btnSave.Text = "Lưu";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // lblHuongDan
             // 

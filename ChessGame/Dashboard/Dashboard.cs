@@ -14,6 +14,8 @@ namespace ChessGame
     {
         public string DisplayName { get; set; }
         public int Elo { get; set; }
+        public int UserId { get; set; }
+        public string Email { get; set; }
         public frmDashboard()
         {
             InitializeComponent();
@@ -82,9 +84,19 @@ namespace ChessGame
 
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new AccountSetting().ShowDialog();
-            this.Show();
+            AccountSetting frm = new AccountSetting();
+            frm.UserId = this.UserId;
+            frm.CurrentDisplayName = this.DisplayName;
+            frm.CurrentEmail = this.Email;
+            frm.ShowDialog();
+
+            // ✅ CẬP NHẬT LẠI SAU KHI ĐÓNG
+            if (frm.IsUpdated)
+            {
+                this.DisplayName = frm.CurrentDisplayName;
+                this.Email = frm.CurrentEmail;
+                lblUsername.Text = this.DisplayName;
+            }
         }
     }
 }
