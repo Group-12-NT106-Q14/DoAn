@@ -38,6 +38,7 @@
             lblCurrentTurn = new Label();
             lblTurnValue = new Label();
             btnSurrender = new Button();
+            btnOfferDraw = new Button();
             pnlPlayerInfo.SuspendLayout();
             pnlPlayer1.SuspendLayout();
             pnlPlayer2.SuspendLayout();
@@ -236,7 +237,7 @@
             lblTimeRemaining.Name = "lblTimeRemaining";
             lblTimeRemaining.Size = new Size(163, 25);
             lblTimeRemaining.TabIndex = 0;
-            lblTimeRemaining.Text = "Thời gian còn lại:";
+            lblTimeRemaining.Text = "Thời gian còn lại";
             // 
             // lblTime
             // 
@@ -258,7 +259,7 @@
             lblCurrentTurn.Name = "lblCurrentTurn";
             lblCurrentTurn.Size = new Size(95, 25);
             lblCurrentTurn.TabIndex = 2;
-            lblCurrentTurn.Text = "Lượt của:";
+            lblCurrentTurn.Text = "Lượt của";
             // 
             // lblTurnValue
             // 
@@ -280,10 +281,24 @@
             btnSurrender.ForeColor = Color.White;
             btnSurrender.Location = new Point(680, 625);
             btnSurrender.Name = "btnSurrender";
-            btnSurrender.Size = new Size(400, 45);
+            btnSurrender.Size = new Size(190, 45);
             btnSurrender.TabIndex = 4;
             btnSurrender.Text = "Đầu Hàng";
             btnSurrender.UseVisualStyleBackColor = false;
+            // 
+            // btnOfferDraw
+            // 
+            btnOfferDraw.BackColor = Color.FromArgb(160, 106, 88);
+            btnOfferDraw.FlatAppearance.BorderSize = 0;
+            btnOfferDraw.FlatStyle = FlatStyle.Flat;
+            btnOfferDraw.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnOfferDraw.ForeColor = Color.White;
+            btnOfferDraw.Location = new Point(890, 625);
+            btnOfferDraw.Name = "btnOfferDraw";
+            btnOfferDraw.Size = new Size(190, 45);
+            btnOfferDraw.TabIndex = 5;
+            btnOfferDraw.Text = "Cầu Hoà";
+            btnOfferDraw.UseVisualStyleBackColor = false;
             // 
             // GameBoard
             // 
@@ -291,6 +306,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
             ClientSize = new Size(1100, 680);
+            Controls.Add(btnOfferDraw);
             Controls.Add(btnSurrender);
             Controls.Add(pnlGameInfo);
             Controls.Add(pnlChat);
@@ -336,5 +352,6 @@
         private Label lblCurrentTurn;
         private Label lblTurnValue;
         private Button btnSurrender;
+        private Button btnOfferDraw;
     }
 }

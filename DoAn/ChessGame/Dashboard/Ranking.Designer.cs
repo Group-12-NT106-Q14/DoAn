@@ -20,7 +20,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnlTop = new Panel();
             lblTitle = new Label();
-            txtSearch = new TextBox();
             pnlUserCard = new Panel();
             lblUserName = new Label();
             lblUserRank = new Label();
@@ -54,7 +53,6 @@
             // 
             pnlTop.BackColor = Color.FromArgb(118, 74, 61);
             pnlTop.Controls.Add(lblTitle);
-            pnlTop.Controls.Add(txtSearch);
             pnlTop.Location = new Point(20, 20);
             pnlTop.Name = "pnlTop";
             pnlTop.Size = new Size(1160, 80);
@@ -70,18 +68,6 @@
             lblTitle.Size = new Size(297, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "BẢNG XẾP HẠNG";
-            // 
-            // txtSearch
-            // 
-            txtSearch.BackColor = Color.FromArgb(247, 234, 214);
-            txtSearch.BorderStyle = BorderStyle.None;
-            txtSearch.Font = new Font("Segoe UI", 11F);
-            txtSearch.ForeColor = Color.FromArgb(78, 49, 41);
-            txtSearch.Location = new Point(780, 35);
-            txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Tìm kiếm người chơi...";
-            txtSearch.Size = new Size(360, 25);
-            txtSearch.TabIndex = 3;
             // 
             // pnlUserCard
             // 
@@ -350,7 +336,6 @@
 
         private Panel pnlTop;
         private Label lblTitle;
-        private TextBox txtSearch;
         private Panel pnlUserCard;
         private Label lblUserName;
         private Label lblUserRank;
