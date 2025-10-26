@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z7A/RIXqG7w=",
+  "dgSpecHash": "NJXm+3a8bag=",
   "success": true,
-  "projectFilePath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj",
+  "projectFilePath": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shiba\\.nuget\\packages\\bouncycastle.cryptography\\2.6.1\\bouncycastle.cryptography.2.6.1.nupkg.sha512",
     "C:\\Users\\Shiba\\.nuget\\packages\\mailkit\\4.14.1\\mailkit.4.14.1.nupkg.sha512",

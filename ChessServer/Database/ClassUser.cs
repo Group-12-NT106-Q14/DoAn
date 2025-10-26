@@ -2,8 +2,10 @@
 
 namespace ChessServer
 {
+    // Lớp mô tả thông tin của một người dùng
     public class ClassUser
     {
+        // Các thông tin của người chơi
         public int UserID { get; set; }
         public string Email { get; set; }
         public string DisplayName { get; set; }
@@ -13,8 +15,9 @@ namespace ChessServer
 
         public ClassUser()
         {
-            Elo = 1200; 
+            Elo = 1200;
         }
+        // Constructor khi lấy từ database
         public ClassUser(int userId, string email, string displayName, string username, string password, int elo)
         {
             UserID = userId;
@@ -24,6 +27,7 @@ namespace ChessServer
             Password = password;
             Elo = elo;
         }
+        // Constructor khi đăng ký người dùng mới
         public ClassUser(string email, string displayName, string username, string password)
         {
             Email = email;

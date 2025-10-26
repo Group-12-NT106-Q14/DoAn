@@ -333,11 +333,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj",
+      "projectUniqueName": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
       "projectName": "ChessServer",
-      "projectPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj",
+      "projectPath": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
       "packagesPath": "C:\\Users\\Shiba\\.nuget\\packages\\",
-      "outputPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\obj\\",
+      "outputPath": "D:\\DoAnTest\\ChessServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Shiba\\AppData\\Roaming\\NuGet\\NuGet.Config",

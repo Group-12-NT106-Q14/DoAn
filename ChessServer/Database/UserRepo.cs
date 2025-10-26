@@ -10,206 +10,182 @@ namespace ChessServer
     {
         private string HashPasswordSHA256(string password)
         {
-            using (SHA256 sha256 = SHA256.Create())
+            SHA256 sha = SHA256.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
+            byte[] hash = sha.ComputeHash(bytes);
+            string result = "";
+            for (int i = 0; i < hash.Length; i++)
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
+                result += hash[i].ToString("x2");
             }
+            return result;
         }
+        // Đăng ký user mới
         public bool RegisterUser(string email, string displayName, string username, string password)
         {
             string hashedPassword = HashPasswordSHA256(password);
-            using (SQLiteConnection conn = Database.GetConnection())
-            {
-                conn.Open();
-                string query = @"INSERT INTO Users (Email, DisplayName, Username, Password, Elo) 
-                               VALUES (@Email, @DisplayName, @Username, @Password, 1200)";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@DisplayName", displayName);
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
-                }
-            }
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string query = "INSERT INTO Users (Email, DisplayName, Username, Password, Elo) VALUES (@Email, @DisplayName, @Username, @Password, 1200)";
+            SQLiteCommand cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@DisplayName", displayName);
+            cmd.Parameters.AddWithValue("@Username", username);
+            cmd.Parameters.AddWithValue("@Password", hashedPassword);
+            int rows = cmd.ExecuteNonQuery();
+            conn.Close();
+            return rows > 0;
         }
-
+        // Đăng nhập
         public ClassUser LoginUser(string username, string password)
         {
             string hashedPassword = HashPasswordSHA256(password);
-            using (SQLiteConnection conn = Database.GetConnection())
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string sql = "SELECT UserID, Email, DisplayName, Username, Password, Elo FROM Users WHERE Username = @Username AND Password = @Password";
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Username", username);
+            cmd.Parameters.AddWithValue("@Password", hashedPassword);
+            SQLiteDataReader reader = cmd.ExecuteReader();
+            ClassUser user = null;
+            if (reader.Read())
             {
-                conn.Open();
-                string query = @"SELECT UserID, Email, DisplayName, Username, Password, Elo 
-                               FROM Users 
-                               WHERE Username = @Username AND Password = @Password";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                    using (SQLiteDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return new ClassUser(
-                                reader.GetInt32(0),
-                                reader.GetString(1),
-                                reader.GetString(2),
-                                reader.GetString(3),
-                                reader.GetString(4),
-                                reader.GetInt32(5)
-                            );
-                        }
-                    }
-                }
+                user = new ClassUser();
+                user.UserID = reader.GetInt32(0);
+                user.Email = reader.GetString(1);
+                user.DisplayName = reader.GetString(2);
+                user.Username = reader.GetString(3);
+                user.Password = reader.GetString(4);
+                user.Elo = reader.GetInt32(5);
             }
-            return null;
+            reader.Close();
+            conn.Close();
+            return user;
         }
+        // Đặt lại mật khẩu theo email
         public bool ResetPassword(string email, string newPassword)
         {
-            using (var conn = Database.GetConnection())
-            {
-                conn.Open();
-                string hashedPassword = HashPasswordSHA256(newPassword);
-                string query = "UPDATE Users SET Password = @Password WHERE Email = @Email";
-                using (var cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    return cmd.ExecuteNonQuery() > 0;
-                }
-            }
+            string hashed = HashPasswordSHA256(newPassword);
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string query = "UPDATE Users SET Password = @Password WHERE Email = @Email";
+            SQLiteCommand cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@Password", hashed);
+            cmd.Parameters.AddWithValue("@Email", email);
+            int rows = cmd.ExecuteNonQuery();
+            conn.Close();
+            return rows > 0;
         }
+        // Kiểm tra username đã tồn tại chưa
         public bool IsUsernameExists(string username)
         {
-            using (SQLiteConnection conn = Database.GetConnection())
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count > 0;
-                }
-            }
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string sql = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Username", username);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            conn.Close();
+            if (count > 0) return true;
+            return false;
         }
+        // Kiểm tra email đã tồn tại
         public bool IsEmailExists(string email)
         {
-            using (SQLiteConnection conn = Database.GetConnection())
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Users WHERE Email = @Email";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count > 0;
-                }
-            }
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string sql = "SELECT COUNT(*) FROM Users WHERE Email = @Email";
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Email", email);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            conn.Close();
+            if (count > 0) return true;
+            return false;
         }
+        // Lấy user theo ID
         public ClassUser GetUserById(int userId)
         {
-            using (SQLiteConnection conn = Database.GetConnection())
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string sql = "SELECT UserID, Email, DisplayName, Username, Password, Elo FROM Users WHERE UserID = @UserID";
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@UserID", userId);
+            SQLiteDataReader reader = cmd.ExecuteReader();
+            ClassUser user = null;
+            if (reader.Read())
             {
-                conn.Open();
-                string query = @"SELECT UserID, Email, DisplayName, Username, Password, Elo 
-                               FROM Users WHERE UserID = @UserID";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@UserID", userId);
-                    using (SQLiteDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return new ClassUser(
-                                reader.GetInt32(0),
-                                reader.GetString(1),
-                                reader.GetString(2),
-                                reader.GetString(3),
-                                reader.GetString(4),
-                                reader.GetInt32(5)
-                            );
-                        }
-                    }
-                }
+                user = new ClassUser();
+                user.UserID = reader.GetInt32(0);
+                user.Email = reader.GetString(1);
+                user.DisplayName = reader.GetString(2);
+                user.Username = reader.GetString(3);
+                user.Password = reader.GetString(4);
+                user.Elo = reader.GetInt32(5);
             }
-            return null;
+            reader.Close();
+            conn.Close();
+            return user;
         }
+        // Cập nhật tài khoản người dùng
         public bool UpdateUserAccount(int userId, string newDisplayName, string newEmail, string newPassword = null)
         {
-            using (SQLiteConnection conn = Database.GetConnection())
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            SQLiteCommand cmd;
+            if (newPassword != null && newPassword != "")
             {
-                conn.Open();
-                string query;
-                SQLiteCommand cmd;
-                if (!string.IsNullOrEmpty(newPassword)) //không đổi mật khẩu
-                {
-                    string hashedPassword = HashPasswordSHA256(newPassword);
-                    query = "UPDATE Users SET DisplayName = @DisplayName, Email = @Email, Password = @Password WHERE UserID = @UserID";
-                    cmd = new SQLiteCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                }
-                else //có đổi mật khẩu
-                {
-                    query = "UPDATE Users SET DisplayName = @DisplayName, Email = @Email WHERE UserID = @UserID";
-                    cmd = new SQLiteCommand(query, conn);
-                }
-                cmd.Parameters.AddWithValue("@DisplayName", newDisplayName);
-                cmd.Parameters.AddWithValue("@Email", newEmail);
-                cmd.Parameters.AddWithValue("@UserID", userId);
-                int rowsAffected = cmd.ExecuteNonQuery();
-                return rowsAffected > 0;
+                string hashed = HashPasswordSHA256(newPassword);
+                string sql = "UPDATE Users SET DisplayName = @DisplayName, Email = @Email, Password = @Password WHERE UserID = @UserID";
+                cmd = new SQLiteCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Password", hashed);
             }
+            else
+            {
+                string sql = "UPDATE Users SET DisplayName = @DisplayName, Email = @Email WHERE UserID = @UserID";
+                cmd = new SQLiteCommand(sql, conn);
+            }
+            cmd.Parameters.AddWithValue("@DisplayName", newDisplayName);
+            cmd.Parameters.AddWithValue("@Email", newEmail);
+            cmd.Parameters.AddWithValue("@UserID", userId);
+            int rows = cmd.ExecuteNonQuery();
+            conn.Close();
+            return rows > 0;
         }
+        // Cập nhật điểm Elo
         public bool UpdateElo(int userId, int newElo)
         {
-            using (SQLiteConnection conn = Database.GetConnection())
-            {
-                conn.Open();
-                string query = "UPDATE Users SET Elo = @Elo WHERE UserID = @UserID";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Elo", newElo);
-                    cmd.Parameters.AddWithValue("@UserID", userId);
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
-                }
-            }
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string sql = "UPDATE Users SET Elo = @Elo WHERE UserID = @UserID";
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Elo", newElo);
+            cmd.Parameters.AddWithValue("@UserID", userId);
+            int rows = cmd.ExecuteNonQuery();
+            conn.Close();
+            return rows > 0;
         }
+        // Lấy danh sách user
         public List<ClassUser> GetAllUsers()
         {
             List<ClassUser> users = new List<ClassUser>();
-            using (SQLiteConnection conn = Database.GetConnection())
+            SQLiteConnection conn = Database.GetConnection();
+            conn.Open();
+            string sql = "SELECT UserID, Email, DisplayName, Username, Password, Elo FROM Users ORDER BY Elo DESC";
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
             {
-                conn.Open();
-                string query = @"SELECT UserID, Email, DisplayName, Username, Password, Elo 
-                               FROM Users ORDER BY Elo DESC";
-                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
-                {
-                    using (SQLiteDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            users.Add(new ClassUser(
-                                reader.GetInt32(0),
-                                reader.GetString(1),
-                                reader.GetString(2),
-                                reader.GetString(3),
-                                reader.GetString(4),
-                                reader.GetInt32(5)
-                            ));
-                        }
-                    }
-                }
+                ClassUser u = new ClassUser();
+                u.UserID = reader.GetInt32(0);
+                u.Email = reader.GetString(1);
+                u.DisplayName = reader.GetString(2);
+                u.Username = reader.GetString(3);
+                u.Password = reader.GetString(4);
+                u.Elo = reader.GetInt32(5);
+                users.Add(u);
             }
+            reader.Close();
+            conn.Close();
             return users;
         }
     }

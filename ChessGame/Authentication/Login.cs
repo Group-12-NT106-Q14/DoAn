@@ -56,8 +56,7 @@ namespace ChessGame
                     password = txtMK.Text
                 };
                 string responseJson = tcpClient.SendRequest(loginRequest);
-
-                using (JsonDocument doc = JsonDocument.Parse(responseJson))
+                JsonDocument doc = JsonDocument.Parse(responseJson);
                 {
                     JsonElement root = doc.RootElement;
                     bool success = root.GetProperty("success").GetBoolean();
@@ -84,7 +83,6 @@ namespace ChessGame
                         MessageBox.Show(message);
                     }
                 }
-
                 tcpClient.Disconnect();
             }
             catch (Exception ex)

@@ -7,11 +7,10 @@ namespace ChessGame
 {
     public partial class AccountSetting : Form
     {
-        public int UserId { get; set; }
-        public string CurrentDisplayName { get; set; }
-        public string CurrentEmail { get; set; }
-        public bool IsUpdated { get; private set; } = false;
-
+        public int UserId;
+        public string CurrentDisplayName;
+        public string CurrentEmail;
+        public bool IsUpdated = false;
         public AccountSetting()
         {
             InitializeComponent();
@@ -58,44 +57,37 @@ namespace ChessGame
                     return;
                 }
             }
-            try
+            TCPClient tcpClient = new TCPClient();
+            tcpClient.Connect();
+            object updateRequest;
+            if (passwordChanged)
             {
-                TCPClient tcpClient = new TCPClient();
-                tcpClient.Connect();
-                object updateRequest;
-                if (passwordChanged)
+                updateRequest = new
                 {
-                    updateRequest = new
-                    {
-                        action = "UPDATE_ACCOUNT",
-                        userId = UserId,
-                        displayName = txtUsername.Text,
-                        email = txtEmail.Text,
-                        password = txtMatKhauMoi.Text
-                    };
-                }
-                else
-                {
-                    updateRequest = new
-                    {
-                        action = "UPDATE_ACCOUNT",
-                        userId = UserId,
-                        displayName = txtUsername.Text,
-                        email = txtEmail.Text
-                    };
-                }
-                string response = tcpClient.SendRequest(updateRequest);
-                tcpClient.Disconnect();
-                CurrentDisplayName = txtUsername.Text;
-                CurrentEmail = txtEmail.Text;
-                IsUpdated = true;
-                MessageBox.Show("Cập nhật thành công!");
-                this.Close();
+                    action = "UPDATE_ACCOUNT",
+                    userId = UserId,
+                    displayName = txtUsername.Text,
+                    email = txtEmail.Text,
+                    password = txtMatKhauMoi.Text
+                };
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Lỗi: {ex.Message}");
+                updateRequest = new
+                {
+                    action = "UPDATE_ACCOUNT",
+                    userId = UserId,
+                    displayName = txtUsername.Text,
+                    email = txtEmail.Text
+                };
             }
+            string response = tcpClient.SendRequest(updateRequest);
+            tcpClient.Disconnect();
+            CurrentDisplayName = txtUsername.Text;
+            CurrentEmail = txtEmail.Text;
+            IsUpdated = true;
+            MessageBox.Show("Cập nhật thành công!");
+            this.Close();
         }
         private void btnShowMKMoi_Click(object sender, EventArgs e)
         {

@@ -12,11 +12,11 @@ namespace ChessGame
 {
     public partial class frmDashboard : Form
     {
-        public string DisplayName { get; set; }
-        public int Elo { get; set; }
-        public int UserId { get; set; }
-        public string Email { get; set; }
-        public string Username { get; set; }
+        public string DisplayName;
+        public int Elo;
+        public int UserId;
+        public string Email;
+        public string Username;
         public frmDashboard()
         {
             InitializeComponent();
@@ -108,6 +108,10 @@ namespace ChessGame
                 this.Email = frm.CurrentEmail;
                 lblUsername.Text = this.DisplayName;
             }
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
