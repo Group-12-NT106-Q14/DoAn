@@ -27,9 +27,7 @@ namespace ChessServer
             Console.WriteLine("Server khởi động trên port " + port + "\n");
             tcpListener = new TcpListener(IPAddress.Any, port);
             Thread listenThread = new Thread(ListenForClients);
-            listenThread.IsBackground = true;
             listenThread.Start();
-            Thread.Sleep(Timeout.Infinite);
         }
         private void ListenForClients()
         {
