@@ -101,7 +101,9 @@ namespace ChessGame
             frm.UserId = this.UserId;
             frm.CurrentDisplayName = this.DisplayName;
             frm.CurrentEmail = this.Email;
+            this.Hide();
             frm.ShowDialog();
+            this.Show();
             if (frm.IsUpdated)
             {
                 this.DisplayName = frm.CurrentDisplayName;

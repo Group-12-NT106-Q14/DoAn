@@ -1,10 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\DoAnTest\\ChessGame\\",
+  "WorkspaceRootPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -25,17 +29,47 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
+              "RelativeDocumentMoniker": "Dashboard\\Dashboard.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Dashboard\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T13:21:00.103Z",
+              "EditorCaption": " [Design]"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Dashboard.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Dashboard\\Dashboard.cs",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
               "RelativeDocumentMoniker": "Dashboard\\Dashboard.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Dashboard\\Dashboard.cs*",
-              "RelativeToolTip": "Dashboard\\Dashboard.cs*",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAswFsAAAA1AAAAAAAAAA==",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
+              "RelativeToolTip": "Dashboard\\Dashboard.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAwwHcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-26T08:09:35.166Z",
               "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }
