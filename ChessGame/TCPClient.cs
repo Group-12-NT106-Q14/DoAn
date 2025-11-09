@@ -10,11 +10,13 @@ namespace ChessGame
         private NetworkStream stream;
         private string serverIP;
         private int serverPort;
+
         public TCPClient(string serverIP = "127.0.0.1", int serverPort = 5000)
         {
             this.serverIP = serverIP;
             this.serverPort = serverPort;
         }
+
         public bool Connect()
         {
             client = new TcpClient();
@@ -22,6 +24,7 @@ namespace ChessGame
             stream = client.GetStream();
             return true;
         }
+
         public string SendRequest(object request)
         {
             string jsonRequest = JsonSerializer.Serialize(request);
@@ -34,10 +37,16 @@ namespace ChessGame
 
             return response;
         }
+
         public void Disconnect()
         {
             stream?.Close();
             client?.Close();
+        }
+
+        public NetworkStream GetStream()
+        {
+            return stream;
         }
     }
 }

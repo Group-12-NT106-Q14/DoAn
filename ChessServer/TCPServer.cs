@@ -20,12 +20,10 @@ namespace ChessServer
         private static Dictionary<string, SessionInfo> activeSessions = new Dictionary<string, SessionInfo>();
         private static int clientCount = 0;
         private static object sessionLock = new object();
-
         public TCPServer()
         {
             userRepo = new UserRepo();
         }
-
         public void Start(int port)
         {
             Database.Initialize();
@@ -34,7 +32,6 @@ namespace ChessServer
             Thread listenThread = new Thread(ListenForClients);
             listenThread.Start();
         }
-
         private void ListenForClients()
         {
             tcpListener.Start();
@@ -47,13 +44,10 @@ namespace ChessServer
                 t.Start();
             }
         }
-
         public UserRepo GetUserRepo()
         {
             return userRepo;
         }
-
-        // Session lưu thêm UserId
         public class SessionInfo
         {
             public int UserId { get; set; }
@@ -61,7 +55,6 @@ namespace ChessServer
             public string ClientIP { get; set; }
             public DateTime LoginTime { get; set; }
         }
-
         public class ClientHandler
         {
             private TcpClient tcpClient;
@@ -70,15 +63,18 @@ namespace ChessServer
             private ClassUser loggedInUser;
             private string clientIP;
             private bool isLoggedIn = false;
-
+            private static List<ClientHandler> connectedClients = new List<ClientHandler>();
             public ClientHandler(TcpClient client, TCPServer server)
             {
                 tcpClient = client;
                 this.server = server;
                 stream = tcpClient.GetStream();
                 clientIP = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+                lock (connectedClients)
+                {
+                    connectedClients.Add(this);
+                }
             }
-
             public void HandleClient()
             {
                 byte[] buffer = new byte[4096];
@@ -89,7 +85,8 @@ namespace ChessServer
                     {
                         string request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         string response = ProcessRequest(request);
-                        SendMessage(response);
+                        if (!string.IsNullOrEmpty(response))
+                            SendMessage(response);
                     }
                 }
                 catch (IOException ioEx)
@@ -109,11 +106,11 @@ namespace ChessServer
                     CleanupClient();
                 }
             }
-
             private void CleanupClient()
             {
                 try
                 {
+                    lock (connectedClients) { connectedClients.Remove(this); }
                     if (isLoggedIn && loggedInUser != null)
                     {
                         lock (sessionLock)
@@ -133,7 +130,6 @@ namespace ChessServer
                     Console.WriteLine($"[{clientIP}] Cleanup error: {ex.Message}");
                 }
             }
-
             private string ProcessRequest(string requestData)
             {
                 using (JsonDocument doc = JsonDocument.Parse(requestData))
@@ -143,6 +139,7 @@ namespace ChessServer
                     if (action == "REGISTER") return HandleRegister(root);
                     else if (action == "LOGIN") return HandleLogin(root);
                     else if (action == "GET_USER_INFO") return HandleGetUserInfo();
+                    else if (action == "CHAT") { HandleChat(root); return ""; }
                     else if (action == "UPDATE_ACCOUNT") return HandleUpdateAccount(root);
                     else if (action == "REQUEST_OTP") return HandleRequestOtp(root);
                     else if (action == "RESET_PASSWORD") return HandleResetPassword(root);
@@ -230,6 +227,27 @@ namespace ChessServer
                     }
                 }
                 return JsonSerializer.Serialize(new { success = true, users = result });
+            }
+            private void HandleChat(JsonElement req)
+            {
+                string sender = req.GetProperty("sender").GetString();
+                string content = req.GetProperty("content").GetString();
+                string msgJson = JsonSerializer.Serialize(new
+                {
+                    type = "CHAT",
+                    sender = sender,
+                    content = content,
+                    timestamp = DateTime.Now.ToString("HH:mm:ss")
+                });
+
+                lock (connectedClients)
+                {
+                    foreach (var client in connectedClients)
+                    {
+                        try { client.SendMessage(msgJson); }
+                        catch { }
+                    }
+                }
             }
             private string HandleRequestOtp(JsonElement req)
             {

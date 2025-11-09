@@ -329,6 +329,7 @@
             txtChatInput.PlaceholderText = "Nhập tin nhắn...";
             txtChatInput.Size = new Size(200, 30);
             txtChatInput.TabIndex = 2;
+            txtChatInput.KeyDown += txtChatInput_KeyDown;
             // 
             // btnSendChat
             // 
@@ -343,6 +344,7 @@
             btnSendChat.TabIndex = 4;
             btnSendChat.Text = "Gửi";
             btnSendChat.UseVisualStyleBackColor = false;
+            btnSendChat.Click += btnSendChat_Click;
             // 
             // btnEmoji
             // 
@@ -357,6 +359,7 @@
             btnEmoji.TabIndex = 3;
             btnEmoji.Text = "😊";
             btnEmoji.UseVisualStyleBackColor = false;
+            btnEmoji.Click += btnEmoji_Click;
             // 
             // pnlEmojiPicker
             // 

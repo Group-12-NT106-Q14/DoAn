@@ -7,13 +7,13 @@
     <Compile Update="Dashboard\AccountSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Dashboard\Dashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Authentication\Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Authentication\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dashboard\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Dashboard\History.cs">
