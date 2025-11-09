@@ -264,6 +264,7 @@
             lblOnlineCount.Size = new Size(164, 23);
             lblOnlineCount.TabIndex = 1;
             lblOnlineCount.Text = "5 người đang online";
+            lblOnlineCount.Click += lblOnlineCount_Click;
             // 
             // lstOnlinePlayers
             // 
@@ -276,6 +277,7 @@
             lstOnlinePlayers.Name = "lstOnlinePlayers";
             lstOnlinePlayers.Size = new Size(550, 475);
             lstOnlinePlayers.TabIndex = 2;
+            lstOnlinePlayers.SelectedIndexChanged += lstOnlinePlayers_SelectedIndexChanged;
             // 
             // pnlChat
             // 

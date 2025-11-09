@@ -17,32 +17,17 @@ namespace ChessGame
         public int UserId;
         public string Email;
         public string Username;
+        private System.Windows.Forms.Timer onlineUpdateTimer; 
+
         public frmDashboard()
         {
             InitializeComponent();
         }
 
-        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-
+        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e) { }
+        private void toolStripButton1_Click(object sender, EventArgs e) { }
+        private void toolStripMenuItem1_Click(object sender, EventArgs e) { }
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) { }
 
         private void btnChoi_Click(object sender, EventArgs e)
         {
@@ -55,6 +40,18 @@ namespace ChessGame
         {
             lblUsername.Text = DisplayName;
             lblUserRank.Text = $"Rating: {Elo}";
+            LoadOnlineUsers();
+
+            // Thiết lập timer realtime 500ms
+            onlineUpdateTimer = new System.Windows.Forms.Timer();
+            onlineUpdateTimer.Interval = 500;
+            onlineUpdateTimer.Tick += OnlineUpdateTimer_Tick;
+            onlineUpdateTimer.Start();
+        }
+
+        private void OnlineUpdateTimer_Tick(object sender, EventArgs e)
+        {
+            LoadOnlineUsers();
         }
 
         private void btnBan_Click(object sender, EventArgs e)
@@ -95,6 +92,7 @@ namespace ChessGame
             login.ShowDialog();
             this.Close();
         }
+
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
             AccountSetting frm = new AccountSetting();
@@ -111,9 +109,62 @@ namespace ChessGame
                 lblUsername.Text = this.DisplayName;
             }
         }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            if (onlineUpdateTimer != null)
+                onlineUpdateTimer.Stop();
             Application.Exit();
+        }
+
+        private void LoadOnlineUsers()
+        {
+            try
+            {
+                TCPClient client = new TCPClient();
+                client.Connect();
+                var request = new
+                {
+                    action = "GET_ONLINE_USERS"
+                };
+                string response = client.SendRequest(request);
+                client.Disconnect();
+
+                var obj = System.Text.Json.JsonDocument.Parse(response);
+                if (obj.RootElement.GetProperty("success").GetBoolean())
+                {
+                    var users = obj.RootElement.GetProperty("users").EnumerateArray();
+                    lstOnlinePlayers.Items.Clear();
+                    int count = 0;
+                    foreach (var u in users)
+                    {
+                        string displayName = u.GetProperty("displayName").GetString();
+                        string username = u.GetProperty("username").GetString();
+                        lstOnlinePlayers.Items.Add($"{displayName} ({username})");
+                        count++;
+                    }
+                    lblOnlineCount.Text = "Có " + count.ToString() + " người chơi đang online";
+                }
+                else
+                {
+                    lblOnlineCount.Text = "Có 0 người chơi đang online";
+                    lstOnlinePlayers.Items.Clear();
+                }
+            }
+            catch
+            {
+                lblOnlineCount.Text = "Có 0 người chơi đang online";
+                lstOnlinePlayers.Items.Clear();
+            }
+        }
+
+        private void lblOnlineCount_Click(object sender, EventArgs e)
+        {
+            LoadOnlineUsers();
+        }
+        private void lstOnlinePlayers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
