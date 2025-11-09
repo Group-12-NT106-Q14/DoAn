@@ -99,33 +99,38 @@ namespace ChessGame
                 MessageBox.Show("Đăng ký thất bại");
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void btnShow1_Click(object sender, EventArgs e)
         {
-            this.btnShow1.Visible = false;
-            this.btnHide1.Visible = true;
-            this.txtMK.PasswordChar = '*';
+            txtMK.UseSystemPasswordChar = false;
+            btnShow1.Visible = false;
+            btnHide1.Visible = true;
         }
         private void btnHide1_Click(object sender, EventArgs e)
         {
-            this.btnHide1.Visible = false;
-            this.btnShow1.Visible = true;
-            this.txtMK.PasswordChar = '\0';
-        }
-        private void btnHide2_Click(object sender, EventArgs e)
-        {
-            this.btnHide2.Visible = false;
-            this.btnShow2.Visible = true;
-            this.txtNLMK.PasswordChar = '\0';  // Sửa lại cho đúng
+            txtMK.UseSystemPasswordChar = true;
+            btnHide1.Visible = false;
+            btnShow1.Visible = true;
         }
         private void btnShow2_Click(object sender, EventArgs e)
         {
-            this.btnShow2.Visible = false;
-            this.btnHide2.Visible = true;
-            this.txtNLMK.PasswordChar = '*';  // Sửa lại cho đúng
+            txtNLMK.UseSystemPasswordChar = false;
+            btnShow2.Visible = false;
+            btnHide2.Visible = true;
+        }
+        private void btnHide2_Click(object sender, EventArgs e)
+        {
+            txtNLMK.UseSystemPasswordChar = true;
+            btnHide2.Visible = false;
+            btnShow2.Visible = true;
         }
         private void frmDK_Load(object sender, EventArgs e)
         {
-
+            txtMK.UseSystemPasswordChar = true;
+            txtNLMK.UseSystemPasswordChar = true;
+            btnShow1.Visible = true;
+            btnHide1.Visible = false;
+            btnShow2.Visible = true;
+            btnHide2.Visible = false;
         }
         private void btnĐN_Click(object sender, EventArgs e)
         {

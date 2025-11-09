@@ -94,6 +94,7 @@
             btnShowMKMoi.TabIndex = 6;
             btnShowMKMoi.Text = "👁";
             btnShowMKMoi.UseVisualStyleBackColor = false;
+            btnShowMKMoi.Click += btnShowMKMoi_Click;
             // 
             // btnHideMKMoi
             // 
@@ -107,6 +108,7 @@
             btnHideMKMoi.Text = "👁‍🗨";
             btnHideMKMoi.UseVisualStyleBackColor = false;
             btnHideMKMoi.Visible = false;
+            btnHideMKMoi.Click += btnHideMKMoi_Click;
             // 
             // lblNhapLaiMK
             // 
@@ -150,6 +152,7 @@
             btnShowNLMK.TabIndex = 11;
             btnShowNLMK.Text = "👁";
             btnShowNLMK.UseVisualStyleBackColor = false;
+            btnShowNLMK.Click += btnShowNLMK_Click;
             // 
             // btnHideNLMK
             // 
@@ -163,6 +166,7 @@
             btnHideNLMK.Text = "👁‍🗨";
             btnHideNLMK.UseVisualStyleBackColor = false;
             btnHideNLMK.Visible = false;
+            btnHideNLMK.Click += btnHideNLMK_Click;
             // 
             // btnXacNhan
             // 

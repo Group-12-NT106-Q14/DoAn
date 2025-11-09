@@ -153,7 +153,6 @@
             txtMK.Size = new Size(340, 27);
             txtMK.TabIndex = 5;
             txtMK.UseSystemPasswordChar = true;
-            txtMK.TextChanged += txtMK_TextChanged;
             // 
             // pnlMKUnderline
             // 

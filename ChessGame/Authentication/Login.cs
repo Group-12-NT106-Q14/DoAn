@@ -20,27 +20,14 @@ namespace ChessGame
         public frmLogin()
         {
             InitializeComponent();
+            txtMK.UseSystemPasswordChar = true;
+            btnShow.Visible = true;
+            btnHide.Visible = false;
         }
 
         private void lblMoiDen_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (btnShow.Visible == true)
-            {
-                btnShow.Visible = false;
-                btnHide.Visible = true;
-                txtMK.PasswordChar = '\0';
-            }
-            if (btnHide.Visible == true)
-            {
-                btnHide.Visible = false;
-                btnShow.Visible = true;
-                txtMK.PasswordChar = '*';
-            }
         }
 
         private void btnĐăngNhập_Click(object sender, EventArgs e)
@@ -104,21 +91,17 @@ namespace ChessGame
             frm.ShowDialog();
             this.Show();
         }
-        private void txtMK_TextChanged(object sender, EventArgs e)
-        {
-            txtMK.PasswordChar = '*';
-        }
         private void btnHide_Click(object sender, EventArgs e)
         {
-            this.btnHide.Visible = false;
-            this.btnShow.Visible = true;
-            this.txtMK.PasswordChar = '\0';
+            txtMK.UseSystemPasswordChar = true;
+            btnHide.Visible = false;
+            btnShow.Visible = true;
         }
         private void btnShow_Click(object sender, EventArgs e)
         {
-            this.btnShow.Visible = false;
-            this.btnHide.Visible = true;
-            this.txtMK.PasswordChar = '*';
+            txtMK.UseSystemPasswordChar = false;
+            btnShow.Visible = false;
+            btnHide.Visible = true;
         }
         private void lblLuu_Click(object sender, EventArgs e)
         {
