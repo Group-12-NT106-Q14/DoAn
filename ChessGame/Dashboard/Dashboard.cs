@@ -18,13 +18,80 @@ namespace ChessGame
         public int UserId;
         public string Email;
         public string Username;
+
         private System.Windows.Forms.Timer onlineUpdateTimer;
         private TCPClient chatClient;
         private Thread listenChatThread;
+        private CancellationTokenSource chatCancellationTokenSource;
+        private bool isClosing = false;
+
+        // Bộ emoji unicode đa dạng nhất từ Messenger, Telegram, v.v.
+        private string[] emoticons = new string[]
+        {
+            // Smileys/Emotion
+            "😀","😃","😄","😁","😆","😅","😂","🤣","🥲","😊","😇",
+            "🙂","🙃","😉","😌","😍","🥰","😘","😗","😙","😚","😋",
+            "😜","😝","😛","🤑","🤗","🤭","🤫","🤔","🤐","😐","😑",
+            "😶","😶‍🌫️","🙄","😏","😒","😞","😔","😟","😕","🙁",
+            "☹️","😣","😖","😫","😩","🥺","😢","😭","😤","😠","😡",
+            "🤬","🤯","😳","🥵","🥶","😱","😨","😰","😥","😓","🤤",
+            "😪","😴","😬","😮‍💨","🫠","😵","😵‍💫","🤐","🥴","😷",
+            "🤒","🤕","🤢","🤮","🤧","😇","🥳","🥸","😎","🤓","🧐",
+            "😕","😟","🙁","☹️","😮","😯","😲","😳","🥺","🥹","😦",
+            "😧","😨","😩","😰","😱","😪","😵","🤐","🥴","😷","🤒",
+            "🤕","🤢","🤮","🤧","😇","🥳","🥸","😎","🤓","🧐",
+            // Gestures/People
+            "👋","🤚","🖐️","✋","🖖","👌","🤌","🤏","✌️","🤞",
+            "🤟","🤘","🤙","👈","👉","👆","🖕","👇","☝️","👍","👎",
+            "✊","👊","🤛","🤜","👏","🙌","🫶","👐","🤲","🙏",
+            "💪","🦾","🦵","🦿","🦶","👂","🦻","👃","👣","👀","👁️",
+            "🫦","👄","🦷","🦴","👅",
+            // Relations/Love
+            "💋","👄","💘","💝","💖","💗","💓","💞","💕","💌","💟",
+            "❣️","💔","❤️","🧡","💛","💚","💙","💜","🤎","🖤","🤍",
+            // Animals/Nature
+            "🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯","🦁",
+            "🐮","🐷","🐸","🐵","🐔","🐧","🐦","🐤","🐣","🐥","🦆",
+            "🦅","🦉","🦇","🐺","🐗","🐴","🦄","🐝","🐛","🦋","🐌",
+            "🐞","🐜","🦟","🦗","🕷️","🦂","🐢","🐍","🦎","🦖","🦕",
+            "🐙","🦑","🦐","🦞","🦀","🐠","🐟","🐡","🐬","🐳","🐋",
+            "🦈","🐊","🐅","🐆","🦓","🦍","🦧","🐘","🦣","🦛","🦏",
+            "🐪","🐫","🦒","🦘","🦥","🦦","🦨","🦡","🐁","🐀","🐇",
+            "🦔",
+            // Food/Drinks
+            "🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🫐",
+            "🍈","🍒","🍑","🥭","🍍","🥥","🥝","🍅","🍆","🥑","🥦",
+            "🥬","🥒","🌶️","🫑","🌽","🥕","🧄","🧅","🥔","🍠",
+            "🥐","🥯","🍞","🥖","🥨","🧀","🥚","🍳","🥞","🧇",
+            "🥓","🥩","🍗","🍖","🦴","🌭","🍔","🍟","🍕","🫓",
+            "🥪","🥙","🧆","🌮","🌯","🫔","🥗","🥘","🫕","🥫",
+            "🍝","🍜","🍲","🍛","🍣","🍱","🥟","🦪","🍤","🍙",
+            "🍚","🍘","🍥","🥠","🥮","🍢","🍡","🍧","🍨","🍦",
+            "🥧","🧁","🍰","🎂","🍮","🍭","🍬","🍫","🍿","🧃",
+            "🥤","🧋","🫖","☕","🍵","🧉","🍶","🍺","🍻","🥂",
+            "🍷","🥃","🍸","🍹","🍾",
+            // Activities/Objects
+            "⚽","🏀","🏈","⚾","🥎","🎾","🏐","🏉","🥏","🎱",
+            "🏓","🏸","🥅","🏒","🏑","🥍","🏏","🪃","🏹","🎣",
+            "🤿","🥊","🥋","🎽","🛹","🛷","⛸️","🥌","🥇","🥈",
+            "🥉","🏆","🏅","🎖️","🥫","🏵️","🎗️","🎫","🎟️",
+            "🎪","🤹‍♂️","🤹‍♀️","🎭","🩰","🎨","🎬","🎤","🎧","🎼",
+            "🎹","🥁","🎷","🎺","🎸","🪕",
+            // Travel/Places
+            "🚗","🚕","🚙","🚌","🚎","🏎️","🚓","🚑","🚒","🚐",
+            "🚚","🚛","🚜","🛵","🏍️","🚲","🛴","🚏","🛣️","🛤️",
+            "🗺️","🗿","🗽","🗼","🏰","🏯","🏟️","🎡","🎢","🎠",
+            "⛲","⛱️","🏖️","🏝️","🛶","⛵","🚤","🛥️","🛳️","⛴️",
+            "🚀","🛸","✈️","🛫","🛬",
+            // Symbols/Flags
+            "🏁","🚩","🎌","🏴","🏳️","🏳️‍🌈","🏳️‍⚧️","🏴‍☠️","🇦🇺",
+            "🇨🇦","🇫🇷","🇩🇪","🇨🇳","🇯🇵","🇰🇷","🇷🇺","🇬🇧","🇺🇸"
+        };
 
         public frmDashboard()
         {
             InitializeComponent();
+            SetupEmojiPickerPanel();
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)
@@ -111,13 +178,39 @@ namespace ChessGame
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            if (isClosing) return;
+            isClosing = true;
+
             if (onlineUpdateTimer != null)
                 onlineUpdateTimer.Stop();
 
+            if (chatCancellationTokenSource != null)
+            {
+                try
+                {
+                    if (!chatCancellationTokenSource.IsCancellationRequested)
+                        chatCancellationTokenSource.Cancel();
+                }
+                catch (ObjectDisposedException) { }
+            }
+
             if (listenChatThread != null && listenChatThread.IsAlive)
-                listenChatThread.Abort();
+            {
+                listenChatThread.Join(2000);
+            }
+
             if (chatClient != null)
                 chatClient.Disconnect();
+
+            if (chatCancellationTokenSource != null)
+            {
+                try
+                {
+                    chatCancellationTokenSource.Dispose();
+                }
+                catch (ObjectDisposedException) { }
+                chatCancellationTokenSource = null;
+            }
 
             Application.Exit();
         }
@@ -134,7 +227,6 @@ namespace ChessGame
                 };
                 string response = client.SendRequest(request);
                 client.Disconnect();
-
                 var obj = System.Text.Json.JsonDocument.Parse(response);
                 if (obj.RootElement.GetProperty("success").GetBoolean())
                 {
@@ -167,69 +259,122 @@ namespace ChessGame
         {
             LoadOnlineUsers();
         }
+
         private void lstOnlinePlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Optional: event chọn người chơi online
         }
 
-        // ==== CHAT realtime ====
+        // ==== CHAT realtime, dùng thread safe cancellation ====
         public void StartChatReceiver()
         {
             chatClient = new TCPClient();
             chatClient.Connect();
-            listenChatThread = new Thread(ListenForChat);
+            chatCancellationTokenSource = new CancellationTokenSource();
+            listenChatThread = new Thread(() => ListenForChat(chatCancellationTokenSource.Token));
             listenChatThread.IsBackground = true;
             listenChatThread.Start();
         }
 
-        private void ListenForChat()
+        private void ListenForChat(CancellationToken cancellationToken)
         {
             try
             {
                 var stream = chatClient.GetStream();
                 byte[] buffer = new byte[4096];
-                while (true)
+
+                while (!cancellationToken.IsCancellationRequested)
                 {
-                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                    if (bytesRead > 0)
+                    if (stream.DataAvailable)
                     {
-                        string msg = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        var doc = System.Text.Json.JsonDocument.Parse(msg);
-                        if (doc.RootElement.TryGetProperty("type", out var typeProp) && typeProp.GetString() == "CHAT")
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                        if (bytesRead > 0)
                         {
-                            string sender = doc.RootElement.GetProperty("sender").GetString();
-                            string content = doc.RootElement.GetProperty("content").GetString();
-                            string timestamp = doc.RootElement.GetProperty("timestamp").GetString();
-                            string line = $"{sender}: {content} [{timestamp}]{Environment.NewLine}";
-                            rtbChatMessages.Invoke(new Action(() => rtbChatMessages.AppendText(line)));
+                            string msg = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                            var doc = System.Text.Json.JsonDocument.Parse(msg);
+                            if (doc.RootElement.TryGetProperty("type", out var typeProp) && typeProp.GetString() == "CHAT")
+                            {
+                                string sender = doc.RootElement.GetProperty("sender").GetString();
+                                string content = doc.RootElement.GetProperty("content").GetString();
+                                string timestamp = doc.RootElement.GetProperty("timestamp").GetString();
+                                string line = $"{sender}: {content} [{timestamp}]{Environment.NewLine}";
+                                if (rtbChatMessages.InvokeRequired)
+                                    rtbChatMessages.Invoke(new Action(() => rtbChatMessages.AppendText(line)));
+                                else
+                                    rtbChatMessages.AppendText(line);
+                            }
                         }
+                    }
+                    else
+                    {
+                        Thread.Sleep(100);
                     }
                 }
             }
             catch { }
         }
 
+        // ==== EMOJI ==== 
+        private void SetupEmojiPickerPanel()
+        {
+            pnlEmojiPicker.Visible = false;
+            pnlEmojiPicker.Controls.Clear();
+        }
+
+        private void ShowEmojiPicker()
+        {
+            pnlEmojiPicker.Controls.Clear();
+            int btnSize = 30;
+            int cols = 10;
+            int spacing = 2;
+            int xpos, ypos;
+            for (int i = 0; i < emoticons.Length; i++)
+            {
+                Button btn = new Button();
+                btn.Font = new Font("Segoe UI Emoji", 16F, FontStyle.Regular);
+                btn.Text = emoticons[i];
+                btn.Width = btn.Height = btnSize;
+                xpos = (i % cols) * (btnSize + spacing);
+                ypos = (i / cols) * (btnSize + spacing);
+                btn.Left = xpos;
+                btn.Top = ypos;
+                btn.BackColor = Color.White;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Click += (s, e) =>
+                {
+                    txtChatInput.Text += ((Button)s).Text;
+                    pnlEmojiPicker.Visible = false;
+                    txtChatInput.Focus();
+                };
+                pnlEmojiPicker.Controls.Add(btn);
+            }
+            pnlEmojiPicker.Size = new Size(Math.Min(cols, emoticons.Length) * (btnSize + spacing),
+                                           ((emoticons.Length + cols - 1) / cols) * (btnSize + spacing));
+            pnlEmojiPicker.Visible = true;
+            pnlEmojiPicker.BringToFront();
+        }
+
+        private void btnEmoji_Click(object sender, EventArgs e)
+        {
+            ShowEmojiPicker();
+        }
+
         private void btnSendChat_Click(object sender, EventArgs e)
         {
             string text = txtChatInput.Text.Trim();
             if (string.IsNullOrEmpty(text)) return;
-
             var request = new
             {
                 action = "CHAT",
                 sender = Username,
                 content = text
             };
-
             string msg = System.Text.Json.JsonSerializer.Serialize(request);
             byte[] msgData = Encoding.UTF8.GetBytes(msg);
             chatClient.GetStream().Write(msgData, 0, msgData.Length);
-
             txtChatInput.Clear();
-        }
-
-        private void btnEmoji_Click(object sender, EventArgs e)
-        {
-            txtChatInput.Text += "😊";
+            pnlEmojiPicker.Visible = false;
         }
 
         private void txtChatInput_KeyDown(object sender, KeyEventArgs e)
@@ -238,6 +383,7 @@ namespace ChessGame
             {
                 btnSendChat_Click(null, null);
                 e.SuppressKeyPress = true;
+                pnlEmojiPicker.Visible = false;
             }
         }
     }
