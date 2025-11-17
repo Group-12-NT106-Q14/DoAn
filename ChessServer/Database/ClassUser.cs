@@ -2,10 +2,8 @@
 
 namespace ChessServer
 {
-    // Lớp mô tả thông tin của một người dùng
     public class ClassUser
     {
-        // Các thông tin của người chơi
         public int UserID { get; set; }
         public string Email { get; set; }
         public string DisplayName { get; set; }

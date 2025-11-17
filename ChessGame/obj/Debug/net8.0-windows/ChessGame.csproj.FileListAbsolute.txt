@@ -66,7 +66,6 @@ D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.Recovery.resources
 D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmRegister.resources
 D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.AccountSetting.resources
 D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmDashboard.resources
-D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.Friend.resources
 D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.History.resources
 D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.Match.resources
 D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.Ranking.resources
@@ -105,3 +104,5 @@ D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\ChessGame.dll
 D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\ChessGame.pdb
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.genruntimeconfig.cache
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ref\ChessGame.dll
+D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.InRoom.resources
+D:\DoAnTest\ChessGame\obj\Debug\net8.0-windows\ChessGame.RoomList.resources

@@ -116,7 +116,13 @@ namespace ChessGame
         private void btnBan_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Friend().ShowDialog();
+            var frm = new RoomList
+            {
+                Username = this.Username,
+                DisplayName = this.DisplayName,
+                Elo = this.Elo
+            };
+            frm.ShowDialog();
             this.Show();
         }
 
@@ -315,45 +321,62 @@ namespace ChessGame
         }
 
         // ==== EMOJI ==== 
+        // ==== EMOJI ==== 
         private void SetupEmojiPickerPanel()
         {
             pnlEmojiPicker.Visible = false;
             pnlEmojiPicker.Controls.Clear();
+            pnlEmojiPicker.AutoScroll = true;     
         }
+
 
         private void ShowEmojiPicker()
         {
+            // Nếu đang mở rồi thì bấm lại nút emoji sẽ đóng panel
+            if (pnlEmojiPicker.Visible && pnlEmojiPicker.Controls.Count > 0)
+            {
+                pnlEmojiPicker.Visible = false;
+                return;
+            }
+
             pnlEmojiPicker.Controls.Clear();
-            int btnSize = 30;
-            int cols = 10;
-            int spacing = 2;
-            int xpos, ypos;
+
+            int btnSize = 32;          // kích thước ô emoji
+            int cols = 8;              // số cột
+            int spacing = 4;           // khoảng cách giữa các ô
+
             for (int i = 0; i < emoticons.Length; i++)
             {
-                Button btn = new Button();
+                var btn = new Button();
                 btn.Font = new Font("Segoe UI Emoji", 16F, FontStyle.Regular);
                 btn.Text = emoticons[i];
                 btn.Width = btn.Height = btnSize;
-                xpos = (i % cols) * (btnSize + spacing);
-                ypos = (i / cols) * (btnSize + spacing);
-                btn.Left = xpos;
-                btn.Top = ypos;
+
+                int col = i % cols;
+                int row = i / cols;
+
+                btn.Left = col * (btnSize + spacing);
+                btn.Top = row * (btnSize + spacing);
+
                 btn.BackColor = Color.White;
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
+
                 btn.Click += (s, e) =>
                 {
                     txtChatInput.Text += ((Button)s).Text;
-                    pnlEmojiPicker.Visible = false;
                     txtChatInput.Focus();
+                    // KHÔNG ẩn pnlEmojiPicker ở đây -> cho user chọn nhiều emoji liên tục
                 };
+
                 pnlEmojiPicker.Controls.Add(btn);
             }
-            pnlEmojiPicker.Size = new Size(Math.Min(cols, emoticons.Length) * (btnSize + spacing),
-                                           ((emoticons.Length + cols - 1) / cols) * (btnSize + spacing));
+
+            // Không thay đổi Size: giữ viewport 250x180, phần dư sẽ cuộn bằng AutoScroll
             pnlEmojiPicker.Visible = true;
             pnlEmojiPicker.BringToFront();
         }
+
 
         private void btnEmoji_Click(object sender, EventArgs e)
         {
