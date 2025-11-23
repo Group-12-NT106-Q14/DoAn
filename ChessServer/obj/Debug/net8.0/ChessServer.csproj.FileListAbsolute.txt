@@ -51,3 +51,5 @@ D:\Group-12-NT106.Q14\DoAn\ChessServer\obj\Debug\net8.0\refint\ChessServer.dll
 D:\Group-12-NT106.Q14\DoAn\ChessServer\obj\Debug\net8.0\ChessServer.pdb
 D:\Group-12-NT106.Q14\DoAn\ChessServer\obj\Debug\net8.0\ChessServer.genruntimeconfig.cache
 D:\Group-12-NT106.Q14\DoAn\ChessServer\obj\Debug\net8.0\ref\ChessServer.dll
+D:\DoAnTest\ChessServer\bin\Debug\net8.0\Ardalis.SmartEnum.dll
+D:\DoAnTest\ChessServer\bin\Debug\net8.0\ChessLibrary.dll

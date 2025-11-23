@@ -38,6 +38,7 @@ namespace ChessGame
         // Label hiển thị quân chơi
         private Label lblOwnerSide;
         private Label lblGuestSide;
+        private GameBoard currentGameBoard;
 
         // Lưu nội dung chat tự gửi gần đây để chống trùng nếu server cũng echo
         private readonly Queue<string> selfChatRecent = new Queue<string>();
@@ -141,6 +142,7 @@ namespace ChessGame
             // Wire events
             Load += InRoom_Load;
             FormClosed += InRoom_FormClosed;
+            this.Activated += InRoom_Activated;
 
             btnRenameRoom.Click += BtnRenameRoom_Click;
             btnStartGame.Click += BtnStartGame_Click;
@@ -468,6 +470,15 @@ namespace ChessGame
                         {
                             HandleRoomChatPush(root);
                         }
+                        else if (type == "GAME_EVENT")
+                        {
+                            HandleGameEventPush(root);
+                        }
+                        else if (type == "GAMECHAT")
+                        {
+                            HandleGameChatPush(root);
+                        }
+
                     }
                     catch { }
                 }
@@ -512,9 +523,191 @@ namespace ChessGame
             }
             else if (ev == "STARTED")
             {
-                MessageBox.Show("Bắt đầu trò chơi (giả lập).");
+                StartGameFromRoom(ro);
             }
+
         }
+
+        /// <summary>
+        /// Khi server báo phòng đã STARTED, mở GameBoard với 2 người chơi và cấu hình thời gian/phía chơi,
+        /// đồng thời gắn event để gửi GAME_MOVE / GAME_CHAT / GAME_RESIGN / GAME_DRAW_OFFER.
+        /// </summary>
+        private void StartGameFromRoom(JsonElement ro)
+        {
+            // Lấy thông tin chủ phòng / khách và cấu hình từ snapshot room
+            string ownerUser = ro.GetProperty("ownerUsername").GetString();
+            string ownerDisplay = ro.GetProperty("ownerDisplayName").GetString();
+
+            string guestUser = null;
+            string guestDisplay = null;
+
+            if (ro.TryGetProperty("guestUsername", out var gj) && gj.ValueKind == JsonValueKind.String)
+                guestUser = gj.GetString();
+            if (ro.TryGetProperty("guestDisplayName", out var gd) && gd.ValueKind == JsonValueKind.String)
+                guestDisplay = gd.GetString();
+
+            int m = minutes;
+            int inc = increment;
+            if (ro.TryGetProperty("minutes", out var jmin) && jmin.ValueKind == JsonValueKind.Number)
+                m = jmin.GetInt32();
+            if (ro.TryGetProperty("increment", out var jin) && jin.ValueKind == JsonValueKind.Number)
+                inc = jin.GetInt32();
+
+            string side = hostSide;
+            if (ro.TryGetProperty("side", out var js) && js.ValueKind == JsonValueKind.String)
+                side = js.GetString();
+
+            bool hostIsWhite = string.Equals(side, "white", StringComparison.OrdinalIgnoreCase);
+            bool localIsHost = string.Equals(ownerUser, this.Username, StringComparison.OrdinalIgnoreCase);
+
+            string localDisplayName;
+            string oppDisplayName;
+            string oppUsername;
+            bool localIsWhite;
+
+            if (localIsHost)
+            {
+                localIsWhite = hostIsWhite;
+                localDisplayName = this.DisplayName ?? ownerDisplay;
+                oppDisplayName = guestDisplay ?? "(Khách)";
+                oppUsername = guestUser ?? string.Empty;
+            }
+            else
+            {
+                localIsWhite = !hostIsWhite;
+                localDisplayName = this.DisplayName ?? guestDisplay ?? "(Khách)";
+                oppDisplayName = ownerDisplay ?? "(Chủ phòng)";
+                oppUsername = ownerUser ?? string.Empty;
+            }
+
+            currentGameBoard = new GameBoard();
+            currentGameBoard.InitGameSession(
+                localUsername: this.Username,
+                localDisplayName: localDisplayName,
+                opponentUsername: oppUsername,
+                opponentDisplayName: oppDisplayName,
+                localIsWhite: localIsWhite,
+                minutes: m,
+                incrementSeconds: inc,
+                roomId: this.roomId
+            );
+
+            // Gửi nước đi local lên server
+            currentGameBoard.LocalMovePlayed += (from, to, promo) =>
+            {
+                try
+                {
+                    requestClient.Send(new
+                    {
+                        action = "GAME_MOVE",
+                        roomId = this.roomId,
+                        username = this.Username,
+                        from = from,
+                        to = to,
+                        promotion = promo
+                    });
+                }
+                catch { }
+            };
+
+            // Gửi chat trong game lên server (GAME_CHAT)
+            currentGameBoard.LocalChatSent += (content) =>
+            {
+                try
+                {
+                    requestClient.Send(new
+                    {
+                        action = "GAME_CHAT",
+                        roomId = this.roomId,
+                        sender = this.DisplayName,
+                        username = this.Username,
+                        content = content,
+                        kind = "text"
+                    });
+                }
+                catch { }
+            };
+
+            // Đầu hàng
+            currentGameBoard.LocalResignRequested += () =>
+            {
+                try
+                {
+                    requestClient.Send(new
+                    {
+                        action = "GAME_RESIGN",
+                        roomId = this.roomId,
+                        username = this.Username
+                    });
+                }
+                catch { }
+            };
+
+            // Cầu hòa
+            currentGameBoard.LocalOfferDrawRequested += () =>
+            {
+                try
+                {
+                    requestClient.Send(new
+                    {
+                        action = "GAME_DRAW_OFFER",
+                        roomId = this.roomId,
+                        username = this.Username
+                    });
+                }
+                catch { }
+            };
+
+            // Khi GameBoard báo ván cờ kết thúc -> chỉ host gửi GAME_RESULT để tránh double Elo
+            currentGameBoard.LocalGameEnded += (result, reason) =>
+            {
+                if (!isHost) return;
+
+                try
+                {
+                    requestClient.SendRequest(new
+                    {
+                        action = "GAME_RESULT",
+                        roomId = this.roomId,
+                        result = result,   // "white" / "black" / "draw"
+                        reason = reason    // "checkmate","resign","time","agreement","disconnect"...
+                    });
+                }
+                catch { }
+            };
+
+            // Ẩn InRoom trong lúc chơi, xong ván thì hiện lại
+            this.Hide();
+            currentGameBoard.ShowDialog(this);
+            this.Show();
+
+            // Sau khi ván kết thúc và quay lại phòng: đồng bộ lại snapshot phòng từ server
+            try
+            {
+                var snap = requestClient.SendRequest(new { action = "ROOM_GET", roomId = this.roomId });
+                using var doc = JsonDocument.Parse(snap);
+                if (doc.RootElement.GetProperty("success").GetBoolean())
+                {
+                    var roomJson = doc.RootElement.GetProperty("room");
+                    UpdatePlayersFromRoom(roomJson);
+
+                    if (roomJson.TryGetProperty("minutes", out var jmin2) && jmin2.ValueKind == JsonValueKind.Number)
+                        minutes = jmin2.GetInt32();
+                    if (roomJson.TryGetProperty("increment", out var jin2) && jin2.ValueKind == JsonValueKind.Number)
+                        increment = jin2.GetInt32();
+                    if (roomJson.TryGetProperty("side", out var js2) && js2.ValueKind == JsonValueKind.String)
+                        hostSide = js2.GetString();
+
+                    txtCustomMin.Text = minutes.ToString();
+                    txtFischer.Text = increment.ToString();
+                    if (hostSide == "white") radioWhite.Checked = true; else radioBlack.Checked = true;
+                    UpdateSideLabels(hostSide);
+                }
+            }
+            catch { }
+        }
+
+
 
         // Chat push từ server (hiển thị trừ khi trùng chính tin mình đã echo)
         private void HandleRoomChatPush(JsonElement root)
@@ -538,6 +731,149 @@ namespace ChessGame
             string line = $"[{ts}] {sender} ({role}): {content}\n";
             rtbChat.AppendText(line);
         }
+
+        private void HandleGameEventPush(JsonElement root)
+        {
+            if (currentGameBoard == null) return;
+
+            int room = root.GetProperty("roomId").GetInt32();
+            if (room != this.roomId) return;
+
+            string ev = root.GetProperty("event").GetString();
+
+            if (ev == "MOVE")
+            {
+                string from = root.GetProperty("from").GetString();
+                string to = root.GetProperty("to").GetString();
+                string promo = null;
+                if (root.TryGetProperty("promotion", out var jp) && jp.ValueKind == JsonValueKind.String)
+                    promo = jp.GetString();
+
+                string username = root.GetProperty("username").GetString();
+                bool isLocal = string.Equals(username, this.Username, StringComparison.OrdinalIgnoreCase);
+
+                // Local đã tự apply move rồi, chỉ apply cho phía đối thủ
+                if (!isLocal)
+                {
+                    currentGameBoard.ApplyNetworkMove(from, to, promo);
+                }
+            }
+            else if (ev == "RESIGN")
+            {
+                if (!root.TryGetProperty("username", out var ju) || ju.ValueKind != JsonValueKind.String)
+                    return;
+
+                string username = ju.GetString();
+                bool localResigned = string.Equals(username, this.Username, StringComparison.OrdinalIgnoreCase);
+
+                currentGameBoard.FinishGameByResign(localResigned);
+            }
+            else if (ev == "DRAW_OFFER")
+            {
+                if (!root.TryGetProperty("username", out var ju) || ju.ValueKind != JsonValueKind.String)
+                    return;
+
+                string username = ju.GetString();
+                bool fromOpponent = !string.Equals(username, this.Username, StringComparison.OrdinalIgnoreCase);
+
+                // Nếu mình là người gửi lời đề nghị hòa thì bỏ qua push
+                if (!fromOpponent) return;
+
+                var r = MessageBox.Show(
+                    currentGameBoard,
+                    "Đối thủ đề nghị hòa ván đấu này.\nBạn có đồng ý hòa không?",
+                    "Lời đề nghị hòa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                bool accepted = (r == DialogResult.Yes);
+
+                try
+                {
+                    requestClient.Send(new
+                    {
+                        action = "GAME_DRAW_RESPONSE",
+                        roomId = this.roomId,
+                        username = this.Username,
+                        accepted = accepted
+                    });
+                }
+                catch
+                {
+                }
+
+                if (accepted)
+                {
+                    currentGameBoard.FinishGameByAgreedDraw();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        currentGameBoard,
+                        "Bạn đã từ chối lời đề nghị hòa.",
+                        "Cầu hòa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            else if (ev == "DRAW_RESPONSE")
+            {
+                bool accepted = root.TryGetProperty("accepted", out var ja) &&
+                               ja.ValueKind == JsonValueKind.True;
+
+                if (!root.TryGetProperty("username", out var ju) || ju.ValueKind != JsonValueKind.String)
+                    return;
+
+                string username = ju.GetString();
+
+                // Nếu chính mình là người bấm Yes/No thì đã xử lý ở nhánh DRAW_OFFER
+                if (string.Equals(username, this.Username, StringComparison.OrdinalIgnoreCase))
+                    return;
+
+                if (accepted)
+                {
+                    currentGameBoard.FinishGameByAgreedDraw();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        currentGameBoard,
+                        "Đối thủ đã từ chối lời đề nghị hòa của bạn.",
+                        "Cầu hòa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+        }
+
+
+        private void HandleGameChatPush(JsonElement root)
+        {
+            if (currentGameBoard == null) return;
+
+            int room = root.GetProperty("roomId").GetInt32();
+            if (room != this.roomId) return;
+
+            string content = root.GetProperty("content").GetString();
+            string time = root.GetProperty("timestamp").GetString();
+
+            string username = null;
+            if (root.TryGetProperty("username", out var ju) && ju.ValueKind == JsonValueKind.String)
+                username = ju.GetString();
+
+            if (string.IsNullOrEmpty(username))
+            {
+                if (root.TryGetProperty("sender", out var js) && js.ValueKind == JsonValueKind.String)
+                    username = js.GetString();
+                else
+                    username = "Người chơi";
+            }
+
+            bool isLocal = string.Equals(username, this.Username, StringComparison.OrdinalIgnoreCase);
+
+            currentGameBoard.AppendNetworkChat(username, content, time, isLocal);
+        }
+
 
         private static IEnumerable<string> ExtractJsonObjects(StringBuilder sb)
         {
@@ -740,7 +1076,7 @@ namespace ChessGame
 
             try
             {
-                pushClient.SendRequest(new
+                pushClient.Send(new
                 {
                     action = "ROOM_CHAT",
                     roomId = this.roomId,
@@ -754,6 +1090,7 @@ namespace ChessGame
             catch
             {
             }
+
         }
 
         private void TxtChat_KeyDown(object sender, KeyEventArgs e)
@@ -797,6 +1134,41 @@ namespace ChessGame
             }
             catch
             {
+            }
+        }
+        private void InRoom_Activated(object sender, EventArgs e)
+        {
+            // Khi InRoom quay lại foreground (sau khi đóng GameBoard),
+            // gọi lại ROOM_GET để sync Elo + thông tin phòng mới nhất.
+            if (requestClient == null) return;
+
+            try
+            {
+                var snap = requestClient.SendRequest(new { action = "ROOM_GET", roomId = this.roomId });
+                using var doc = JsonDocument.Parse(snap);
+                if (doc.RootElement.GetProperty("success").GetBoolean())
+                {
+                    var ro = doc.RootElement.GetProperty("room");
+                    UpdatePlayersFromRoom(ro);
+
+                    // Đồng bộ lại config nếu cần
+                    if (ro.TryGetProperty("minutes", out var jmin) && jmin.ValueKind == JsonValueKind.Number)
+                        minutes = jmin.GetInt32();
+                    if (ro.TryGetProperty("increment", out var jin) && jin.ValueKind == JsonValueKind.Number)
+                        increment = jin.GetInt32();
+                    if (ro.TryGetProperty("side", out var js) && js.ValueKind == JsonValueKind.String)
+                        hostSide = js.GetString();
+
+                    txtCustomMin.Text = minutes.ToString();
+                    txtFischer.Text = increment.ToString();
+                    if (hostSide == "white") radioWhite.Checked = true; else radioBlack.Checked = true;
+
+                    UpdateSideLabels(hostSide);
+                }
+            }
+            catch
+            {
+                // lỗi mạng thì thôi, giữ nguyên UI cũ
             }
         }
     }

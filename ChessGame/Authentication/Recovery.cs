@@ -11,6 +11,7 @@ namespace ChessGame
         {
             InitializeComponent();
             this.Load += Recovery_Load;
+            this.AcceptButton = btnXacNhan;
         }
 
         private void Recovery_Load(object sender, EventArgs e)

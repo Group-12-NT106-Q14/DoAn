@@ -265,7 +265,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvHistory.DefaultCellStyle = dataGridViewCellStyle3;
             dgvHistory.EnableHeadersVisualStyles = false;
-            dgvHistory.Location = new Point(20, 60);
+            dgvHistory.Location = new Point(20, 70);
             dgvHistory.Name = "dgvHistory";
             dgvHistory.ReadOnly = true;
             dgvHistory.RowHeadersVisible = false;

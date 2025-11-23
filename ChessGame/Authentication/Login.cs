@@ -23,6 +23,7 @@ namespace ChessGame
             txtMK.UseSystemPasswordChar = true;
             btnShow.Visible = true;
             btnHide.Visible = false;
+            this.AcceptButton = btnĐăngNhập;
         }
 
         private void lblMoiDen_Click(object sender, EventArgs e)

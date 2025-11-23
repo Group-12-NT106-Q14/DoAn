@@ -1,14 +1,15 @@
-﻿using MimeKit;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
+using MimeKit;
 using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
 
 namespace ChessServer
 {
@@ -95,8 +96,37 @@ namespace ChessServer
 
             // Room hiện tại của client này (nếu có) — dùng để lọc push
             private int? CurrentRoomId = null;
+            // =========================
+            //   QUICK MATCH STATE
+            // =========================
+            private class QuickQueueEntry
+            {
+                public int UserId;
+                public string Username;
+                public string DisplayName;
+                public int Elo;
+            }
 
-            private class Room
+            private class QuickGame
+            {
+                public int GameId;
+                public int WhiteUserId;
+                public int BlackUserId;
+                public string WhiteUsername;
+                public string BlackUsername;
+                public string WhiteDisplayName;
+                public string BlackDisplayName;
+                public int Minutes;
+                public int Increment;
+            }
+
+            private static readonly object quickLock = new object();
+            private static readonly Queue<QuickQueueEntry> quickQueue = new Queue<QuickQueueEntry>();
+            private static readonly Dictionary<int, QuickGame> quickGames = new Dictionary<int, QuickGame>();
+            private static int nextQuickGameId = 1;
+
+
+            class Room
             {
                 public int Id { get; set; }
                 public string Name { get; set; }
@@ -112,6 +142,9 @@ namespace ChessServer
                 public int GuestElo { get; set; }
 
                 public bool GuestReady { get; set; }
+
+                // Trạng thái phòng: đang chơi hay đang ở sảnh
+                public bool IsPlaying { get; set; } = false;
 
                 // Thiết lập ván
                 public int Minutes { get; set; } = 3;
@@ -251,6 +284,10 @@ namespace ChessServer
                     else if (action == "RESET_PASSWORD") return HandleResetPassword(root);
                     else if (action == "VERIFY_OTP") return HandleVerifyOtp(root);
                     else if (action == "GET_ONLINE_USERS") return HandleGetOnlineUsers();
+                    else if (action == "GET_HISTORY") return HandleGetHistory(root);
+                    else if (action == "GET_RANKING") return HandleGetRanking();
+                    else if (action == "MATCH_FIND") return HandleMatchFind(root);
+                    else if (action == "MATCH_CANCEL") return HandleMatchCancel();
                     else if (action == "LOGOUT") return HandleLogout(root);
 
                     // Phòng
@@ -266,6 +303,12 @@ namespace ChessServer
 
                     // Push binding & snapshot
                     else if (action == "ROOM_BIND") return HandleRoomBind(root);
+                    else if (action == "GAME_MOVE") { HandleGameMove(root); return ""; }
+                    else if (action == "GAME_CHAT") { HandleGameChat(root); return ""; }
+                    else if (action == "GAME_RESIGN") { HandleGameResign(root); return ""; }
+                    else if (action == "GAME_DRAW_OFFER") { HandleGameDrawOffer(root); return ""; }
+                    else if (action == "GAME_DRAW_RESPONSE") { HandleGameDrawResponse(root); return ""; }
+                    else if (action == "GAME_RESULT") return HandleGameResult(root);
                     else if (action == "ROOM_GET") return HandleRoomGet(root);
 
                     else return "";
@@ -274,21 +317,29 @@ namespace ChessServer
 
             // ========= HANDLERS: Tài khoản / OTP / Chat tổng =========
 
-            private string HandleRegister(JsonElement req)
+            private string HandleRegister(JsonElement request)
             {
-                string email = req.GetProperty("email").GetString();
-                string displayName = req.GetProperty("displayName").GetString();
-                string username = req.GetProperty("username").GetString();
-                string password = req.GetProperty("password").GetString();
+                string email = request.GetProperty("email").GetString();
+                string displayName = request.GetProperty("displayName").GetString();
+                string username = request.GetProperty("username").GetString();
+                string password = request.GetProperty("password").GetString();
 
-                UserRepo repo = server.GetUserRepo();
+                UserRepo repo = new UserRepo();
+
+                // Kiểm tra tồn tại
                 if (repo.IsUsernameExists(username))
-                    return CreateResponse(false, "Username đã tồn tại");
+                    return CreateResponse(false, "Username đã tồn tại.");
                 if (repo.IsEmailExists(email))
-                    return CreateResponse(false, "Email đã được sử dụng");
+                    return CreateResponse(false, "Email đã được sử dụng.");
 
-                repo.RegisterUser(email, displayName, username, password);
-                Console.WriteLine("[" + clientIP + "] Register: " + username);
+                bool ok = repo.RegisterUser(email, displayName, username, password);
+                if (!ok)
+                {
+                    Console.WriteLine($"[{clientIP}] Register FAILED (DB error): {username}");
+                    return CreateResponse(false, "Đăng ký thất bại do lỗi hệ thống. Vui lòng thử lại.");
+                }
+
+                Console.WriteLine($"[{clientIP}] Register OK: {username}");
                 return CreateResponse(true, "Đăng ký thành công");
             }
 
@@ -438,19 +489,71 @@ namespace ChessServer
                 string newDisplayName = req.GetProperty("displayName").GetString();
                 string newEmail = req.GetProperty("email").GetString();
 
-                string newPassword = null;
-                if (req.TryGetProperty("password", out JsonElement pwd))
+                string? newPassword = null;
+                if (req.TryGetProperty("password", out JsonElement pwd) &&
+                    pwd.ValueKind == JsonValueKind.String)
                 {
                     newPassword = pwd.GetString();
                 }
 
+                newDisplayName = newDisplayName?.Trim() ?? "";
+                newEmail = newEmail?.Trim() ?? "";
+
                 UserRepo repo = server.GetUserRepo();
                 ClassUser currentUser = repo.GetUserById(userId);
+
+                if (currentUser == null)
+                {
+                    return CreateResponse(false, "Người dùng không tồn tại.");
+                }
+
                 string username = currentUser.Username;
 
-                repo.UpdateUserAccount(userId, newDisplayName, newEmail, newPassword);
+                if (string.IsNullOrWhiteSpace(newDisplayName))
+                {
+                    return CreateResponse(false, "Tên hiển thị không được để trống.");
+                }
+
+                if (string.IsNullOrWhiteSpace(newEmail))
+                {
+                    return CreateResponse(false, "Email không được để trống.");
+                }
+
+                // Validate format email đơn giản phía server
+                if (!newEmail.Contains("@") || !newEmail.Contains("."))
+                {
+                    return CreateResponse(false, "Email không hợp lệ.");
+                }
+
+                // Nếu email mới khác email cũ -> kiểm tra xem đã thuộc user khác chưa
+                if (!string.Equals(newEmail, currentUser.Email, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (repo.IsEmailExists(newEmail))
+                    {
+                        return CreateResponse(false, "Email đã được sử dụng bởi tài khoản khác.");
+                    }
+                }
+
+                bool ok;
+                try
+                {
+                    ok = repo.UpdateUserAccount(userId, newDisplayName, newEmail, newPassword);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("[" + clientIP + "] UpdateAccount exception: " + ex.Message);
+                    return CreateResponse(false, "Cập nhật tài khoản thất bại. Vui lòng thử lại.");
+                }
+
+                if (!ok)
+                {
+                    Console.WriteLine("[" + clientIP + "] UpdateAccount FAILED (DB error): " + username);
+                    return CreateResponse(false, "Cập nhật tài khoản thất bại. Vui lòng thử lại.");
+                }
+
                 Console.WriteLine("[" + clientIP + "] UpdateAccount: " + username);
 
+                // Cập nhật lại loggedInUser nếu cần
                 if (loggedInUser != null && loggedInUser.UserID == userId)
                 {
                     loggedInUser = repo.GetUserById(userId);
@@ -534,6 +637,235 @@ namespace ChessServer
                 return CreateResponse(true, "Đổi mật khẩu thành công!");
             }
 
+            private string HandleGetHistory(JsonElement req)
+            {
+                int userId;
+                if (req.TryGetProperty("userId", out JsonElement jUserId) && jUserId.ValueKind == JsonValueKind.Number)
+                {
+                    userId = jUserId.GetInt32();
+                }
+                else
+                {
+                    if (loggedInUser == null) return CreateResponse(false, "Không xác định được người dùng.");
+                    userId = loggedInUser.UserID;
+                }
+
+                string filter = "all";
+                if (req.TryGetProperty("resultFilter", out JsonElement jFilter) && jFilter.ValueKind == JsonValueKind.String)
+                {
+                    filter = jFilter.GetString() ?? "all";
+                }
+                filter = filter.ToLowerInvariant();
+
+                DateTime? fromDate = null;
+                DateTime? toDate = null;
+
+                if (req.TryGetProperty("from", out JsonElement jFrom) && jFrom.ValueKind == JsonValueKind.String)
+                {
+                    DateTime tmp;
+                    if (DateTime.TryParse(jFrom.GetString(), out tmp))
+                    {
+                        fromDate = tmp.Date;
+                    }
+                }
+
+                if (req.TryGetProperty("to", out JsonElement jTo) && jTo.ValueKind == JsonValueKind.String)
+                {
+                    DateTime tmp;
+                    if (DateTime.TryParse(jTo.GetString(), out tmp))
+                    {
+                        toDate = tmp.Date;
+                    }
+                }
+
+                var matches = new List<object>();
+                int total = 0;
+                int wins = 0;
+                int draws = 0;
+                int losses = 0;
+
+                using (SQLiteConnection conn = Database.GetConnection())
+                {
+                    conn.Open();
+
+                    string sql =
+                        "SELECT m.MatchID, m.WhiteUserID, m.BlackUserID, m.Result, " +
+                        "m.StartTime, m.EndTime, m.TimeControlMinutes, m.IncrementSeconds, " +
+                        "m.WhiteEloAfter, m.BlackEloAfter, " +
+                        "w.DisplayName AS WhiteName, w.Username AS WhiteUsername, " +
+                        "b.DisplayName AS BlackName, b.Username AS BlackUsername " +
+                        "FROM Matches m " +
+                        "JOIN Users w ON m.WhiteUserID = w.UserID " +
+                        "JOIN Users b ON m.BlackUserID = b.UserID " +
+                        "WHERE m.WhiteUserID = @UserID OR m.BlackUserID = @UserID " +
+                        "ORDER BY m.EndTime DESC";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserID", userId);
+
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int matchId = reader.GetInt32(0);
+                                int whiteId = reader.GetInt32(1);
+                                int blackId = reader.GetInt32(2);
+                                int resultCode = reader.GetInt32(3);
+
+                                string startTimeStr = reader.IsDBNull(4) ? null : reader.GetString(4);
+                                string endTimeStr = reader.IsDBNull(5) ? null : reader.GetString(5);
+                                int timeMinutes = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
+                                int incSeconds = reader.IsDBNull(7) ? 0 : reader.GetInt32(7);
+                                int whiteEloAfter = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
+                                int blackEloAfter = reader.IsDBNull(9) ? 0 : reader.GetInt32(9);
+
+                                string whiteName = reader.GetString(10);
+                                string whiteUsername = reader.GetString(11);
+                                string blackName = reader.GetString(12);
+                                string blackUsername = reader.GetString(13);
+
+                                bool isWhite = (whiteId == userId);
+                                string opponentName = isWhite ? blackName : whiteName;
+                                string opponentUsername = isWhite ? blackUsername : whiteUsername;
+                                int opponentRating = isWhite ? blackEloAfter : whiteEloAfter;
+
+                                bool isWin = false;
+                                bool isDraw = false;
+                                bool isLoss = false;
+                                string resultStr;
+
+                                if (resultCode == 2)
+                                {
+                                    resultStr = "draw";
+                                    isDraw = true;
+                                }
+                                else if ((resultCode == 0 && isWhite) || (resultCode == 1 && !isWhite))
+                                {
+                                    resultStr = "win";
+                                    isWin = true;
+                                }
+                                else
+                                {
+                                    resultStr = "loss";
+                                    isLoss = true;
+                                }
+
+                                DateTime? endTime = null;
+                                if (!string.IsNullOrEmpty(endTimeStr))
+                                {
+                                    DateTime t;
+                                    if (DateTime.TryParse(endTimeStr, out t))
+                                    {
+                                        endTime = t;
+                                    }
+                                }
+
+                                // Lọc theo ngày (nếu có)
+                                if (fromDate.HasValue && endTime.HasValue && endTime.Value.Date < fromDate.Value.Date)
+                                    continue;
+                                if (toDate.HasValue && endTime.HasValue && endTime.Value.Date > toDate.Value.Date)
+                                    continue;
+
+                                // Lọc theo kết quả
+                                if (filter == "win" && !isWin) continue;
+                                if (filter == "draw" && !isDraw) continue;
+                                if (filter == "loss" && !isLoss) continue;
+
+                                total++;
+                                if (isWin) wins++;
+                                if (isDraw) draws++;
+                                if (isLoss) losses++;
+
+                                string endTimeOut = endTime.HasValue
+                                    ? endTime.Value.ToString("yyyy-MM-dd HH:mm:ss")
+                                    : endTimeStr;
+
+                                matches.Add(new
+                                {
+                                    matchId = matchId,
+                                    opponentName = opponentName,
+                                    opponentUsername = opponentUsername,
+                                    opponentRating = opponentRating,
+                                    isWhite = isWhite,
+                                    result = resultStr,
+                                    timeControlMinutes = timeMinutes,
+                                    incrementSeconds = incSeconds,
+                                    endTime = endTimeOut
+                                });
+                            }
+                        }
+                    }
+                }
+
+                double winRate = total > 0 ? (double)wins / total : 0.0;
+
+                var stats = new
+                {
+                    total = total,
+                    wins = wins,
+                    draws = draws,
+                    losses = losses,
+                    winRate = winRate
+                };
+
+                return JsonSerializer.Serialize(new { success = true, stats = stats, matches = matches });
+            }
+
+            private string HandleGetRanking()
+            {
+                var users = new List<object>();
+
+                using (SQLiteConnection conn = Database.GetConnection())
+                {
+                    conn.Open();
+
+                    string sql =
+                        "SELECT u.UserID, u.Email, u.DisplayName, u.Username, u.Elo, " +
+                        "IFNULL(s.GamesPlayed, 0), IFNULL(s.Wins, 0), IFNULL(s.Draws, 0), IFNULL(s.Losses, 0) " +
+                        "FROM Users u " +
+                        "LEFT JOIN UserStats s ON u.UserID = s.UserID " +
+                        "ORDER BY u.Elo DESC, u.UserID ASC";
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        int rank = 1;
+                        while (reader.Read())
+                        {
+                            string email = reader.GetString(1);
+                            string displayName = reader.GetString(2);
+                            string username = reader.GetString(3);
+                            int elo = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+                            int gamesPlayed = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
+                            int wins = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
+                            int draws = reader.IsDBNull(7) ? 0 : reader.GetInt32(7);
+                            int losses = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
+                            double winRate = gamesPlayed > 0 ? (double)wins / gamesPlayed : 0.0;
+
+                            users.Add(new
+                            {
+                                rank = rank,
+                                email = email,
+                                displayName = displayName,
+                                username = username,
+                                elo = elo,
+                                gamesPlayed = gamesPlayed,
+                                wins = wins,
+                                draws = draws,
+                                losses = losses,
+                                winRate = winRate
+                            });
+
+                            rank++;
+                        }
+                    }
+                }
+
+                return JsonSerializer.Serialize(new { success = true, users = users });
+            }
+
+
             private string HandleGetOnlineUsers()
             {
                 var result = new List<object>();
@@ -553,6 +885,165 @@ namespace ChessServer
                     }
                 }
                 return JsonSerializer.Serialize(new { success = true, users = result });
+            }
+
+            private string HandleMatchFind(JsonElement req)
+            {
+                if (!isLoggedIn || loggedInUser == null)
+                    return CreateResponse(false, "Chưa đăng nhập.");
+
+                QuickGame createdGame = null;
+
+                lock (quickLock)
+                {
+                    // 1) Loại bỏ mọi entry cũ của chính user này trong hàng chờ (tránh tự ghép với bản thân)
+                    var tmp = new Queue<QuickQueueEntry>();
+                    while (quickQueue.Count > 0)
+                    {
+                        var e = quickQueue.Dequeue();
+                        if (e.UserId != loggedInUser.UserID)
+                        {
+                            tmp.Enqueue(e);
+                        }
+                    }
+                    while (tmp.Count > 0) quickQueue.Enqueue(tmp.Dequeue());
+
+                    // 2) Tìm đối thủ khác userId (nếu còn ai trong hàng chờ)
+                    QuickQueueEntry opponent = null;
+                    while (quickQueue.Count > 0)
+                    {
+                        var cand = quickQueue.Dequeue();
+                        if (cand.UserId == loggedInUser.UserID)
+                        {
+                            // cực đoan: nếu vẫn còn bản thân, bỏ qua
+                            continue;
+                        }
+                        opponent = cand;
+                        break;
+                    }
+
+                    // 3) Nếu không tìm được đối thủ -> cho mình vào hàng chờ
+                    if (opponent == null)
+                    {
+                        quickQueue.Enqueue(new QuickQueueEntry
+                        {
+                            UserId = loggedInUser.UserID,
+                            Username = loggedInUser.Username,
+                            DisplayName = loggedInUser.DisplayName,
+                            Elo = loggedInUser.Elo
+                        });
+
+                        return JsonSerializer.Serialize(new
+                        {
+                            success = true,
+                            waiting = true
+                        });
+                    }
+
+                    // 4) Có đối thủ khác userId -> tạo game
+                    int gameId = nextQuickGameId++;
+                    var rnd = new Random();
+                    bool thisIsWhite = rnd.Next(2) == 0;
+
+                    createdGame = new QuickGame
+                    {
+                        GameId = gameId,
+                        Minutes = 10,
+                        Increment = 0
+                    };
+
+                    if (thisIsWhite)
+                    {
+                        createdGame.WhiteUserId = loggedInUser.UserID;
+                        createdGame.WhiteUsername = loggedInUser.Username;
+                        createdGame.WhiteDisplayName = loggedInUser.DisplayName;
+
+                        createdGame.BlackUserId = opponent.UserId;
+                        createdGame.BlackUsername = opponent.Username;
+                        createdGame.BlackDisplayName = opponent.DisplayName;
+                    }
+                    else
+                    {
+                        createdGame.BlackUserId = loggedInUser.UserID;
+                        createdGame.BlackUsername = loggedInUser.Username;
+                        createdGame.BlackDisplayName = loggedInUser.DisplayName;
+
+                        createdGame.WhiteUserId = opponent.UserId;
+                        createdGame.WhiteUsername = opponent.Username;
+                        createdGame.WhiteDisplayName = opponent.DisplayName;
+                    }
+
+                    quickGames[gameId] = createdGame;
+                }
+
+                // 5) Broadcast MATCH_FOUND cho 2 người
+                if (createdGame != null)
+                {
+                    string json = JsonSerializer.Serialize(new
+                    {
+                        type = "MATCH_FOUND",
+                        gameId = createdGame.GameId,
+                        whiteUsername = createdGame.WhiteUsername,
+                        whiteDisplayName = createdGame.WhiteDisplayName,
+                        blackUsername = createdGame.BlackUsername,
+                        blackDisplayName = createdGame.BlackDisplayName,
+                        minutes = createdGame.Minutes,
+                        increment = createdGame.Increment
+                    });
+
+                    BroadcastToQuickGame(createdGame.GameId, json);
+
+                    return JsonSerializer.Serialize(new
+                    {
+                        success = true,
+                        waiting = false
+                    });
+                }
+
+                return JsonSerializer.Serialize(new { success = true });
+            }
+
+            private static bool RemoveFromQuickQueue(int userId)
+            {
+                lock (quickLock)
+                {
+                    if (quickQueue.Count == 0) return false;
+
+                    var tmp = new Queue<QuickQueueEntry>();
+                    bool removed = false;
+
+                    while (quickQueue.Count > 0)
+                    {
+                        var e = quickQueue.Dequeue();
+                        if (e.UserId == userId)
+                        {
+                            removed = true;
+                            continue;
+                        }
+                        tmp.Enqueue(e);
+                    }
+
+                    while (tmp.Count > 0) quickQueue.Enqueue(tmp.Dequeue());
+
+                    return removed;
+                }
+            }
+
+
+
+
+            private string HandleMatchCancel()
+            {
+                if (!isLoggedIn || loggedInUser == null)
+                    return JsonSerializer.Serialize(new { success = true });
+
+                bool removed = RemoveFromQuickQueue(loggedInUser.UserID);
+
+                return JsonSerializer.Serialize(new
+                {
+                    success = true,
+                    removed = removed
+                });
             }
 
             private string HandleLogout(JsonElement req)
@@ -637,7 +1128,8 @@ namespace ChessServer
                             ownerElo = r.OwnerElo,
                             players = r.PlayersCount, // gồm cả 2/2
                             minutes = r.Minutes,
-                            increment = r.Increment
+                            increment = r.Increment,
+                            status = r.IsPlaying ? "playing" : "lobby"
                         });
                     }
                 }
@@ -833,6 +1325,10 @@ namespace ChessServer
                     if (!r.GuestReady)
                         return CreateResponse(false, "Khách chưa sẵn sàng.");
 
+                    // Reset trạng thái sẵn sàng & đánh dấu phòng đang chơi
+                    r.GuestReady = false;
+                    r.IsPlaying = true;
+
                     string ev = JsonSerializer.Serialize(new
                     {
                         type = "ROOM_EVENT",
@@ -842,6 +1338,10 @@ namespace ChessServer
                     });
                     BroadcastToRoom(r.Id, ev);
                 }
+
+                // Cập nhật danh sách phòng cho RoomList (status = Đang chơi)
+                BroadcastRooms();
+
                 return JsonSerializer.Serialize(new { success = true, message = "Bắt đầu trò chơi (giả lập)." });
             }
 
@@ -897,6 +1397,232 @@ namespace ChessServer
                 BroadcastToRoom(roomId, msgJson);
             }
 
+            private void HandleGameMove(JsonElement req)
+            {
+                string username = req.GetProperty("username").GetString();
+                string from = req.GetProperty("from").GetString();
+                string to = req.GetProperty("to").GetString();
+                string promo = null;
+                if (req.TryGetProperty("promotion", out var jp) && jp.ValueKind == JsonValueKind.String)
+                    promo = jp.GetString();
+
+                string timestamp = DateTime.Now.ToString("HH:mm:ss");
+
+                // ROOM
+                if (req.TryGetProperty("roomId", out var jr) && jr.ValueKind == JsonValueKind.Number)
+                {
+                    int roomId = jr.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        roomId = roomId,
+                        @event = "MOVE",
+                        username = username,
+                        from = from,
+                        to = to,
+                        promotion = promo,
+                        timestamp = timestamp
+                    });
+                    BroadcastToRoom(roomId, msgJson);
+                    return;
+                }
+
+                // QUICK MATCH
+                if (req.TryGetProperty("gameId", out var jg) && jg.ValueKind == JsonValueKind.Number)
+                {
+                    int gameId = jg.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        gameId = gameId,
+                        @event = "MOVE",
+                        username = username,
+                        from = from,
+                        to = to,
+                        promotion = promo,
+                        timestamp = timestamp
+                    });
+                    BroadcastToQuickGame(gameId, msgJson);
+                    return;
+                }
+            }
+
+
+            private void HandleGameChat(JsonElement req)
+            {
+                string username = null;
+                if (req.TryGetProperty("username", out var ju) && ju.ValueKind == JsonValueKind.String)
+                    username = ju.GetString();
+
+                string sender = null;
+                if (req.TryGetProperty("sender", out var js) && js.ValueKind == JsonValueKind.String)
+                    sender = js.GetString();
+                else
+                    sender = username ?? "Người chơi";
+
+                string content = "";
+                if (req.TryGetProperty("content", out var jc) && jc.ValueKind == JsonValueKind.String)
+                    content = jc.GetString();
+                else if (req.TryGetProperty("message", out var jm) && jm.ValueKind == JsonValueKind.String)
+                    content = jm.GetString();
+
+                string kind = "text";
+                if (req.TryGetProperty("kind", out var jk) && jk.ValueKind == JsonValueKind.String)
+                    kind = jk.GetString();
+
+                string timestamp = DateTime.Now.ToString("HH:mm:ss");
+
+                // ROOM
+                if (req.TryGetProperty("roomId", out var jr) && jr.ValueKind == JsonValueKind.Number)
+                {
+                    int roomId = jr.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAMECHAT",
+                        roomId = roomId,
+                        sender = sender,
+                        username = username,
+                        content = content,
+                        kind = kind,
+                        timestamp = timestamp
+                    });
+                    BroadcastToRoom(roomId, msgJson);
+                    return;
+                }
+
+                // QUICK MATCH
+                if (req.TryGetProperty("gameId", out var jg) && jg.ValueKind == JsonValueKind.Number)
+                {
+                    int gameId = jg.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAMECHAT",
+                        gameId = gameId,
+                        sender = sender,
+                        username = username,
+                        content = content,
+                        kind = kind,
+                        timestamp = timestamp
+                    });
+                    BroadcastToQuickGame(gameId, msgJson);
+                    return;
+                }
+            }
+
+
+            private void HandleGameResign(JsonElement req)
+            {
+                string username = req.GetProperty("username").GetString();
+                string timestamp = DateTime.Now.ToString("HH:mm:ss");
+
+                if (req.TryGetProperty("roomId", out var jr) && jr.ValueKind == JsonValueKind.Number)
+                {
+                    int roomId = jr.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        roomId = roomId,
+                        @event = "RESIGN",
+                        username = username,
+                        timestamp = timestamp
+                    });
+                    BroadcastToRoom(roomId, msgJson);
+                    return;
+                }
+
+                if (req.TryGetProperty("gameId", out var jg) && jg.ValueKind == JsonValueKind.Number)
+                {
+                    int gameId = jg.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        gameId = gameId,
+                        @event = "RESIGN",
+                        username = username,
+                        timestamp = timestamp
+                    });
+                    BroadcastToQuickGame(gameId, msgJson);
+                    return;
+                }
+            }
+
+            private void HandleGameDrawOffer(JsonElement req)
+            {
+                string username = req.GetProperty("username").GetString();
+                string timestamp = DateTime.Now.ToString("HH:mm:ss");
+
+                if (req.TryGetProperty("roomId", out var jr) && jr.ValueKind == JsonValueKind.Number)
+                {
+                    int roomId = jr.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        roomId = roomId,
+                        @event = "DRAW_OFFER",
+                        username = username,
+                        timestamp = timestamp
+                    });
+                    BroadcastToRoom(roomId, msgJson);
+                    return;
+                }
+
+                if (req.TryGetProperty("gameId", out var jg) && jg.ValueKind == JsonValueKind.Number)
+                {
+                    int gameId = jg.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        gameId = gameId,
+                        @event = "DRAW_OFFER",
+                        username = username,
+                        timestamp = timestamp
+                    });
+                    BroadcastToQuickGame(gameId, msgJson);
+                    return;
+                }
+            }
+
+            private void HandleGameDrawResponse(JsonElement req)
+            {
+                string username = req.GetProperty("username").GetString();
+                bool accepted = req.GetProperty("accepted").GetBoolean();
+                string timestamp = DateTime.Now.ToString("HH:mm:ss");
+
+                if (req.TryGetProperty("roomId", out var jr) && jr.ValueKind == JsonValueKind.Number)
+                {
+                    int roomId = jr.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        roomId = roomId,
+                        @event = "DRAW_RESPONSE",
+                        username = username,
+                        accepted = accepted,
+                        timestamp = timestamp
+                    });
+                    BroadcastToRoom(roomId, msgJson);
+                    return;
+                }
+
+                if (req.TryGetProperty("gameId", out var jg) && jg.ValueKind == JsonValueKind.Number)
+                {
+                    int gameId = jg.GetInt32();
+                    string msgJson = JsonSerializer.Serialize(new
+                    {
+                        type = "GAME_EVENT",
+                        gameId = gameId,
+                        @event = "DRAW_RESPONSE",
+                        username = username,
+                        accepted = accepted,
+                        timestamp = timestamp
+                    });
+                    BroadcastToQuickGame(gameId, msgJson);
+                    return;
+                }
+            }
+
+
+
             // ========= Push binding & snapshot =========
 
             private string HandleRoomBind(JsonElement req)
@@ -932,6 +1658,154 @@ namespace ChessServer
                 }
             }
 
+            /// <summary>
+            /// Nhận kết quả trận đấu từ client và cập nhật Elo + UserStats + Matches.
+            /// req:
+            /// {
+            ///   "action": "GAME_RESULT",
+            ///   "roomId": 123,
+            ///   "result": "white" | "black" | "draw",
+            ///   "reason": "checkmate" | "resign" | "time" | "agreement"
+            /// }
+            /// </summary>
+            private string HandleGameResult(JsonElement req)
+            {
+                string result = req.GetProperty("result").GetString();
+                string reason = null;
+                if (req.TryGetProperty("reason", out var jr) && jr.ValueKind == JsonValueKind.String)
+                {
+                    reason = jr.GetString();
+                }
+
+                int whiteUserId = 0;
+                int blackUserId = 0;
+                int timeControlMinutes = 0;
+                int incrementSeconds = 0;
+
+                // Ưu tiên quick game: gameId
+                if (req.TryGetProperty("gameId", out var jg) && jg.ValueKind == JsonValueKind.Number)
+                {
+                    int gameId = jg.GetInt32();
+                    lock (quickLock)
+                    {
+                        if (quickGames.TryGetValue(gameId, out var g))
+                        {
+                            whiteUserId = g.WhiteUserId;
+                            blackUserId = g.BlackUserId;
+                            timeControlMinutes = g.Minutes;
+                            incrementSeconds = g.Increment;
+
+                            // Xóa khỏi danh sách game đang hoạt động
+                            quickGames.Remove(gameId);
+                        }
+                    }
+                }
+                // Nếu không có gameId, fallback sang Room (roomId)
+                else if (req.TryGetProperty("roomId", out var jrRoom) && jrRoom.ValueKind == JsonValueKind.Number)
+                {
+                    int roomId = jrRoom.GetInt32();
+                    string side;
+
+                    lock (roomsLock)
+                    {
+                        if (rooms.TryGetValue(roomId, out var r))
+                        {
+                            side = r.Side ?? "white";
+                            bool hostIsWhite = string.Equals(side, "white", StringComparison.OrdinalIgnoreCase);
+
+                            if (hostIsWhite)
+                            {
+                                whiteUserId = r.OwnerUserId;
+                                blackUserId = r.GuestUserId ?? 0;
+                            }
+                            else
+                            {
+                                blackUserId = r.OwnerUserId;
+                                whiteUserId = r.GuestUserId ?? 0;
+                            }
+
+                            timeControlMinutes = r.Minutes;
+                            incrementSeconds = r.Increment;
+                        }
+                    }
+                }
+
+                if (whiteUserId == 0 || blackUserId == 0)
+                {
+                    return CreateResponse(false, "Không xác định được người chơi trắng/đen.");
+                }
+
+                try
+                {
+                    UserRepo repo = new UserRepo();
+                    repo.SaveMatchAndUpdateStats(whiteUserId, blackUserId, result, reason, timeControlMinutes, incrementSeconds);
+
+                    // Nếu là game trong phòng -> cập nhật lại Elo + trạng thái phòng và push ra client
+                    if (req.TryGetProperty("roomId", out var jrRoom2) && jrRoom2.ValueKind == JsonValueKind.Number)
+                    {
+                        int roomId2 = jrRoom2.GetInt32();
+
+                        ClassUser wUser = repo.GetUserById(whiteUserId);
+                        ClassUser bUser = repo.GetUserById(blackUserId);
+
+                        Room roomSnapshot = null;
+
+                        lock (roomsLock)
+                        {
+                            if (rooms.TryGetValue(roomId2, out var r2))
+                            {
+                                string sideLocal = r2.Side ?? "white";
+                                bool hostIsWhite = string.Equals(sideLocal, "white", StringComparison.OrdinalIgnoreCase);
+
+                                // Cập nhật Elo hiển thị trong phòng
+                                if (hostIsWhite)
+                                {
+                                    if (wUser != null) r2.OwnerElo = wUser.Elo;
+                                    if (bUser != null) r2.GuestElo = bUser.Elo;
+                                }
+                                else
+                                {
+                                    if (bUser != null) r2.OwnerElo = bUser.Elo;
+                                    if (wUser != null) r2.GuestElo = wUser.Elo;
+                                }
+
+                                // Reset trạng thái phòng sau trận
+                                r2.IsPlaying = false;
+                                r2.GuestReady = false;
+
+                                roomSnapshot = r2;
+                            }
+                        }
+
+                        if (roomSnapshot != null)
+                        {
+                            // Gửi ROOM_EVENT về lại 2 client trong phòng (InRoom sẽ auto cập nhật Elo + ready)
+                            string ev = JsonSerializer.Serialize(new
+                            {
+                                type = "ROOM_EVENT",
+                                roomId = roomSnapshot.Id,
+                                @event = "RESULT_APPLIED",
+                                room = RoomDto(roomSnapshot)
+                            });
+                            BroadcastToRoom(roomSnapshot.Id, ev);
+
+                            // Cập nhật danh sách phòng cho RoomList (elo + status)
+                            BroadcastRooms();
+                        }
+                    }
+
+                    return JsonSerializer.Serialize(new { success = true });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi GAME_RESULT: " + ex);
+                    return CreateResponse(false, "Lỗi lưu kết quả trận đấu.");
+                }
+            }
+
+
+
+
             // ========= Helpers chung =========
 
             private static string BuildRoomsSlimJson()
@@ -950,7 +1824,8 @@ namespace ChessServer
                             ownerElo = r.OwnerElo,
                             players = r.PlayersCount,
                             minutes = r.Minutes,
-                            increment = r.Increment
+                            increment = r.Increment,
+                            status = r.IsPlaying ? "playing" : "lobby"
                         });
                     }
                 }
@@ -986,6 +1861,33 @@ namespace ChessServer
                         if (!c.isPushChannel) continue; // chỉ kênh push
                         try { c.SendMessage(json); }
                         catch { }
+                    }
+                }
+            }
+
+            private static void BroadcastToQuickGame(int gameId, string json)
+            {
+                QuickGame game = null;
+                lock (quickLock)
+                {
+                    quickGames.TryGetValue(gameId, out game);
+                }
+                if (game == null) return;
+
+                lock (connectedClients)
+                {
+                    foreach (var c in connectedClients)
+                    {
+                        if (!c.isPushChannel) continue;
+                        if (c.loggedInUser == null) continue;
+
+                        string u = c.loggedInUser.Username;
+                        if (string.Equals(u, game.WhiteUsername, StringComparison.OrdinalIgnoreCase) ||
+                            string.Equals(u, game.BlackUsername, StringComparison.OrdinalIgnoreCase))
+                        {
+                            try { c.SendMessage(json); }
+                            catch { }
+                        }
                     }
                 }
             }

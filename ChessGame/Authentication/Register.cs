@@ -18,6 +18,7 @@ namespace ChessGame
         public frmRegister()
         {
             InitializeComponent();
+            this.AcceptButton = btnĐK;
         }
         private bool IsValidEmail(string email)
         {

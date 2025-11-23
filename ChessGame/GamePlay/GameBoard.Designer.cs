@@ -178,6 +178,7 @@
             txtChatInput.PlaceholderText = "Nhập tin nhắn...";
             txtChatInput.Size = new Size(240, 33);
             txtChatInput.TabIndex = 2;
+            txtChatInput.KeyDown += txtChatInput_KeyDown;
             // 
             // btnEmoji
             // 
@@ -192,6 +193,7 @@
             btnEmoji.TabIndex = 3;
             btnEmoji.Text = "😊";
             btnEmoji.UseVisualStyleBackColor = false;
+            btnEmoji.Click += btnEmoji_Click;
             // 
             // btnSendChat
             // 
@@ -206,6 +208,7 @@
             btnSendChat.TabIndex = 4;
             btnSendChat.Text = "Gửi";
             btnSendChat.UseVisualStyleBackColor = false;
+            btnSendChat.Click += btnSendChat_Click;
             // 
             // pnlEmojiPicker
             // 
@@ -235,7 +238,7 @@
             lblTimeRemaining.ForeColor = Color.White;
             lblTimeRemaining.Location = new Point(15, 15);
             lblTimeRemaining.Name = "lblTimeRemaining";
-            lblTimeRemaining.Size = new Size(163, 25);
+            lblTimeRemaining.Size = new Size(158, 25);
             lblTimeRemaining.TabIndex = 0;
             lblTimeRemaining.Text = "Thời gian còn lại";
             // 
@@ -257,7 +260,7 @@
             lblCurrentTurn.ForeColor = Color.White;
             lblCurrentTurn.Location = new Point(220, 15);
             lblCurrentTurn.Name = "lblCurrentTurn";
-            lblCurrentTurn.Size = new Size(95, 25);
+            lblCurrentTurn.Size = new Size(90, 25);
             lblCurrentTurn.TabIndex = 2;
             lblCurrentTurn.Text = "Lượt của";
             // 
@@ -285,6 +288,7 @@
             btnSurrender.TabIndex = 4;
             btnSurrender.Text = "Đầu Hàng";
             btnSurrender.UseVisualStyleBackColor = false;
+            btnSurrender.Click += btnSurrender_Click;
             // 
             // btnOfferDraw
             // 
@@ -299,6 +303,7 @@
             btnOfferDraw.TabIndex = 5;
             btnOfferDraw.Text = "Cầu Hoà";
             btnOfferDraw.UseVisualStyleBackColor = false;
+            btnOfferDraw.Click += btnOfferDraw_Click;
             // 
             // GameBoard
             // 

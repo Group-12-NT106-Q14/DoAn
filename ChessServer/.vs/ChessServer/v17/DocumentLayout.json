@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\DoAnTest\\ChessServer\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4D03A92C-9ED0-44A0-89A0-883E76CE14EA}|ChessServer.csproj|d:\\doantest\\chessserver\\tcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D03A92C-9ED0-44A0-89A0-883E76CE14EA}|ChessServer.csproj|solutionrelative:tcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +31,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TCPServer.cs",
+              "DocumentMoniker": "D:\\DoAnTest\\ChessServer\\TCPServer.cs",
+              "RelativeDocumentMoniker": "TCPServer.cs",
+              "ToolTip": "D:\\DoAnTest\\ChessServer\\TCPServer.cs",
+              "RelativeToolTip": "TCPServer.cs",
+              "ViewState": "AgIAAB8CAAAAAAAAAAAIwDICAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T12:35:29.862Z",
+              "EditorCaption": ""
             }
           ]
         },

@@ -18,6 +18,11 @@ namespace ChessGame
         public int UserId;
         public string Email;
         public string Username;
+        public int Wins { get; set; }
+        public int Draws { get; set; }
+        public int Losses { get; set; }
+        public int GamesPlayed { get; set; }
+
 
         private System.Windows.Forms.Timer onlineUpdateTimer;
         private TCPClient chatClient;
@@ -92,6 +97,75 @@ namespace ChessGame
         {
             InitializeComponent();
             SetupEmojiPickerPanel();
+            this.Activated += frmDashboard_Activated;
+        }
+
+        private void RefreshUserInfoFromServer()
+        {
+            try
+            {
+                var client = new TCPClient();
+                client.Connect();
+
+                string response = client.SendRequest(new { action = "GET_RANKING" });
+                client.Disconnect();
+
+                using var doc = System.Text.Json.JsonDocument.Parse(response);
+                var root = doc.RootElement;
+
+                if (!root.TryGetProperty("success", out var js) || !js.GetBoolean())
+                    return;
+
+                if (!root.TryGetProperty("users", out var ju) ||
+                    ju.ValueKind != System.Text.Json.JsonValueKind.Array)
+                    return;
+
+                foreach (var u in ju.EnumerateArray())
+                {
+                    string username = u.GetProperty("username").GetString();
+                    if (!string.Equals(username, this.Username, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    string displayName = u.GetProperty("displayName").GetString();
+                    int elo = u.GetProperty("elo").GetInt32();
+                    int gamesPlayed = u.GetProperty("gamesPlayed").GetInt32();
+                    int wins = u.GetProperty("wins").GetInt32();
+                    int draws = u.GetProperty("draws").GetInt32();
+                    int losses = u.GetProperty("losses").GetInt32();
+
+                    string email = this.Email;
+                    if (u.TryGetProperty("email", out var je) &&
+                        je.ValueKind == System.Text.Json.JsonValueKind.String)
+                    {
+                        email = je.GetString();
+                    }
+
+                    // Cập nhật các property để form khác dùng
+                    this.DisplayName = displayName;
+                    this.Elo = elo;
+                    this.Email = email ?? this.Email;
+                    this.GamesPlayed = gamesPlayed;
+                    this.Wins = wins;
+                    this.Draws = draws;
+                    this.Losses = losses;
+
+                    // Cập nhật UI Dashboard
+                    lblUsername.Text = displayName;
+                    lblUserRank.Text = $"Rating: {elo}";
+
+                    break;
+                }
+            }
+            catch
+            {
+                // Nếu lỗi mạng thì giữ nguyên UI cũ
+            }
+        }
+
+
+        private void frmDashboard_Activated(object sender, EventArgs e)
+        {
+            RefreshUserInfoFromServer();
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)
@@ -129,23 +203,41 @@ namespace ChessGame
         private void btnBXH_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Ranking().ShowDialog();
+            var frm = new Ranking
+            {
+                Username = this.Username
+            };
+            frm.ShowDialog();
             this.Show();
         }
 
         private void btnLichSu_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new History().ShowDialog();
+            var frm = new History
+            {
+                UserId = this.UserId,
+                Username = this.Username  
+            };
+            frm.ShowDialog();
             this.Show();
         }
+
 
         private void btnChoi_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new Match().ShowDialog();
+            var f = new Match
+            {
+                Username = this.Username,
+                DisplayName = this.DisplayName,
+                Elo = this.Elo
+            };
+            f.ShowDialog();
             this.Show();
         }
+
+
 
         private void btnĐX_Click(object sender, EventArgs e)
         {
@@ -165,22 +257,31 @@ namespace ChessGame
             this.Close();
         }
 
+        // Giả sử bạn đang ở trong Dashboard.cs hoặc một form cha
         private void btnCaiDat_Click(object sender, EventArgs e)
         {
-            AccountSetting frm = new AccountSetting();
-            frm.UserId = this.UserId;
-            frm.CurrentDisplayName = this.DisplayName;
-            frm.CurrentEmail = this.Email;
-            this.Hide();
-            frm.ShowDialog();
-            this.Show();
-            if (frm.IsUpdated)
+            var frm = new AccountSetting
             {
-                this.DisplayName = frm.CurrentDisplayName;
-                this.Email = frm.CurrentEmail;
-                lblUsername.Text = this.DisplayName;
-            }
+                UserId = this.UserId,
+                Username = this.Username,
+                DisplayName = this.DisplayName,
+                Email = this.Email,
+                Elo = this.Elo,
+                GamesPlayed = this.GamesPlayed,
+                Wins = this.Wins,
+                Draws = this.Draws,
+                Losses = this.Losses
+            };
+
+            this.Hide();
+            frm.ShowDialog(this);
+            this.Show();
+
+            // Sau khi chỉnh sửa xong, load lại thông tin mới từ server
+            RefreshUserInfoFromServer();
         }
+
+
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

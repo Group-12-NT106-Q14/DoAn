@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "Ardalis.SmartEnum/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Ardalis.SmartEnum.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Ardalis.SmartEnum.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "BouncyCastle.Cryptography/2.6.1": {
         "type": "package",
         "compile": {
@@ -11,6 +24,22 @@
         },
         "runtime": {
           "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Gera.Chess/1.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Ardalis.SmartEnum": "2.0.1"
+        },
+        "compile": {
+          "lib/net8.0/ChessLibrary.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/ChessLibrary.dll": {
             "related": ".xml"
           }
         }
@@ -127,6 +156,20 @@
     }
   },
   "libraries": {
+    "Ardalis.SmartEnum/2.0.1": {
+      "sha512": "tukxECzQuEXRGUzalYGF90CrD0hqW+308J3IaDKUoIavF3npUGVGn2ptumDSMIdZWInjPTlk3eJrrZuAePQbYA==",
+      "type": "package",
+      "path": "ardalis.smartenum/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ardalis.smartenum.2.0.1.nupkg.sha512",
+        "ardalis.smartenum.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Ardalis.SmartEnum.dll",
+        "lib/netstandard2.0/Ardalis.SmartEnum.xml"
+      ]
+    },
     "BouncyCastle.Cryptography/2.6.1": {
       "sha512": "vZsG2YILhthgRqO+ZVgRff4ZFKKTl0v7kqaVBLCtRvpREhfBP33pcWrdA3PRYgWuFL1RxiUFvjMUHTdBZlJcoA==",
       "type": "package",
@@ -145,6 +188,22 @@
         "lib/netstandard2.0/BouncyCastle.Cryptography.dll",
         "lib/netstandard2.0/BouncyCastle.Cryptography.xml",
         "packageIcon.png"
+      ]
+    },
+    "Gera.Chess/1.2.0": {
+      "sha512": "zinzizUTdkhGMMwt/f7J/AoldRvpbND5zBZrB9b8B/SLhi93lCrLnaQg5KAT4JUpDptNVUHtfggQIk6xQHD4kw==",
+      "type": "package",
+      "path": "gera.chess/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README_NUGET.md",
+        "gera.chess.1.2.0.nupkg.sha512",
+        "gera.chess.nuspec",
+        "knight.png",
+        "lib/net8.0/ChessLibrary.dll",
+        "lib/net8.0/ChessLibrary.xml"
       ]
     },
     "MailKit/4.14.1": {
@@ -323,6 +382,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Gera.Chess >= 1.2.0",
       "MailKit >= 4.14.1",
       "System.Data.SQLite.Core >= 1.0.118"
     ]
@@ -372,6 +432,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Gera.Chess": {
+            "target": "Package",
+            "version": "[1.2.0, )"
+          },
           "MailKit": {
             "target": "Package",
             "version": "[4.14.1, )"

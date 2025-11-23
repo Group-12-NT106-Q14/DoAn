@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "IQ94NPqSSOs=",
+  "dgSpecHash": "NNv/Ix/P+Xc=",
   "success": true,
   "projectFilePath": "D:\\DoAnTest\\ChessGame\\ChessGame.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Shiba\\.nuget\\packages\\ardalis.smartenum\\2.0.1\\ardalis.smartenum.2.0.1.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\excss\\4.2.3\\excss.4.2.3.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\gera.chess\\1.2.0\\gera.chess.1.2.0.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\svg\\3.4.7\\svg.3.4.7.nupkg.sha512",
+    "C:\\Users\\Shiba\\.nuget\\packages\\system.drawing.common\\5.0.3\\system.drawing.common.5.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
