@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Match));
             lblTitle = new Label();
             pnlQuickMatch = new Panel();
             lblOnlineCount = new Label();
@@ -219,6 +220,7 @@
             Controls.Add(pnlQuickMatch);
             Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Match";
             StartPosition = FormStartPosition.CenterScreen;

@@ -23,6 +23,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountSetting));
             lblTitle = new Label();
             pnlInfoTop = new Panel();
             lblUsernameIcon = new Label();
@@ -567,10 +568,10 @@
             Controls.Add(btnShowEdit);
             Controls.Add(pnlEditAccount);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AccountSetting";
-            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Thông Tin Tài Khoản";
             pnlInfoTop.ResumeLayout(false);

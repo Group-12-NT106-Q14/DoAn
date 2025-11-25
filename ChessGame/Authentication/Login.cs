@@ -49,9 +49,35 @@ namespace ChessGame
                     JsonElement root = doc.RootElement;
                     bool success = root.GetProperty("success").GetBoolean();
                     string message = root.GetProperty("message").GetString();
+
+                    // NEW: đọc cờ alreadyOnline (nếu server có gửi)
+                    bool alreadyOnline = false;
+                    if (root.TryGetProperty("alreadyOnline", out JsonElement aoElement) &&
+                        aoElement.ValueKind == System.Text.Json.JsonValueKind.True ||
+                        aoElement.ValueKind == System.Text.Json.JsonValueKind.False)
+                    {
+                        try
+                        {
+                            alreadyOnline = aoElement.GetBoolean();
+                        }
+                        catch { alreadyOnline = false; }
+                    }
+
                     if (success)
                     {
-                        MessageBox.Show("Đăng nhập thành công");
+                        string notify = "Đăng nhập thành công.";
+                        if (alreadyOnline)
+                        {
+                            notify += "\n\nLưu ý: Tài khoản này hiện cũng đang đăng nhập ở một nơi khác.";
+                        }
+
+                        MessageBox.Show(
+                            notify,
+                            "Đăng nhập",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+
                         this.Hide();
                         frmDashboard frm = new frmDashboard();
                         JsonElement userElement = root.GetProperty("user");
@@ -68,16 +94,17 @@ namespace ChessGame
                     }
                     else
                     {
-                        MessageBox.Show(message);
+                        MessageBox.Show(message, "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 tcpClient.Disconnect();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: Server chưa được bật hoặc đã bảo trì!");
+                MessageBox.Show("Server chưa được bật hoặc đã bảo trì");
             }
         }
+
         private void btnĐK_Click(object sender, EventArgs e)
         {
             frmRegister frm = new frmRegister();

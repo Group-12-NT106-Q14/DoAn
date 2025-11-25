@@ -13,6 +13,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InRoom));
             lblTitle = new Label();
             pnlConfig = new Panel();
             lblConfigRoomName = new Label();
@@ -496,6 +497,7 @@
             Controls.Add(pnlPlayerA);
             Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "InRoom";
             StartPosition = FormStartPosition.CenterScreen;

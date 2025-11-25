@@ -329,7 +329,7 @@ namespace ChessGame
             }
 
             currentGameBoard = new GameBoard();
-            currentGameBoard.Text = "Ván nhanh 10+0";
+            currentGameBoard.Text = "Chơi Ngay";
 
             currentGameBoard.InitGameSession(
                 localUsername: this.Username,
@@ -376,16 +376,19 @@ namespace ChessGame
                 catch { }
             };
 
-            // Đầu hàng
+            // Đầu hàng / thoát ván
             currentGameBoard.LocalResignRequested += () =>
             {
                 try
                 {
+                    string reason = currentGameBoard.LastResignWasDisconnect ? "disconnect" : "resign";
+
                     requestClient.Send(new
                     {
                         action = "GAME_RESIGN",
                         gameId = currentGameId,
-                        username = this.Username
+                        username = this.Username,
+                        reason = reason
                     });
                 }
                 catch { }
@@ -434,10 +437,17 @@ namespace ChessGame
             };
 
 
-            // Ẩn form match trong lúc chơi, xong ván thì hiện lại
             this.Hide();
             currentGameBoard.ShowDialog(this);
-            this.Close();
+
+            // Khi GameBoard đóng (sau khi người dùng bấm OK ở thông báo kết thúc trận):
+            // reset trạng thái để có thể bấm "Chơi ngay" tiếp
+            gameStarted = false;
+            currentGameId = 0;
+            currentGameBoard = null;
+            ResetSearchUI();   // bật lại nút Start, ẩn panel tìm trận / match found
+
+            this.Show();
         }
 
         // ============ XỬ LÝ GAME_EVENT / GAMECHAT (nhận từ server) ============
@@ -465,12 +475,27 @@ namespace ChessGame
 
                 currentGameBoard.ApplyNetworkMove(from, to, promo);
             }
+
             else if (ev == "RESIGN")
             {
                 // Nếu fromOpponent == false => chính mình, true => đối thủ
                 bool localResigned = !fromOpponent;
-                currentGameBoard.FinishGameByResign(localResigned);
+
+                string reason = "resign";
+                if (root.TryGetProperty("reason", out var jr) && jr.ValueKind == JsonValueKind.String)
+                    reason = jr.GetString();
+
+                if (!localResigned && string.Equals(reason, "disconnect", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Đối thủ thoát / disconnect -> mình thắng do đối thủ thoát
+                    currentGameBoard.NotifyOpponentDisconnectedWin();
+                }
+                else
+                {
+                    currentGameBoard.FinishGameByResign(localResigned);
+                }
             }
+
             else if (ev == "DRAW_OFFER")
             {
                 // Nếu mình là người gửi lời đề nghị hòa thì không cần xử lý push nữa

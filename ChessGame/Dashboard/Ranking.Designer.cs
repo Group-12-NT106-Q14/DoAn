@@ -18,6 +18,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ranking));
             pnlTop = new Panel();
             lblTitle = new Label();
             pnlUserCard = new Panel();
@@ -316,6 +317,7 @@
             Controls.Add(pnlUserCard);
             Controls.Add(pnlTop);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Ranking";
             StartPosition = FormStartPosition.CenterScreen;

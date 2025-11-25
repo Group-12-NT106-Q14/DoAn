@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Recovery));
             lblTieuDe = new Label();
             lblMoTa = new Label();
             lblMatKhauMoi = new Label();
@@ -203,6 +204,7 @@
             Controls.Add(lblMoTa);
             Controls.Add(lblTieuDe);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Recovery";
             StartPosition = FormStartPosition.CenterScreen;

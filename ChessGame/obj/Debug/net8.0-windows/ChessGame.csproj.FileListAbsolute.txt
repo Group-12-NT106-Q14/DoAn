@@ -124,5 +124,58 @@ D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Pieces\wN.svg
 D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Pieces\wP.svg
 D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Pieces\wQ.svg
 D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Pieces\wR.svg
-D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Sounds\Move.wav
+D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Sounds\capture.wav
+D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Sounds\check.wav
 D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Sounds\MatchFound.wav
+D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\Sounds\move.wav
+D:\DoAnTest\ChessGame\bin\Debug\net8.0-windows\chess.ico
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\chess.ico
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\bB.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\bK.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\bN.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\bP.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\bQ.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\bR.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\wB.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\wK.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\wN.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\wP.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\wQ.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Pieces\wR.svg
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Sounds\capture.wav
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Sounds\check.wav
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Sounds\MatchFound.wav
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Sounds\move.wav
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\ChessGame.exe
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\ChessGame.deps.json
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\ChessGame.runtimeconfig.json
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\ChessGame.dll
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\ChessGame.pdb
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Ardalis.SmartEnum.dll
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\ExCSS.dll
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\ChessLibrary.dll
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\bin\Debug\net8.0-windows\Svg.dll
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.csproj.AssemblyReference.cache
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmForgotpassword.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmLogin.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.Recovery.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmRegister.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.AccountSetting.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmDashboard.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.History.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.Match.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.Ranking.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.InRoom.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.RoomList.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.GameBoard.resources
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.csproj.GenerateResource.cache
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.AssemblyInfoInputs.cache
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.AssemblyInfo.cs
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.csproj.CoreCompileInputs.cache
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.csproj.Up2Date
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.dll
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\refint\ChessGame.dll
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.pdb
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.genruntimeconfig.cache
+C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ref\ChessGame.dll

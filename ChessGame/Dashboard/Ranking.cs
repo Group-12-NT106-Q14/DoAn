@@ -60,7 +60,7 @@ namespace ChessGame
         private void SetupTimer()
         {
             refreshTimer = new System.Windows.Forms.Timer();
-            refreshTimer.Interval = 300; // 0.3 giây auto-refresh
+            refreshTimer.Interval = 300; // 0.3 giây auto-refresh (có thể tăng lên 2000-5000ms cho nhẹ)
             refreshTimer.Tick += (s, ev) => LoadRanking();
             refreshTimer.Start();
         }
@@ -130,8 +130,39 @@ namespace ChessGame
             if (isRefreshing) return;
             isRefreshing = true;
 
+            // ====================== NEW: Lưu trạng thái scroll + selection ======================
+            int firstDisplayedRow = -1;
+            string selectedUsername = null;
+            int selectedColumnIndex = -1;
+
             try
             {
+                if (dgvRanking.Rows.Count > 0)
+                {
+                    try
+                    {
+                        firstDisplayedRow = dgvRanking.FirstDisplayedScrollingRowIndex;
+                    }
+                    catch
+                    {
+                        firstDisplayedRow = -1;
+                    }
+
+                    if (dgvRanking.CurrentRow != null)
+                    {
+                        if (dgvRanking.CurrentRow.DataBoundItem is RankingUser currentUser)
+                        {
+                            selectedUsername = currentUser.Username;
+                        }
+
+                        if (dgvRanking.CurrentCell != null)
+                        {
+                            selectedColumnIndex = dgvRanking.CurrentCell.ColumnIndex;
+                        }
+                    }
+                }
+
+                // ====================== Lấy dữ liệu mới từ server ======================
                 List<RankingUser> users = FetchRankingFromServer();
 
                 if (users == null || users.Count == 0)
@@ -142,12 +173,12 @@ namespace ChessGame
                     return;
                 }
 
-                // Sắp xếp theo tiêu chí bạn yêu cầu:
+                // Sắp xếp theo tiêu chí:
                 // 1. Elo giảm dần
-                // 2. Nếu Elo bằng -> Wins nhiều hơn xếp trên
-                // 3. Nếu Wins bằng -> Losses ít hơn xếp trên
-                // 4. Nếu Losses bằng -> GamesPlayed nhiều hơn xếp trên
-                // 5. Nếu tất cả bằng -> dùng ServerRank (tương đương UserID nhỏ hơn xếp trên)
+                // 2. Wins giảm dần
+                // 3. Losses tăng dần
+                // 4. GamesPlayed giảm dần
+                // 5. ServerRank tăng dần
                 var sorted = users
                     .OrderByDescending(u => u.Elo)
                     .ThenByDescending(u => u.Wins)
@@ -163,6 +194,39 @@ namespace ChessGame
 
                 dgvRanking.DataSource = sorted;
 
+                // ====================== NEW: Khôi phục scroll ======================
+                if (firstDisplayedRow >= 0 && firstDisplayedRow < dgvRanking.Rows.Count)
+                {
+                    try
+                    {
+                        dgvRanking.FirstDisplayedScrollingRowIndex = firstDisplayedRow;
+                    }
+                    catch
+                    {
+                        // ignore
+                    }
+                }
+
+                // ====================== NEW: Khôi phục selection theo Username ======================
+                if (!string.IsNullOrEmpty(selectedUsername))
+                {
+                    int rowIndex = sorted.FindIndex(u =>
+                        string.Equals(u.Username, selectedUsername, StringComparison.OrdinalIgnoreCase));
+
+                    if (rowIndex >= 0 && rowIndex < dgvRanking.Rows.Count)
+                    {
+                        dgvRanking.ClearSelection();
+
+                        int colIndex = selectedColumnIndex >= 0 && selectedColumnIndex < dgvRanking.Columns.Count
+                            ? selectedColumnIndex
+                            : 0;
+
+                        dgvRanking.CurrentCell = dgvRanking.Rows[rowIndex].Cells[colIndex];
+                        dgvRanking.Rows[rowIndex].Selected = true;
+                    }
+                }
+
+                // ====================== Cập nhật podium + card user ======================
                 UpdatePodium(sorted);
                 UpdateUserCard(sorted);
             }

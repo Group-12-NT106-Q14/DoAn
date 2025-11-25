@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Chess;
 using Svg;
+using System.Threading.Tasks;
 
 namespace ChessGame
 {
@@ -19,6 +20,20 @@ namespace ChessGame
         private readonly Color DarkSquareColor = Color.FromArgb(181, 136, 99);
         private readonly Color SelectedSquareColor = Color.FromArgb(246, 246, 105);
         private readonly Color LegalMoveColor = Color.FromArgb(118, 150, 86);
+        private readonly Color LastMoveColor = Color.FromArgb(246, 246, 105);
+
+        private Color BlendColor(Color baseColor, Color overlayColor, double amount)
+        {
+            if (amount < 0) amount = 0;
+            if (amount > 1) amount = 1;
+
+            int r = (int)(baseColor.R + (overlayColor.R - baseColor.R) * amount);
+            int g = (int)(baseColor.G + (overlayColor.G - baseColor.G) * amount);
+            int b = (int)(baseColor.B + (overlayColor.B - baseColor.B) * amount);
+
+            return Color.FromArgb(r, g, b);
+        }
+
 
         private ChessBoard _board;
         private Button[,] _buttons = new Button[BoardSize, BoardSize];
@@ -27,6 +42,11 @@ namespace ChessGame
         private int _selectedBoardY = -1;
         private readonly List<Point> _legalTargets = new List<Point>();
         private bool _isGameOver;
+        private Point? _lastMoveFrom;
+        private Point? _lastMoveTo;
+        private bool _lastResignWasDisconnect;
+        public bool LastResignWasDisconnect => _lastResignWasDisconnect;
+
 
         // Info người chơi / thời gian
         private string _localUsername;
@@ -44,6 +64,8 @@ namespace ChessGame
 
         private readonly Dictionary<string, Image> _pieceImageCache = new Dictionary<string, Image>();
         private SoundPlayer _moveSound;
+        private SoundPlayer _captureSound;
+        private SoundPlayer _checkSound;
 
         private readonly string[] _emoticons = new string[]
         {
@@ -166,6 +188,15 @@ namespace ChessGame
             UpdateTurnLabel();
         }
 
+        private string AppendReturnHint(string baseMessage)
+        {
+            string hint = _roomId.HasValue
+                ? "Nhấn OK để về phòng."
+                : "Nhấn OK để về sảnh ghép trận.";
+
+            return baseMessage + "\n\n" + hint;
+        }
+
         // ================== BÀN CỜ & GERA.CHESS ==================
 
         private void InitializeGame()
@@ -179,6 +210,8 @@ namespace ChessGame
             _selectedBoardX = -1;
             _selectedBoardY = -1;
             _legalTargets.Clear();
+            _lastMoveFrom = null;
+            _lastMoveTo = null;
 
             _whiteTime = TimeSpan.FromMinutes(_baseMinutes);
             _blackTime = TimeSpan.FromMinutes(_baseMinutes);
@@ -218,6 +251,65 @@ namespace ChessGame
                     _buttons[x, y] = btn;
                     pnlChessBoard.Controls.Add(btn);
                 }
+            }
+            CreateCoordinateLabels(squareSize);
+        }
+
+        private void CreateCoordinateLabels(int squareSize)
+        {
+            // Kích thước chữ
+            int labelSize = 16;
+
+            // ===== HÀNG NGANG: a b c d e f g h (từ trái qua phải) =====
+            for (int i = 0; i < BoardSize; i++)
+            {
+                char fileChar = (char)('a' + i);
+
+                var lbl = new Label
+                {
+                    AutoSize = false,
+                    Width = labelSize,
+                    Height = labelSize,
+                    Text = fileChar.ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(78, 49, 41),
+                    BackColor = Color.Transparent
+                };
+
+                int x = pnlChessBoard.Left + i * squareSize + (squareSize - labelSize) / 2;
+                int y = pnlChessBoard.Bottom + 2; // ngay dưới bàn cờ
+
+                lbl.Location = new Point(x, y);
+                this.Controls.Add(lbl);
+                lbl.BringToFront();
+            }
+
+            // ===== HÀNG DỌC: 1 2 3 4 5 6 7 8 (từ dưới lên trên) =====
+            for (int i = 0; i < BoardSize; i++)
+            {
+                int rankNumber = i + 1; // 1..8
+
+                var lbl = new Label
+                {
+                    AutoSize = false,
+                    Width = labelSize,
+                    Height = labelSize,
+                    Text = rankNumber.ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 8F, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(78, 49, 41),
+                    BackColor = Color.Transparent
+                };
+
+                // i = 0 là hàng dưới cùng (1), i = 7 là hàng trên cùng (8)
+                int rowUi = BoardSize - 1 - i; // 7..0
+                int y = pnlChessBoard.Top + rowUi * squareSize + (squareSize - labelSize) / 2;
+                int x = pnlChessBoard.Left - labelSize - 4; // bên trái bàn cờ
+
+                lbl.Location = new Point(x, y);
+                this.Controls.Add(lbl);
+                lbl.BringToFront();
             }
         }
 
@@ -319,7 +411,8 @@ namespace ChessGame
                 return;
             }
 
-            ClearSelectionInternal();
+            // Bỏ chọn mọi ô trước đó + redraw lại bàn cờ
+            ClearSelection();
 
             _selectedBoardX = boardX;
             _selectedBoardY = boardY;
@@ -330,11 +423,16 @@ namespace ChessGame
                 selectedBtn.BackColor = SelectedSquareColor;
             }
 
+            // Lưu lại các ô đích hợp lệ
             foreach (var move in movesFromSquare)
             {
                 var target = new Point(move.NewPosition.X, move.NewPosition.Y);
                 _legalTargets.Add(target);
+            }
 
+            // Tô màu các ô đích hợp lệ
+            foreach (var target in _legalTargets)
+            {
                 var targetBtn = GetButtonAt(target.X, target.Y);
                 if (targetBtn != null)
                 {
@@ -342,8 +440,6 @@ namespace ChessGame
                 }
             }
         }
-
-
 
         private string CoordToAlgebraic(int x, int y)
         {
@@ -363,6 +459,54 @@ namespace ChessGame
             y = sq[1] - '1';
         }
 
+        private bool IsCaptureMove(int fromX, int fromY, int toX, int toY)
+        {
+            if (_board == null) return false;
+
+            // 1) Ăn quân bình thường: ô đích đang có quân đối phương
+            var targetPos = new Position((short)toX, (short)toY);
+            var targetPiece = _board[targetPos];
+            if (targetPiece != null)
+                return true;
+
+            // 2) En passant: tốt đi chéo đến ô trống nhưng ăn tốt ở ô phía sau
+            var fromPos = new Position((short)fromX, (short)fromY);
+            var movingPiece = _board[fromPos];
+
+            if (movingPiece != null &&
+                movingPiece.Type == PieceType.Pawn &&
+                fromX != toX) // đi chéo
+            {
+                int direction = movingPiece.Color == PieceColor.White ? 1 : -1;
+                int capturedY = toY - direction;
+
+                if (capturedY >= 0 && capturedY < BoardSize)
+                {
+                    var capturedPos = new Position((short)toX, (short)capturedY);
+                    var capturedPiece = _board[capturedPos];
+
+                    if (capturedPiece != null &&
+                        capturedPiece.Type == PieceType.Pawn &&
+                        capturedPiece.Color != movingPiece.Color)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsCheckForOpponent(PieceColor sideMoved)
+        {
+            if (_board == null) return false;
+
+            if (sideMoved == PieceColor.White)
+                return _board.BlackKingChecked;
+            else
+                return _board.WhiteKingChecked;
+        }
+
         private bool TryExecuteMove(int targetX, int targetY)
         {
             if (_board == null) return false;
@@ -370,26 +514,52 @@ namespace ChessGame
 
             var legalMoves = _board.Moves() ?? Array.Empty<Move>();
 
-            var move = legalMoves.FirstOrDefault(m =>
-                m.OriginalPosition.X == _selectedBoardX &&
-                m.OriginalPosition.Y == _selectedBoardY &&
-                m.NewPosition.X == targetX &&
-                m.NewPosition.Y == targetY);
+            var candidateMoves = legalMoves
+                .Where(m =>
+                    m.OriginalPosition.X == _selectedBoardX &&
+                    m.OriginalPosition.Y == _selectedBoardY &&
+                    m.NewPosition.X == targetX &&
+                    m.NewPosition.Y == targetY)
+                .ToList();
 
-            if (move == null || !move.HasValue) return false;
+            if (candidateMoves.Count == 0) return false;
 
-            // toạ độ logic -> algebraic cho server
             string fromSq = CoordToAlgebraic(_selectedBoardX, _selectedBoardY);
             string toSq = CoordToAlgebraic(targetX, targetY);
-            string promo = null; // TODO: phong cấp
+            string promo = null;
 
-            // Update local board + clock
+            Move move = candidateMoves[0];
+
+            // Nếu đây là nước phong cấp
+            if (move.IsPromotion)
+            {
+                bool isWhite = _board.Turn == PieceColor.White;
+                var selectedType = ShowPromotionDialog(isWhite);
+
+                // Chọn đúng Move ứng với quân đã chọn
+                var promotionMove = candidateMoves
+                    .FirstOrDefault(m => m.Promotion != null && m.Promotion.Type == selectedType);
+
+                if (promotionMove != null)
+                    move = promotionMove;
+
+                promo = PieceTypeToPromotionChar(selectedType);
+            }
+
+            if (!move.HasValue) return false;
+
             PieceColor sideMoved = _board.Turn;
+            bool isCapture = IsCaptureMove(_selectedBoardX, _selectedBoardY, targetX, targetY);
+
+            _lastMoveFrom = new Point(_selectedBoardX, _selectedBoardY);
+            _lastMoveTo = new Point(targetX, targetY);
+
             _board.Move(move);
             ApplyIncrement(sideMoved);
-            PlayMoveSound();
 
-            // Bắn event cho InRoom/Match -> gửi TCP
+            bool isCheck = IsCheckForOpponent(sideMoved);
+            PlayMoveSound(isCapture, isCheck);
+
             try
             {
                 LocalMovePlayed?.Invoke(fromSq, toSq, promo);
@@ -411,18 +581,45 @@ namespace ChessGame
             if (sx < 0 || sy < 0 || tx < 0 || ty < 0) return;
 
             var legal = _board.Moves() ?? Array.Empty<Move>();
-            var move = legal.FirstOrDefault(m =>
-                m.OriginalPosition.X == sx &&
-                m.OriginalPosition.Y == sy &&
-                m.NewPosition.X == tx &&
-                m.NewPosition.Y == ty);
+            var candidateMoves = legal
+                .Where(m =>
+                    m.OriginalPosition.X == sx &&
+                    m.OriginalPosition.Y == sy &&
+                    m.NewPosition.X == tx &&
+                    m.NewPosition.Y == ty)
+                .ToList();
 
-            if (move == null || !move.HasValue) return;
+            if (candidateMoves.Count == 0) return;
+
+            Move move = candidateMoves[0];
+
+            // Nếu server gửi kèm thông tin phong cấp (q/r/b/n)
+            if (!string.IsNullOrEmpty(promotion))
+            {
+                var requestedType = PromotionCharToPieceType(promotion[0]);
+                if (requestedType != null)
+                {
+                    var targetType = requestedType;
+                    var promoMove = candidateMoves
+                        .FirstOrDefault(m => m.Promotion != null && m.Promotion.Type == targetType);
+                    if (promoMove != null)
+                        move = promoMove;
+                }
+            }
+
+            if (!move.HasValue) return;
 
             PieceColor sideMoved = _board.Turn;
+            bool isCapture = IsCaptureMove(sx, sy, tx, ty);
+
+            _lastMoveFrom = new Point(sx, sy);
+            _lastMoveTo = new Point(tx, ty);
+
             _board.Move(move);
             ApplyIncrement(sideMoved);
-            PlayMoveSound();
+
+            bool isCheck = IsCheckForOpponent(sideMoved);
+            PlayMoveSound(isCapture, isCheck);
 
             ClearSelectionInternal();
             UpdateBoardUi();
@@ -461,6 +658,26 @@ namespace ChessGame
                 }
             }
 
+            // highlight nước đi cuối (from & to) bằng cách pha màu -> cảm giác trong suốt
+            if (_lastMoveFrom.HasValue)
+            {
+                var fromBtn = GetButtonAt(_lastMoveFrom.Value.X, _lastMoveFrom.Value.Y);
+                if (fromBtn != null)
+                {
+                    fromBtn.BackColor = BlendColor(fromBtn.BackColor, LastMoveColor, 0.35);
+                }
+            }
+
+            if (_lastMoveTo.HasValue)
+            {
+                var toBtn = GetButtonAt(_lastMoveTo.Value.X, _lastMoveTo.Value.Y);
+                if (toBtn != null)
+                {
+                    toBtn.BackColor = BlendColor(toBtn.BackColor, LastMoveColor, 0.35);
+                }
+            }
+
+            // selection hiện tại sẽ override màu nước cuối nếu trùng
             if (_selectedBoardX != -1)
             {
                 var selectedBtn = GetButtonAt(_selectedBoardX, _selectedBoardY);
@@ -470,6 +687,7 @@ namespace ChessGame
                 }
             }
 
+            // các ô nước đi hợp lệ (xanh) cũng override nếu trùng
             foreach (var target in _legalTargets)
             {
                 var targetBtn = GetButtonAt(target.X, target.Y);
@@ -650,14 +868,12 @@ namespace ChessGame
             {
             }
 
-            MessageBox.Show(this, msg, "Kết thúc ván đấu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string fullMsg = AppendReturnHint(msg);
+            MessageBox.Show(this, fullMsg, "Kết thúc ván đấu", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Sau khi người chơi bấm OK thì tự đóng bàn cờ
             Close();
         }
-
-
-
 
         private void HandleTimeOut(PieceColor sideFlagged)
         {
@@ -685,7 +901,8 @@ namespace ChessGame
             }
 
             string msg = $"Hết thời gian cho bên {loserSide}.\nNgười thắng: {winnerName}";
-            MessageBox.Show(this, msg, "Kết thúc ván đấu (hết giờ)", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string fullMsg = AppendReturnHint(msg);
+            MessageBox.Show(this, fullMsg, "Kết thúc ván đấu (hết giờ)", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Sau khi hết giờ, đóng luôn bàn cờ
             Close();
@@ -699,18 +916,39 @@ namespace ChessGame
             _clockTimer?.Stop();
             UpdateTimeLabels();
 
+            // Mình là bên thắng
+            PieceColor localColor = _localIsWhite ? PieceColor.White : PieceColor.Black;
+            string resultStr = localColor == PieceColor.White ? "white" : "black";
+            string reasonStr = "disconnect";
+
+            // Báo cho InRoom/Match để gửi GAME_RESULT (Elo/history)
+            try
+            {
+                LocalGameEnded?.Invoke(resultStr, reasonStr);
+            }
+            catch
+            {
+            }
+
+            string baseMsg = "Trò chơi kết thúc. Đối thủ đã thoát khỏi ván đấu hoặc bị mất kết nối.\nBạn đã thắng.";
+            string fullMsg = AppendReturnHint(baseMsg);
+
             try
             {
                 MessageBox.Show(
                     this,
-                    "Kết thúc trận. Bạn đã thắng vì đối thủ đã disconnect.",
-                    "Kết thúc ván đấu",
+                    fullMsg,
+                    "Kết thúc ván đấu (đối thủ thoát)",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
-            catch { }
-        }
+            catch
+            {
+            }
 
+            // Đóng bàn cờ sau khi xem thông báo
+            Close();
+        }
 
         // ================== ĐẦU HÀNG & CẦU HÒA ==================
 
@@ -725,6 +963,9 @@ namespace ChessGame
                 MessageBoxIcon.Question);
 
             if (result != DialogResult.Yes) return;
+
+            // THÊM DÒNG NÀY
+            _lastResignWasDisconnect = false;
 
             try
             {
@@ -766,7 +1007,6 @@ namespace ChessGame
                 MessageBoxIcon.Information);
         }
 
-
         // ================== ÂM THANH ==================
 
         private void LoadMoveSound()
@@ -775,31 +1015,93 @@ namespace ChessGame
             {
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
                 string soundsDir = Path.Combine(baseDir, "Sounds");
-                string path = Path.Combine(soundsDir, "move.wav");
+                string movePath = Path.Combine(soundsDir, "move.wav");
+                string capturePath = Path.Combine(soundsDir, "capture.wav");
+                string checkPath = Path.Combine(soundsDir, "check.wav");
 
-                if (!File.Exists(path))
+                if (File.Exists(movePath))
                 {
-                    return;
+                    _moveSound = new SoundPlayer(movePath);
+                    _moveSound.Load();
                 }
 
-                _moveSound = new SoundPlayer(path);
-                _moveSound.Load();
+                if (File.Exists(capturePath))
+                {
+                    _captureSound = new SoundPlayer(capturePath);
+                    _captureSound.Load();
+                }
+
+                if (File.Exists(checkPath))
+                {
+                    _checkSound = new SoundPlayer(checkPath);
+                    _checkSound.Load();
+                }
             }
             catch
             {
                 _moveSound = null;
+                _captureSound = null;
+                _checkSound = null;
             }
         }
 
-        private void PlayMoveSound()
+        private void PlayMoveSound(bool isCapture, bool isCheck)
         {
             try
             {
+                // Vừa bắt quân vừa chiếu
+                if (isCapture && isCheck && _captureSound != null && _checkSound != null)
+                {
+                    Task.Run(() =>
+                    {
+                        try
+                        {
+                            // Phát capture đồng bộ
+                            _captureSound.PlaySync();
+
+                            // Đợi thêm 0.1s rồi phát check
+                            System.Threading.Thread.Sleep(100);
+                            _checkSound.Play();
+                        }
+                        catch
+                        {
+                        }
+                    });
+                    return;
+                }
+
+                // Chỉ bắt quân
+                if (isCapture && _captureSound != null)
+                {
+                    _captureSound.Play();
+                    return;
+                }
+
+                // Chỉ chiếu (không bắt)
+                if (isCheck && _checkSound != null)
+                {
+                    _checkSound.Play();
+                    return;
+                }
+
+                // Nước đi bình thường
                 _moveSound?.Play();
             }
             catch
             {
             }
+        }
+
+        // Overload cũ, phòng trường hợp chỗ khác vẫn gọi không truyền tham số
+        private void PlayMoveSound()
+        {
+            PlayMoveSound(false, false);
+        }
+
+        // Overload cũ (1 tham số) để code cũ không bị lỗi compile
+        private void PlayMoveSound(bool isCapture)
+        {
+            PlayMoveSound(isCapture, false);
         }
 
         // ================== CHAT + STICKER ==================
@@ -956,6 +1258,9 @@ namespace ChessGame
                 resultStr = "white";
             }
 
+            // THÊM: đánh dấu đây là thoát/disconnect
+            _lastResignWasDisconnect = true;
+
             // Gửi tín hiệu "đầu hàng/thoát" để server broadcast cho đối thủ (GAME_RESIGN)
             try
             {
@@ -981,6 +1286,7 @@ namespace ChessGame
             }
             catch { }
         }
+
         public void FinishGameByResign(bool localResigned)
         {
             if (_isGameOver) return;
@@ -1005,11 +1311,16 @@ namespace ChessGame
             {
             }
 
-            string msg = localResigned
+            string baseMsg = localResigned
                 ? "Trận đấu kết thúc, bạn đã thua vì đầu hàng."
                 : "Trận đấu kết thúc, bạn đã thắng vì đối thủ đầu hàng.";
 
-            MessageBox.Show(this, msg, "Kết thúc ván đấu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string fullMsg = AppendReturnHint(baseMsg);
+
+            MessageBox.Show(this, fullMsg, "Kết thúc ván đấu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Sau khi người chơi bấm OK thì đóng bàn cờ
+            Close();
         }
 
         public void FinishGameByAgreedDraw()
@@ -1031,11 +1342,238 @@ namespace ChessGame
             {
             }
 
+            string baseMsg = "Trận đấu kết thúc. Ván đấu này hòa (thỏa thuận).";
+            string fullMsg = AppendReturnHint(baseMsg);
+
             MessageBox.Show(this,
-                "Trận đấu kết thúc. Ván đấu này hòa (thỏa thuận).",
+                fullMsg,
                 "Hòa",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+
+            // Sau khi người chơi bấm OK thì đóng bàn cờ
+            Close();
+        }
+
+        // =========== Phong cấp: chọn quân ===========
+        private PieceType ShowPromotionDialog(bool isWhite)
+        {
+            int imageSize = 80;
+
+            Image rook = GetPieceImage(isWhite ? 'R' : 'r', imageSize, imageSize);
+            Image knight = GetPieceImage(isWhite ? 'N' : 'n', imageSize, imageSize);
+            Image bishop = GetPieceImage(isWhite ? 'B' : 'b', imageSize, imageSize);
+            Image queen = GetPieceImage(isWhite ? 'Q' : 'q', imageSize, imageSize);
+
+            using (var dlg = new PromotionDialog(isWhite, rook, knight, bishop, queen, LegalMoveColor))
+            {
+                var result = dlg.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    return dlg.SelectedPieceType;
+                }
+            }
+
+            // Nếu vì lý do gì đó hộp thoại đóng mà không chọn được, mặc định phong Hậu
+            return PieceType.Queen;
+        }
+
+        private static PieceType? PromotionCharToPieceType(char c)
+        {
+            c = char.ToLowerInvariant(c);
+            return c switch
+            {
+                'q' => PieceType.Queen,
+                'r' => PieceType.Rook,
+                'b' => PieceType.Bishop,
+                'n' => PieceType.Knight,
+                _ => null
+            };
+        }
+
+        private static string PieceTypeToPromotionChar(PieceType type)
+        {
+            if (type == PieceType.Queen) return "q";
+            if (type == PieceType.Rook) return "r";
+            if (type == PieceType.Bishop) return "b";
+            if (type == PieceType.Knight) return "n";
+            return null;
+        }
+
+        private class PromotionDialog : Form
+        {
+            public PieceType SelectedPieceType { get; private set; }
+
+            private readonly Label _hoverLabel;
+            private readonly List<Panel> _panels = new List<Panel>();
+            private readonly Color _basePanelColor;
+            private readonly Color _highlightColor;
+
+            public PromotionDialog(bool isWhite, Image rookImage, Image knightImage, Image bishopImage, Image queenImage, Color highlightColor)
+            {
+                _highlightColor = highlightColor;
+                _basePanelColor = Color.FromArgb(118, 74, 61);
+                SelectedPieceType = PieceType.Queen;
+
+                Text = "Phong cấp";
+                FormBorderStyle = FormBorderStyle.FixedDialog;
+                StartPosition = FormStartPosition.CenterParent;
+                MaximizeBox = false;
+                MinimizeBox = false;
+                ShowInTaskbar = false;
+                ControlBox = false;
+                BackColor = _basePanelColor;
+                ClientSize = new Size(520, 260); // rộng + cao hơn chút cho thoáng
+
+                // Tiêu đề trên cùng
+                var title = new Label
+                {
+                    Dock = DockStyle.Top,
+                    Height = 50,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 11F, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    Text = "Hãy chọn 1 trong 4 quân bên dưới"
+                };
+
+                // Panel trung tâm chứa 4 quân
+                var container = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = _basePanelColor
+                };
+
+                Controls.Add(container);
+                Controls.Add(title);
+
+                // Label lớn ở dưới cùng để hiển thị tên quân khi hover
+                _hoverLabel = new Label
+                {
+                    Dock = DockStyle.Bottom,
+                    Height = 40,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(255, 223, 186),
+                    Text = "Di chuột tới quân muốn phong cấp"
+                };
+                container.Controls.Add(_hoverLabel);
+
+                // Tạo 4 panel quân cờ
+                var images = new[] { rookImage, knightImage, bishopImage, queenImage };
+                var names = new[] { "Xe", "Mã", "Tượng", "Hậu" };
+                var types = new[] { PieceType.Rook, PieceType.Knight, PieceType.Bishop, PieceType.Queen };
+
+                int panelWidth = 100;
+                int panelHeight = 130;
+                int spacing = 12;
+
+                int totalWidth = panelWidth * 4 + spacing * 3;
+                int startX = (ClientSize.Width - totalWidth) / 2;
+                int top = 10;
+
+                for (int i = 0; i < 4; i++)
+                {
+                    int left = startX + i * (panelWidth + spacing);
+                    AddPieceOption(container, left, top, names[i], images[i], types[i], panelWidth, panelHeight);
+                }
+            }
+
+            private void AddPieceOption(
+                Panel container,
+                int left,
+                int top,
+                string name,
+                Image img,
+                PieceType pieceType,
+                int panelWidth,
+                int panelHeight)
+            {
+                var panel = new Panel
+                {
+                    Width = panelWidth,
+                    Height = panelHeight,
+                    Left = left,
+                    Top = top,
+                    BackColor = _basePanelColor,
+                    Cursor = Cursors.Hand
+                };
+                int picWidth = 72;
+                int picHeight = 72;
+                int picTop = 10;
+                var picture = new PictureBox
+                {
+                    Width = picWidth,
+                    Height = picHeight,
+                    Left = (panelWidth - picWidth) / 2,
+                    Top = picTop,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Image = img,
+                    Cursor = Cursors.Hand
+                };
+
+                // Tên quân (Xe / Mã / Tượng / Hậu) ở dưới
+                var label = new Label
+                {
+                    AutoSize = false,
+                    Width = panelWidth,
+                    Height = 24,
+                    Left = 0,
+                    Top = panelHeight - 24 - 6,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                    ForeColor = Color.FromArgb(255, 223, 186),
+                    Text = name,
+                    Cursor = Cursors.Hand
+                };
+
+                panel.Controls.Add(picture);
+                panel.Controls.Add(label);
+                container.Controls.Add(panel);
+
+                _panels.Add(panel);
+
+                void handleHover(object sender, EventArgs e)
+                {
+                    HighlightPanel(panel);
+                    _hoverLabel.Text = $"Phong thành {name}";
+                }
+
+                void handleClick(object sender, EventArgs e)
+                {
+                    SelectedPieceType = pieceType;
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+
+                panel.MouseEnter += handleHover;
+                picture.MouseEnter += handleHover;
+                label.MouseEnter += handleHover;
+
+                panel.Click += handleClick;
+                picture.Click += handleClick;
+                label.Click += handleClick;
+            }
+
+
+            private void HighlightPanel(Panel selected)
+            {
+                foreach (var p in _panels)
+                {
+                    p.BackColor = p == selected ? _highlightColor : _basePanelColor;
+                }
+            }
+
+            protected override void OnShown(EventArgs e)
+            {
+                base.OnShown(e);
+
+                // Mặc định highlight Hậu (ô cuối cùng) cho quen tay
+                if (_panels.Count > 0)
+                {
+                    HighlightPanel(_panels[_panels.Count - 1]);
+                    _hoverLabel.Text = "Phong thành Hậu";
+                }
+            }
         }
     }
 }

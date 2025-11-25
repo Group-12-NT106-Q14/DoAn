@@ -629,15 +629,19 @@ namespace ChessGame
             };
 
             // Đầu hàng
+            // Đầu hàng / thoát ván
             currentGameBoard.LocalResignRequested += () =>
             {
                 try
                 {
+                    string reason = currentGameBoard.LastResignWasDisconnect ? "disconnect" : "resign";
+
                     requestClient.Send(new
                     {
                         action = "GAME_RESIGN",
                         roomId = this.roomId,
-                        username = this.Username
+                        username = this.Username,
+                        reason = reason
                     });
                 }
                 catch { }
@@ -676,9 +680,15 @@ namespace ChessGame
                 catch { }
             };
 
-            // Ẩn InRoom trong lúc chơi, xong ván thì hiện lại
+            // Ẩn InRoom trong lúc chơi
             this.Hide();
+
+            // Show GameBoard dạng modal.
+            // Các MessageBox "Kết thúc trận..." trong GameBoard sẽ xuất hiện tại đây,
+            // sau khi người chơi bấm OK thì GameBoard.Close() và ShowDialog() sẽ return.
             currentGameBoard.ShowDialog(this);
+
+            // Ván đấu đã kết thúc, quay lại phòng
             this.Show();
 
             // Sau khi ván kết thúc và quay lại phòng: đồng bộ lại snapshot phòng từ server
@@ -704,7 +714,13 @@ namespace ChessGame
                     UpdateSideLabels(hostSide);
                 }
             }
-            catch { }
+            catch
+            {
+                // lỗi mạng thì thôi, giữ UI cũ
+            }
+
+            // Sau game: bỏ tham chiếu bàn cờ để không xử lý GAME_EVENT nữa
+            currentGameBoard = null;
         }
 
 
@@ -766,7 +782,20 @@ namespace ChessGame
                 string username = ju.GetString();
                 bool localResigned = string.Equals(username, this.Username, StringComparison.OrdinalIgnoreCase);
 
-                currentGameBoard.FinishGameByResign(localResigned);
+                string reason = "resign";
+                if (root.TryGetProperty("reason", out var jr) && jr.ValueKind == JsonValueKind.String)
+                    reason = jr.GetString();
+
+                // Đối thủ thoát/disconnect -> mình thắng do đối thủ thoát
+                if (!localResigned && string.Equals(reason, "disconnect", StringComparison.OrdinalIgnoreCase))
+                {
+                    currentGameBoard.NotifyOpponentDisconnectedWin();
+                }
+                else
+                {
+                    // Còn lại xử lý như resign bình thường
+                    currentGameBoard.FinishGameByResign(localResigned);
+                }
             }
             else if (ev == "DRAW_OFFER")
             {

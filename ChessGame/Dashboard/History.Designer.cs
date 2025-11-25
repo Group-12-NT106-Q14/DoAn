@@ -18,6 +18,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
             pnlTop = new Panel();
             lblTitle = new Label();
             lblFilter = new Label();
@@ -285,6 +286,7 @@
             Controls.Add(pnlStats);
             Controls.Add(pnlTop);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "History";
             StartPosition = FormStartPosition.CenterScreen;

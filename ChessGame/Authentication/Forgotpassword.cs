@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChessGame
@@ -9,8 +10,12 @@ namespace ChessGame
         public frmForgotpassword()
         {
             InitializeComponent();
+
+            btnXacNhan.Enabled = false;
+            this.AcceptButton = btnGuiMa;
         }
-        private void btnGuiMa_Click(object sender, EventArgs e)
+
+        private async void btnGuiMa_Click(object sender, EventArgs e)
         {
             string email = txtQuenMK.Text.Trim();
             if (string.IsNullOrEmpty(email))
@@ -18,28 +23,76 @@ namespace ChessGame
                 MessageBox.Show("Vui lòng nhập email của bạn!");
                 return;
             }
-            TCPClient client = new TCPClient();
-            client.Connect();
-            var request = new
+
+            btnGuiMa.Enabled = false;
+            btnXacNhan.Enabled = false;
+            progressSending.Visible = true;
+            lblHuongDan.Text = "Đang gửi mã xác nhận, vui lòng chờ...";
+
+            string response = null;
+
+            try
             {
-                action = "REQUEST_OTP",
-                email = email
-            };
-            string response = client.SendRequest(request);
-            client.Disconnect();
-            using (JsonDocument doc = JsonDocument.Parse(response))
-            {
-                JsonElement root = doc.RootElement;
-                bool success = root.GetProperty("success").GetBoolean();
-                string message = root.GetProperty("message").GetString();
-                MessageBox.Show(message);
-                if (success)
+                response = await Task.Run(() =>
                 {
-                    lblHuongDan.Text = "Mã xác nhận đã được gửi! Nhập mã 6 số ở dưới rồi nhấn Tiếp tục.";
-                    txtMaXacNhan.Focus();
+                    TCPClient client = new TCPClient();
+                    client.Connect();
+                    var request = new
+                    {
+                        action = "REQUEST_OTP",
+                        email = email
+                    };
+                    string res = client.SendRequest(request);
+                    client.Disconnect();
+                    return res;
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi gửi mã xác nhận.\nVui lòng thử lại sau.\n\nChi tiết: " + ex.Message);
+                return;
+            }
+            finally
+            {
+                progressSending.Visible = false;
+                btnGuiMa.Enabled = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(response))
+            {
+                MessageBox.Show("Không nhận được phản hồi từ server.");
+                return;
+            }
+
+            try
+            {
+                using (JsonDocument doc = JsonDocument.Parse(response))
+                {
+                    JsonElement root = doc.RootElement;
+                    bool success = root.GetProperty("success").GetBoolean();
+                    string message = root.GetProperty("message").GetString();
+                    MessageBox.Show(message);
+
+                    if (success)
+                    {
+                        lblHuongDan.Text = "Mã xác nhận đã được gửi! Nhập mã 6 số ở dưới rồi nhấn Tiếp tục.";
+                        btnXacNhan.Enabled = true;
+                        this.AcceptButton = btnXacNhan;
+                        txtMaXacNhan.Focus();
+                    }
+                    else
+                    {
+                        btnXacNhan.Enabled = false;
+                        this.AcceptButton = btnGuiMa;
+                    }
                 }
             }
-    }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xử lý phản hồi từ server.\n" + ex.Message);
+            }
+        }
+
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             string email = txtQuenMK.Text.Trim();
@@ -49,6 +102,7 @@ namespace ChessGame
                 MessageBox.Show("Vui lòng nhập email và mã xác nhận!");
                 return;
             }
+
             TCPClient client = new TCPClient();
             client.Connect();
             var otpRequest = new
@@ -59,6 +113,7 @@ namespace ChessGame
             };
             string response = client.SendRequest(otpRequest);
             client.Disconnect();
+
             using (JsonDocument doc = JsonDocument.Parse(response))
             {
                 JsonElement root = doc.RootElement;
@@ -69,10 +124,18 @@ namespace ChessGame
                 {
                     Recovery recovery = new Recovery();
                     recovery.UserEmail = email;
-                    this.Close();
+                    this.Hide();
                     recovery.ShowDialog();
+                    this.Close();
                 }
             }
+        }
+
+        private void txtQuenMK_TextChanged(object sender, EventArgs e)
+        {
+            // Nếu user đổi email, quay lại trạng thái ban đầu
+            btnXacNhan.Enabled = false;
+            this.AcceptButton = btnGuiMa;
         }
     }
 }

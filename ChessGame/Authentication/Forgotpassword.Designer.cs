@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmForgotpassword));
             lblTieuDe = new Label();
             lblMoTa = new Label();
             lblQuenMK = new Label();
@@ -26,6 +27,7 @@
             pnlMaUnderline = new Panel();
             lblHuongDan = new Label();
             btnXacNhan = new Button();
+            progressSending = new ProgressBar();
             SuspendLayout();
             // 
             // lblTieuDe
@@ -71,6 +73,7 @@
             txtQuenMK.Name = "txtQuenMK";
             txtQuenMK.Size = new Size(500, 27);
             txtQuenMK.TabIndex = 3;
+            txtQuenMK.TextChanged += txtQuenMK_TextChanged;
             // 
             // pnlEmailUnderline
             // 
@@ -117,7 +120,6 @@
             txtMaXacNhan.Name = "txtMaXacNhan";
             txtMaXacNhan.Size = new Size(500, 27);
             txtMaXacNhan.TabIndex = 7;
-
             // 
             // pnlMaUnderline
             // 
@@ -152,12 +154,23 @@
             btnXacNhan.UseVisualStyleBackColor = false;
             btnXacNhan.Click += btnXacNhan_Click;
             // 
+            // progressSending
+            // 
+            progressSending.Location = new Point(250, 270);
+            progressSending.MarqueeAnimationSpeed = 30;
+            progressSending.Name = "progressSending";
+            progressSending.Size = new Size(233, 10);
+            progressSending.Style = ProgressBarStyle.Marquee;
+            progressSending.TabIndex = 11;
+            progressSending.Visible = false;
+            // 
             // frmForgotpassword
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
             ClientSize = new Size(700, 500);
+            Controls.Add(progressSending);
             Controls.Add(btnXacNhan);
             Controls.Add(lblHuongDan);
             Controls.Add(pnlMaUnderline);
@@ -170,6 +183,7 @@
             Controls.Add(lblMoTa);
             Controls.Add(lblTieuDe);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "frmForgotpassword";
             StartPosition = FormStartPosition.CenterScreen;
@@ -189,5 +203,6 @@
         private Panel pnlMaUnderline;
         private Label lblHuongDan;
         private Button btnXacNhan;
+        private ProgressBar progressSending;
     }
 }

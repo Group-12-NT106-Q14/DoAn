@@ -16,6 +16,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegister));
             pnlLeft = new Panel();
             lblKingIcon = new Label();
             lblQuote = new Label();
@@ -384,6 +385,7 @@
             Controls.Add(pnlLeft);
             Controls.Add(pnlRight);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chess - Đăng Ký";

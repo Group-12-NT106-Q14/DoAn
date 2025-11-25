@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             pnlLeft = new Panel();
             lblKingIcon = new Label();
             lblQuote = new Label();
@@ -255,6 +256,7 @@
             Controls.Add(pnlLeft);
             Controls.Add(pnlRight);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chess - Đăng Nhập";
