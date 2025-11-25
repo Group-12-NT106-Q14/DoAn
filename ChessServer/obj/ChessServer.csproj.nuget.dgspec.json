@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\doan\\DOAN\\DoAn\\ChessServer\\ChessServer.csproj": {}
+    "D:\\DoAnTest\\ChessServer\\ChessServer.csproj": {}
   },
   "projects": {
-    "D:\\doan\\DOAN\\DoAn\\ChessServer\\ChessServer.csproj": {
+    "D:\\DoAnTest\\ChessServer\\ChessServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\doan\\DOAN\\DoAn\\ChessServer\\ChessServer.csproj",
+        "projectUniqueName": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
         "projectName": "ChessServer",
-        "projectPath": "D:\\doan\\DOAN\\DoAn\\ChessServer\\ChessServer.csproj",
-        "packagesPath": "C:\\Users\\HI PC\\.nuget\\packages\\",
-        "outputPath": "D:\\doan\\DOAN\\DoAn\\ChessServer\\obj\\",
+        "projectPath": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
+        "packagesPath": "C:\\Users\\Shiba\\.nuget\\packages\\",
+        "outputPath": "D:\\DoAnTest\\ChessServer\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HI PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Shiba\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,12 +70,31 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[8.0.21, 8.0.21]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[8.0.21, 8.0.21]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[8.0.21, 8.0.21]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }

@@ -503,9 +503,44 @@ namespace ChessServer
                         cmd.ExecuteNonQuery();
                     }
 
-                  
+                    // 4. Cập nhật UserStats (GamesPlayed/Wins/Draws/Losses/BestElo/LastActive)
+                    DateTime endTime = DateTime.Now;
+                    UpdateUserStatsInternal(conn, tx, whiteUserId, whiteEloAfter, whiteWin, isDraw, endTime);
+                    UpdateUserStatsInternal(conn, tx, blackUserId, blackEloAfter, blackWin, isDraw, endTime);
 
-                  
+                    // 5. Lưu vào bảng Matches
+                    DateTime startTime = endTime; // hiện chưa lưu giờ bắt đầu riêng -> tạm bằng thời điểm kết thúc
+                    string startStr = startTime.ToString("yyyy-MM-dd HH:mm:ss");
+                    string endStr = endTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    using (var cmd = new SQLiteCommand(
+                        "INSERT INTO Matches (" +
+                        "WhiteUserID, BlackUserID, Result, StartTime, EndTime, " +
+                        "TimeControlMinutes, IncrementSeconds, " +
+                        "WhiteEloBefore, WhiteEloAfter, BlackEloBefore, BlackEloAfter, MovesPGN, Reason) " +
+                        "VALUES (@wId, @bId, @res, @start, @end, @tc, @inc, @wBefore, @wAfter, @bBefore, @bAfter, @pgn, @reason)",
+                        conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@wId", whiteUserId);
+                        cmd.Parameters.AddWithValue("@bId", blackUserId);
+                        cmd.Parameters.AddWithValue("@res", resultCode);
+                        cmd.Parameters.AddWithValue("@start", startStr);
+                        cmd.Parameters.AddWithValue("@end", endStr);
+                        cmd.Parameters.AddWithValue("@tc", timeControlMinutes);
+                        cmd.Parameters.AddWithValue("@inc", incrementSeconds);
+                        cmd.Parameters.AddWithValue("@wBefore", whiteEloBefore);
+                        cmd.Parameters.AddWithValue("@wAfter", whiteEloAfter);
+                        cmd.Parameters.AddWithValue("@bBefore", blackEloBefore);
+                        cmd.Parameters.AddWithValue("@bAfter", blackEloAfter);
+                        cmd.Parameters.AddWithValue("@pgn", DBNull.Value);
+
+                        if (string.IsNullOrEmpty(reason))
+                            cmd.Parameters.AddWithValue("@reason", DBNull.Value);
+                        else
+                            cmd.Parameters.AddWithValue("@reason", reason);
+
+                        cmd.ExecuteNonQuery();
+                    }
 
                     tx.Commit();
                 }
