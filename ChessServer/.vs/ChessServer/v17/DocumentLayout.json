@@ -14,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -33,6 +33,10 @@
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "TCPServer.cs",
@@ -40,9 +44,9 @@
               "RelativeDocumentMoniker": "TCPServer.cs",
               "ToolTip": "D:\\DoAnTest\\ChessServer\\TCPServer.cs",
               "RelativeToolTip": "TCPServer.cs",
-              "ViewState": "AgIAAB8CAAAAAAAAAAAIwDICAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T12:35:29.862Z",
+              "WhenOpened": "2025-11-25T09:26:23.16Z",
               "EditorCaption": ""
             }
           ]
