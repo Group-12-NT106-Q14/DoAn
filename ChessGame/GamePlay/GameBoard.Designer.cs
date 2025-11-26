@@ -17,6 +17,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameBoard));
             pnlChessBoard = new Panel();
             pnlPlayerInfo = new Panel();
             pnlPlayer1 = new Panel();
@@ -318,6 +319,7 @@
             Controls.Add(pnlPlayerInfo);
             Controls.Add(pnlChessBoard);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "GameBoard";
             StartPosition = FormStartPosition.CenterScreen;
