@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DoAnTest\\ChessServer\\ChessServer.csproj": {}
+    "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj": {}
   },
   "projects": {
-    "D:\\DoAnTest\\ChessServer\\ChessServer.csproj": {
+    "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
+        "projectUniqueName": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj",
         "projectName": "ChessServer",
-        "projectPath": "D:\\DoAnTest\\ChessServer\\ChessServer.csproj",
+        "projectPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj",
         "packagesPath": "C:\\Users\\Shiba\\.nuget\\packages\\",
-        "outputPath": "D:\\DoAnTest\\ChessServer\\obj\\",
+        "outputPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Shiba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -70,31 +70,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.21, 8.0.21]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.21, 8.0.21]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.21, 8.0.21]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }

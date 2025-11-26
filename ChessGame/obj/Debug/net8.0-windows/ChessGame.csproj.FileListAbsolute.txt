@@ -83,7 +83,6 @@ D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Recovery
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmRegister.resources
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.AccountSetting.resources
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.frmDashboard.resources
-D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Friend.resources
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.History.resources
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Match.resources
 D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Ranking.resources
@@ -179,3 +178,29 @@ C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\refin
 C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.pdb
 C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ChessGame.genruntimeconfig.cache
 C:\Users\TRAN VAN TAI\Downloads\DoAnNew\ChessGame\obj\Debug\net8.0-windows\ref\ChessGame.dll
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\chess.ico
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\bB.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\bK.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\bN.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\bP.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\bQ.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\bR.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\wB.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\wK.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\wN.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\wP.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\wQ.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Pieces\wR.svg
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Sounds\capture.wav
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Sounds\check.wav
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Sounds\MatchFound.wav
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Sounds\move.wav
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Ardalis.SmartEnum.dll
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\ExCSS.dll
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\ChessLibrary.dll
+D:\Group-12-NT106.Q14\DoAn\ChessGame\bin\Debug\net8.0-windows\Svg.dll
+D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.csproj.AssemblyReference.cache
+D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.InRoom.resources
+D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.RoomList.resources
+D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.Properties.Resources.resources
+D:\Group-12-NT106.Q14\DoAn\ChessGame\obj\Debug\net8.0-windows\ChessGame.csproj.Up2Date

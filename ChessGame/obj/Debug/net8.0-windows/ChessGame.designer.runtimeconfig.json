@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\TRAN VAN TAI\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\TRAN VAN TAI\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Shiba\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Shiba\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
