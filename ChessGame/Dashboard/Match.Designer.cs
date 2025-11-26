@@ -158,6 +158,7 @@
             // picOpponent
             // 
             picOpponent.BackColor = Color.White;
+            picOpponent.Image = (Image)resources.GetObject("picOpponent.Image");
             picOpponent.Location = new Point(202, 80);
             picOpponent.Name = "picOpponent";
             picOpponent.Size = new Size(100, 100);
