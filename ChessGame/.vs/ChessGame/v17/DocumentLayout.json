@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\group-12-nt106.q14\\doan\\chessgame\\gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,6 +39,31 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameBoard.cs",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs",
+              "RelativeDocumentMoniker": "GamePlay\\GameBoard.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs",
+              "RelativeToolTip": "GamePlay\\GameBoard.cs",
+              "ViewState": "AgIAABIGAAAAAAAAAAAAACoGAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T04:24:44.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameBoard.cs [Design]",
+              "DocumentMoniker": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs",
+              "RelativeDocumentMoniker": "GamePlay\\GameBoard.cs",
+              "ToolTip": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs [Design]",
+              "RelativeToolTip": "GamePlay\\GameBoard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T04:24:43.386Z",
+              "EditorCaption": " [Design]"
             }
           ]
         },
