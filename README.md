@@ -1,6 +1,6 @@
-# ♟️ Chess Online – Đồ án lập trình mạng căn bản NT106.Q14
+# Đồ án lập trình mạng căn bản NT106.Q14 - Nhóm 12
 
-> **Đề tài:** Trò chơi cờ vua chơi qua mạng (Chess Online)
+> **Đề tài:** THIẾT KẾ TRÒ CHƠI CỜ VUA CHƠI QUA MẠNG
 
 ---
 
@@ -34,17 +34,17 @@
 
 ### 1️⃣ Bản client online (khuyên dùng để chơi thử)
 
-* Tải bản **client ChessGame đã build sẵn** tại địa chỉ:
+* Tải bản **client ChessGame đã build sẵn** [tại đây](https://chessgame.ddns.net) hoặc tại địa chỉ:
 
   ```text
-  http://chessgame.ddns.net
+  https://chessgame.ddns.net
   ```
 
 * Cách dùng:
 
   * Tải file client về máy (Windows)
   * Cài đặt / giải nén và chạy chương trình
-  * Client sẽ tự động kết nối tới **server đã được nhóm triển khai trên VPS** (đã public port)
+  * Client sẽ tự động kết nối tới **server đã được nhóm triển khai trên máy chủ**
   * Người dùng có thể:
 
     * Đăng ký / đăng nhập tài khoản
@@ -94,7 +94,7 @@ Hệ thống được chia thành **hai phần chính**:
 
 ### 🖥 Ứng dụng server (ChessServer)
 
-* Chạy dưới dạng **ứng dụng console** trên máy chủ / VPS.
+* Chạy dưới dạng **ứng dụng console** trên máy chủ.
 * Đóng vai trò **máy chủ trung tâm**, xử lý:
 
   * Tài khoản (đăng ký, đăng nhập, quên mật khẩu, cập nhật thông tin)
@@ -278,9 +278,9 @@ Bảng xếp hạng tạo nên **tính cạnh tranh và động lực** để ng
 
 Ngoài ra, nhóm còn sử dụng:
 
-* Thư viện xử lý **logic cờ vua**
+* Thư viện xử lý **logic cờ vua: [Gera.Chess](https://github.com/Geras1mleo/Chess)**
 * Thư viện gửi **email** phục vụ chức năng quên mật khẩu
-* Thư viện **SVG** để hiển thị quân cờ rõ nét
+* Thư viện **[SVG](https://github.com/svg-net/SVG)** để hiển thị quân cờ rõ nét
 
 ---
 
@@ -291,7 +291,7 @@ Phần này dành cho những ai muốn **tự chạy server + client từ mã n
 1. **Chuẩn bị môi trường**
 
    * Cài đặt .NET 8 SDK / Runtime
-   * Cài đặt Visual Studio 2022 (hoặc IDE tương đương)
+   * Cài đặt Visual Studio 2022 trở lên
 
 2. **Mở solution**
 
@@ -315,8 +315,6 @@ Phần này dành cho những ai muốn **tự chạy server + client từ mã n
    * Thử tìm trận nhanh
    * Thử tạo phòng, vào phòng, bấm sẵn sàng, bắt đầu ván cờ
    * Thử chơi cờ, xem lịch sử, xem bảng xếp hạng
-
-> Gợi ý: Khi trình bày đồ án, có thể vừa **mở bản client online để demo chơi thật**, vừa mở **source code trên Visual Studio** để giải thích kiến trúc và cách cài đặt.
 
 ---
 
