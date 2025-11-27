@@ -257,13 +257,23 @@ namespace ChessGame
 
         private void CreateCoordinateLabels(int squareSize)
         {
-            // Kích thước chữ
             int labelSize = 16;
 
-            // ===== HÀNG NGANG: a b c d e f g h (từ trái qua phải) =====
-            for (int i = 0; i < BoardSize; i++)
+            // ===== HÀNG NGANG: file a–h =====
+            // Trắng: a b c d e f g h từ trái qua phải (như cũ)
+            // Đen  : a b c d e f g h từ phải qua trái (trên màn hình sẽ là h..a từ trái qua phải)
+            for (int col = 0; col < BoardSize; col++)
             {
-                char fileChar = (char)('a' + i);
+                char fileChar;
+
+                if (_localIsWhite)
+                {
+                    fileChar = (char)('a' + col);                   // a ở bên trái
+                }
+                else
+                {
+                    fileChar = (char)('a' + (BoardSize - 1 - col)); // a ở bên phải
+                }
 
                 var lbl = new Label
                 {
@@ -277,18 +287,33 @@ namespace ChessGame
                     BackColor = Color.Transparent
                 };
 
-                int x = pnlChessBoard.Left + i * squareSize + (squareSize - labelSize) / 2;
-                int y = pnlChessBoard.Bottom + 2; // ngay dưới bàn cờ
+                int x = pnlChessBoard.Left + col * squareSize + (squareSize - labelSize) / 2;
+                int y = pnlChessBoard.Bottom + 2;
 
                 lbl.Location = new Point(x, y);
                 this.Controls.Add(lbl);
                 lbl.BringToFront();
             }
 
-            // ===== HÀNG DỌC: 1 2 3 4 5 6 7 8 (từ dưới lên trên) =====
-            for (int i = 0; i < BoardSize; i++)
+            // ===== HÀNG DỌC: rank 1–8 =====
+            // Trắng: 1 ở dưới, 8 ở trên (như cũ)  -> từ dưới lên
+            // Đen  : 1 ở trên, 8 ở dưới           -> từ trên xuống
+            for (int row = 0; row < BoardSize; row++)
             {
-                int rankNumber = i + 1; // 1..8
+                int rankNumber;
+
+                if (_localIsWhite)
+                {
+                    // row = 0 (trên)  -> 8
+                    // row = 7 (dưới) -> 1
+                    rankNumber = BoardSize - row;
+                }
+                else
+                {
+                    // row = 0 (trên)  -> 1
+                    // row = 7 (dưới) -> 8
+                    rankNumber = row + 1;
+                }
 
                 var lbl = new Label
                 {
@@ -302,10 +327,8 @@ namespace ChessGame
                     BackColor = Color.Transparent
                 };
 
-                // i = 0 là hàng dưới cùng (1), i = 7 là hàng trên cùng (8)
-                int rowUi = BoardSize - 1 - i; // 7..0
-                int y = pnlChessBoard.Top + rowUi * squareSize + (squareSize - labelSize) / 2;
-                int x = pnlChessBoard.Left - labelSize - 4; // bên trái bàn cờ
+                int y = pnlChessBoard.Top + row * squareSize + (squareSize - labelSize) / 2;
+                int x = pnlChessBoard.Left - labelSize - 4;
 
                 lbl.Location = new Point(x, y);
                 this.Controls.Add(lbl);
