@@ -1,4 +1,4 @@
-﻿namespace ChessGame
+namespace ChessGame
 {
     partial class RoomList
     {
@@ -28,6 +28,7 @@
             btnRefresh = new Button();
             btnCreateRoom = new Button();
             btnJoinRoom = new Button();
+            btnBackToLobby = new Button();
             panelCreateRoom = new Panel();
             lblRoomNamePrompt = new Label();
             txtRoomName = new TextBox();
@@ -57,6 +58,7 @@
             pnlRoom.Controls.Add(btnRefresh);
             pnlRoom.Controls.Add(btnCreateRoom);
             pnlRoom.Controls.Add(btnJoinRoom);
+            pnlRoom.Controls.Add(btnBackToLobby);
             pnlRoom.Controls.Add(panelCreateRoom);
             pnlRoom.Location = new Point(30, 90);
             pnlRoom.Name = "pnlRoom";
@@ -170,6 +172,21 @@
             btnJoinRoom.Text = "Vào phòng";
             btnJoinRoom.UseVisualStyleBackColor = false;
             // 
+            // btnBackToLobby
+            // 
+            btnBackToLobby.BackColor = Color.FromArgb(200, 100, 100);
+            btnBackToLobby.FlatAppearance.BorderSize = 0;
+            btnBackToLobby.FlatStyle = FlatStyle.Flat;
+            btnBackToLobby.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnBackToLobby.ForeColor = Color.White;
+            btnBackToLobby.Location = new Point(480, 480);
+            btnBackToLobby.Name = "btnBackToLobby";
+            btnBackToLobby.Size = new Size(190, 40);
+            btnBackToLobby.TabIndex = 6;
+            btnBackToLobby.Text = "Quay về sảnh";
+            btnBackToLobby.UseVisualStyleBackColor = false;
+            btnBackToLobby.Click += btnBackToLobby_Click;
+            // 
             // panelCreateRoom
             // 
             panelCreateRoom.BackColor = Color.FromArgb(118, 74, 61);
@@ -181,7 +198,7 @@
             panelCreateRoom.Location = new Point(200, 165);
             panelCreateRoom.Name = "panelCreateRoom";
             panelCreateRoom.Size = new Size(520, 210);
-            panelCreateRoom.TabIndex = 6;
+            panelCreateRoom.TabIndex = 7;
             panelCreateRoom.Visible = false;
             // 
             // lblRoomNamePrompt
@@ -269,6 +286,7 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnCreateRoom;
         private System.Windows.Forms.Button btnJoinRoom;
+        private System.Windows.Forms.Button btnBackToLobby;
         private System.Windows.Forms.Panel panelCreateRoom;
         private System.Windows.Forms.Label lblRoomNamePrompt;
         private System.Windows.Forms.TextBox txtRoomName;

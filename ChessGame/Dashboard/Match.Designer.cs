@@ -1,4 +1,4 @@
-﻿namespace ChessGame
+namespace ChessGame
 {
     partial class Match
     {
@@ -12,6 +12,8 @@
             }
             base.Dispose(disposing);
         }
+
+        #region Windows Form Designer generated code
 
         private void InitializeComponent()
         {
@@ -31,6 +33,7 @@
             lblOpponentRating = new Label();
             lblCountdown = new Label();
             lblActiveUsers = new Label();
+            btnBackToLobby = new Button();
             pnlQuickMatch.SuspendLayout();
             pnlSearching.SuspendLayout();
             pnlMatchFound.SuspendLayout();
@@ -210,12 +213,28 @@
             lblActiveUsers.Text = "342 người đang online";
             lblActiveUsers.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnBackToLobby
+            // 
+            btnBackToLobby.BackColor = Color.FromArgb(160, 106, 88);
+            btnBackToLobby.FlatAppearance.BorderSize = 0;
+            btnBackToLobby.FlatStyle = FlatStyle.Flat;
+            btnBackToLobby.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnBackToLobby.ForeColor = Color.White;
+            btnBackToLobby.Location = new Point(350, 520);
+            btnBackToLobby.Name = "btnBackToLobby";
+            btnBackToLobby.Size = new Size(200, 50);
+            btnBackToLobby.TabIndex = 7;
+            btnBackToLobby.Text = "QUAY VỀ SẢNH";
+            btnBackToLobby.UseVisualStyleBackColor = false;
+            btnBackToLobby.Click += btnBackToLobby_Click;
+            // 
             // Match
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
             ClientSize = new Size(900, 600);
+            Controls.Add(btnBackToLobby);
             Controls.Add(lblActiveUsers);
             Controls.Add(pnlMatchFound);
             Controls.Add(pnlQuickMatch);
@@ -234,6 +253,8 @@
             PerformLayout();
         }
 
+        #endregion
+
         private Label lblTitle;
         private Panel pnlQuickMatch;
         private Label lblOnlineCount;
@@ -249,5 +270,6 @@
         private Label lblOpponentRating;
         private Label lblCountdown;
         private Label lblActiveUsers;
+        private Button btnBackToLobby;
     }
 }

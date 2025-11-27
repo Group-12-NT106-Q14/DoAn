@@ -429,5 +429,10 @@ namespace ChessGame
                 isRefreshing = false;
             }
         }
+
+        private void btnBackToLobby_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

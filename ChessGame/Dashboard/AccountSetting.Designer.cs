@@ -1,15 +1,15 @@
-﻿namespace ChessGame
+namespace ChessGame
 {
     partial class AccountSetting
     {
         private System.ComponentModel.IContainer components = null;
-
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlInfoTop;
         private System.Windows.Forms.Label lblUsernameIcon, lblUsername, lblDisplayNameIcon, lblDisplayName, lblEmailIcon, lblEmail, lblRatingIcon, lblRating;
         private System.Windows.Forms.Panel pnlStats, cardGames, cardWins, cardDraws, cardLosses, cardWinrate;
         private System.Windows.Forms.Label lblCardGames, lblCardGamesVal, lblCardWins, lblCardWinsVal, lblCardDraws, lblCardDrawsVal, lblCardLosses, lblCardLossesVal, lblCardWinrate, lblCardWinrateVal;
         private System.Windows.Forms.Button btnShowEdit;
+        private System.Windows.Forms.Button btnBackToLobby;
         private System.Windows.Forms.Panel pnlEditAccount;
         private System.Windows.Forms.Label lblEditTitle, lblEditDisplayName, lblEditEmail, lblEditPassword, lblEditPasswordConfirm, lblEditHint;
         private System.Windows.Forms.TextBox txtEditDisplayName, txtEditEmail, txtEditPassword, txtEditPasswordConfirm;
@@ -51,6 +51,7 @@
             lblCardWinrate = new Label();
             lblCardWinrateVal = new Label();
             btnShowEdit = new Button();
+            btnBackToLobby = new Button();
             pnlEditAccount = new Panel();
             lblEditTitle = new Label();
             lblEditDisplayName = new Label();
@@ -229,163 +230,177 @@
             // 
             // lblCardGamesVal
             // 
-            lblCardGamesVal.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
-            lblCardGamesVal.ForeColor = Color.FromArgb(255, 181, 67);
+            lblCardGamesVal.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblCardGamesVal.ForeColor = Color.FromArgb(202, 170, 53);
             lblCardGamesVal.Location = new Point(3, 52);
             lblCardGamesVal.Name = "lblCardGamesVal";
             lblCardGamesVal.Size = new Size(156, 50);
             lblCardGamesVal.TabIndex = 1;
-            lblCardGamesVal.Text = "0";
+            lblCardGamesVal.Text = "80";
             lblCardGamesVal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // cardWins
             // 
-            cardWins.BackColor = Color.FromArgb(227, 246, 221);
+            cardWins.BackColor = Color.FromArgb(232, 245, 233);
             cardWins.BorderStyle = BorderStyle.Fixed3D;
             cardWins.Controls.Add(lblCardWins);
             cardWins.Controls.Add(lblCardWinsVal);
-            cardWins.Location = new Point(172, 9);
+            cardWins.Location = new Point(168, 9);
             cardWins.Name = "cardWins";
-            cardWins.Size = new Size(144, 120);
+            cardWins.Size = new Size(166, 120);
             cardWins.TabIndex = 1;
             // 
             // lblCardWins
             // 
             lblCardWins.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblCardWins.ForeColor = Color.FromArgb(67, 160, 71);
-            lblCardWins.Location = new Point(28, 16);
+            lblCardWins.ForeColor = Color.FromArgb(76, 175, 80);
+            lblCardWins.Location = new Point(15, 16);
             lblCardWins.Name = "lblCardWins";
-            lblCardWins.Size = new Size(76, 36);
+            lblCardWins.Size = new Size(112, 36);
             lblCardWins.TabIndex = 0;
             lblCardWins.Text = "Thắng";
             // 
             // lblCardWinsVal
             // 
-            lblCardWinsVal.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
-            lblCardWinsVal.ForeColor = Color.FromArgb(41, 182, 246);
+            lblCardWinsVal.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblCardWinsVal.ForeColor = Color.FromArgb(76, 175, 80);
             lblCardWinsVal.Location = new Point(3, 52);
             lblCardWinsVal.Name = "lblCardWinsVal";
-            lblCardWinsVal.Size = new Size(134, 50);
+            lblCardWinsVal.Size = new Size(156, 50);
             lblCardWinsVal.TabIndex = 1;
-            lblCardWinsVal.Text = "0";
+            lblCardWinsVal.Text = "45";
             lblCardWinsVal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // cardDraws
             // 
-            cardDraws.BackColor = Color.FromArgb(224, 247, 250);
+            cardDraws.BackColor = Color.FromArgb(255, 249, 196);
             cardDraws.BorderStyle = BorderStyle.Fixed3D;
             cardDraws.Controls.Add(lblCardDraws);
             cardDraws.Controls.Add(lblCardDrawsVal);
-            cardDraws.Location = new Point(325, 9);
+            cardDraws.Location = new Point(336, 9);
             cardDraws.Name = "cardDraws";
-            cardDraws.Size = new Size(134, 120);
+            cardDraws.Size = new Size(166, 120);
             cardDraws.TabIndex = 2;
             // 
             // lblCardDraws
             // 
             lblCardDraws.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblCardDraws.ForeColor = Color.FromArgb(2, 136, 209);
-            lblCardDraws.Location = new Point(32, 16);
+            lblCardDraws.ForeColor = Color.FromArgb(255, 152, 0);
+            lblCardDraws.Location = new Point(15, 16);
             lblCardDraws.Name = "lblCardDraws";
-            lblCardDraws.Size = new Size(76, 22);
+            lblCardDraws.Size = new Size(112, 36);
             lblCardDraws.TabIndex = 0;
-            lblCardDraws.Text = "Hoà";
+            lblCardDraws.Text = "Hòa";
             // 
             // lblCardDrawsVal
             // 
-            lblCardDrawsVal.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
-            lblCardDrawsVal.ForeColor = Color.FromArgb(66, 165, 245);
+            lblCardDrawsVal.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblCardDrawsVal.ForeColor = Color.FromArgb(255, 152, 0);
             lblCardDrawsVal.Location = new Point(3, 52);
             lblCardDrawsVal.Name = "lblCardDrawsVal";
-            lblCardDrawsVal.Size = new Size(129, 50);
+            lblCardDrawsVal.Size = new Size(156, 50);
             lblCardDrawsVal.TabIndex = 1;
-            lblCardDrawsVal.Text = "0";
+            lblCardDrawsVal.Text = "12";
             lblCardDrawsVal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // cardLosses
             // 
-            cardLosses.BackColor = Color.FromArgb(254, 236, 206);
+            cardLosses.BackColor = Color.FromArgb(255, 235, 238);
             cardLosses.BorderStyle = BorderStyle.Fixed3D;
             cardLosses.Controls.Add(lblCardLosses);
             cardLosses.Controls.Add(lblCardLossesVal);
-            cardLosses.Location = new Point(478, 9);
+            cardLosses.Location = new Point(504, 9);
             cardLosses.Name = "cardLosses";
-            cardLosses.Size = new Size(134, 120);
+            cardLosses.Size = new Size(166, 120);
             cardLosses.TabIndex = 3;
             // 
             // lblCardLosses
             // 
             lblCardLosses.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblCardLosses.ForeColor = Color.FromArgb(236, 64, 122);
-            lblCardLosses.Location = new Point(28, 16);
+            lblCardLosses.ForeColor = Color.FromArgb(244, 67, 54);
+            lblCardLosses.Location = new Point(15, 16);
             lblCardLosses.Name = "lblCardLosses";
-            lblCardLosses.Size = new Size(76, 22);
+            lblCardLosses.Size = new Size(112, 36);
             lblCardLosses.TabIndex = 0;
             lblCardLosses.Text = "Thua";
             // 
             // lblCardLossesVal
             // 
-            lblCardLossesVal.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
-            lblCardLossesVal.ForeColor = Color.FromArgb(255, 143, 97);
-            lblCardLossesVal.Location = new Point(-2, 52);
+            lblCardLossesVal.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblCardLossesVal.ForeColor = Color.FromArgb(244, 67, 54);
+            lblCardLossesVal.Location = new Point(3, 52);
             lblCardLossesVal.Name = "lblCardLossesVal";
-            lblCardLossesVal.Size = new Size(129, 50);
+            lblCardLossesVal.Size = new Size(156, 50);
             lblCardLossesVal.TabIndex = 1;
-            lblCardLossesVal.Text = "0";
+            lblCardLossesVal.Text = "23";
             lblCardLossesVal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // cardWinrate
             // 
-            cardWinrate.BackColor = Color.FromArgb(255, 249, 196);
+            cardWinrate.BackColor = Color.FromArgb(227, 242, 253);
             cardWinrate.BorderStyle = BorderStyle.Fixed3D;
             cardWinrate.Controls.Add(lblCardWinrate);
             cardWinrate.Controls.Add(lblCardWinrateVal);
-            cardWinrate.Location = new Point(631, 9);
+            cardWinrate.Location = new Point(672, 9);
             cardWinrate.Name = "cardWinrate";
-            cardWinrate.Size = new Size(206, 120);
+            cardWinrate.Size = new Size(166, 120);
             cardWinrate.TabIndex = 4;
             // 
             // lblCardWinrate
             // 
             lblCardWinrate.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblCardWinrate.ForeColor = Color.FromArgb(255, 193, 7);
-            lblCardWinrate.Location = new Point(36, 16);
+            lblCardWinrate.ForeColor = Color.FromArgb(33, 150, 243);
+            lblCardWinrate.Location = new Point(15, 16);
             lblCardWinrate.Name = "lblCardWinrate";
-            lblCardWinrate.Size = new Size(139, 36);
+            lblCardWinrate.Size = new Size(112, 36);
             lblCardWinrate.TabIndex = 0;
             lblCardWinrate.Text = "Tỉ lệ thắng";
             // 
             // lblCardWinrateVal
             // 
-            lblCardWinrateVal.Font = new Font("Segoe UI", 26F, FontStyle.Bold);
-            lblCardWinrateVal.ForeColor = Color.FromArgb(255, 167, 38);
-            lblCardWinrateVal.Location = new Point(-2, 52);
+            lblCardWinrateVal.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lblCardWinrateVal.ForeColor = Color.FromArgb(33, 150, 243);
+            lblCardWinrateVal.Location = new Point(3, 52);
             lblCardWinrateVal.Name = "lblCardWinrateVal";
-            lblCardWinrateVal.Size = new Size(204, 50);
+            lblCardWinrateVal.Size = new Size(156, 50);
             lblCardWinrateVal.TabIndex = 1;
-            lblCardWinrateVal.Text = "100%";
+            lblCardWinrateVal.Text = "56.2%";
             lblCardWinrateVal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnShowEdit
             // 
-            btnShowEdit.BackColor = Color.FromArgb(58, 175, 255);
-            btnShowEdit.Cursor = Cursors.Hand;
+            btnShowEdit.BackColor = Color.FromArgb(255, 213, 79);
             btnShowEdit.FlatAppearance.BorderSize = 0;
             btnShowEdit.FlatStyle = FlatStyle.Flat;
-            btnShowEdit.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            btnShowEdit.ForeColor = Color.White;
-            btnShowEdit.Location = new Point(341, 420);
+            btnShowEdit.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            btnShowEdit.ForeColor = Color.FromArgb(120, 100, 20);
+            btnShowEdit.Location = new Point(250, 420);
             btnShowEdit.Name = "btnShowEdit";
-            btnShowEdit.Size = new Size(283, 57);
-            btnShowEdit.TabIndex = 20;
-            btnShowEdit.Text = "Cài Đặt Tài Khoản";
+            btnShowEdit.Size = new Size(200, 50);
+            btnShowEdit.TabIndex = 3;
+            btnShowEdit.Text = "CHỈNH SỬA";
             btnShowEdit.UseVisualStyleBackColor = false;
             btnShowEdit.Click += btnShowEdit_Click;
             // 
+            // btnBackToLobby
+            // 
+            btnBackToLobby.BackColor = Color.FromArgb(160, 106, 88);
+            btnBackToLobby.FlatAppearance.BorderSize = 0;
+            btnBackToLobby.FlatStyle = FlatStyle.Flat;
+            btnBackToLobby.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            btnBackToLobby.ForeColor = Color.White;
+            btnBackToLobby.Location = new Point(490, 420);
+            btnBackToLobby.Name = "btnBackToLobby";
+            btnBackToLobby.Size = new Size(210, 50);
+            btnBackToLobby.TabIndex = 4;
+            btnBackToLobby.Text = "QUAY VỀ SẢNH";
+            btnBackToLobby.UseVisualStyleBackColor = false;
+            btnBackToLobby.Click += btnBackToLobby_Click;
+            // 
             // pnlEditAccount
             // 
-            pnlEditAccount.BackColor = Color.White;
-            pnlEditAccount.BorderStyle = BorderStyle.Fixed3D;
+            pnlEditAccount.BackColor = Color.FromArgb(255, 253, 231);
+            pnlEditAccount.BorderStyle = BorderStyle.FixedSingle;
             pnlEditAccount.Controls.Add(lblEditTitle);
             pnlEditAccount.Controls.Add(lblEditDisplayName);
             pnlEditAccount.Controls.Add(txtEditDisplayName);
@@ -400,21 +415,22 @@
             pnlEditAccount.Controls.Add(btnSaveEdit);
             pnlEditAccount.Controls.Add(btnCloseEdit);
             pnlEditAccount.Controls.Add(lblEditHint);
-            pnlEditAccount.Location = new Point(15, 510);
+            pnlEditAccount.Location = new Point(6, 490);
             pnlEditAccount.Name = "pnlEditAccount";
-            pnlEditAccount.Size = new Size(923, 218);
-            pnlEditAccount.TabIndex = 21;
+            pnlEditAccount.Size = new Size(932, 230);
+            pnlEditAccount.TabIndex = 5;
             pnlEditAccount.Visible = false;
             // 
             // lblEditTitle
             // 
-            lblEditTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblEditTitle.ForeColor = Color.FromArgb(54, 33, 89);
-            lblEditTitle.Location = new Point(289, 10);
+            lblEditTitle.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblEditTitle.ForeColor = Color.FromArgb(121, 85, 72);
+            lblEditTitle.Location = new Point(3, 10);
             lblEditTitle.Name = "lblEditTitle";
-            lblEditTitle.Size = new Size(330, 42);
+            lblEditTitle.Size = new Size(924, 35);
             lblEditTitle.TabIndex = 0;
-            lblEditTitle.Text = "CHỈNH SỬA TÀI KHOẢN";
+            lblEditTitle.Text = "CHỈNH SỬA THÔNG TIN";
+            lblEditTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblEditDisplayName
             // 
@@ -566,6 +582,7 @@
             Controls.Add(pnlInfoTop);
             Controls.Add(pnlStats);
             Controls.Add(btnShowEdit);
+            Controls.Add(btnBackToLobby);
             Controls.Add(pnlEditAccount);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
