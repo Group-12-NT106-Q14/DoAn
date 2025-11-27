@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WSK7DyLEQ4I=",
+  "dgSpecHash": "NNv/Ix/P+Xc=",
   "success": true,
-  "projectFilePath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\ChessGame.csproj",
+  "projectFilePath": "D:\\DoAnTest\\ChessGame\\ChessGame.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shiba\\.nuget\\packages\\ardalis.smartenum\\2.0.1\\ardalis.smartenum.2.0.1.nupkg.sha512",
     "C:\\Users\\Shiba\\.nuget\\packages\\excss\\4.2.3\\excss.4.2.3.nupkg.sha512",

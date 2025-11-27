@@ -443,5 +443,10 @@ namespace ChessGame
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnBackToLobby_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

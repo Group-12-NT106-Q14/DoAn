@@ -1,4 +1,4 @@
-﻿namespace ChessGame
+namespace ChessGame
 {
     partial class Ranking
     {
@@ -12,6 +12,8 @@
             }
             base.Dispose(disposing);
         }
+
+        #region Windows Form Designer generated code
 
         private void InitializeComponent()
         {
@@ -40,6 +42,7 @@
             pnlThird = new Panel();
             lblThird = new Label();
             lblThirdRating = new Label();
+            btnBackToLobby = new Button();
             pnlTop.SuspendLayout();
             pnlUserCard.SuspendLayout();
             pnlRankingList.SuspendLayout();
@@ -306,12 +309,28 @@
             lblThirdRating.Text = "2280";
             lblThirdRating.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnBackToLobby
+            // 
+            btnBackToLobby.BackColor = Color.FromArgb(200, 100, 100);
+            btnBackToLobby.FlatAppearance.BorderSize = 0;
+            btnBackToLobby.FlatStyle = FlatStyle.Flat;
+            btnBackToLobby.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnBackToLobby.ForeColor = Color.White;
+            btnBackToLobby.Location = new Point(500, 740);
+            btnBackToLobby.Name = "btnBackToLobby";
+            btnBackToLobby.Size = new Size(200, 45);
+            btnBackToLobby.TabIndex = 4;
+            btnBackToLobby.Text = "QUAY VỀ SẢNH";
+            btnBackToLobby.UseVisualStyleBackColor = false;
+            btnBackToLobby.Click += btnBackToLobby_Click;
+            // 
             // Ranking
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 217, 181);
-            ClientSize = new Size(1200, 750);
+            ClientSize = new Size(1200, 800);
+            Controls.Add(btnBackToLobby);
             Controls.Add(pnlRankingList);
             Controls.Add(pnlPodium);
             Controls.Add(pnlUserCard);
@@ -336,6 +355,8 @@
             ResumeLayout(false);
         }
 
+        #endregion
+
         private Panel pnlTop;
         private Label lblTitle;
         private Panel pnlUserCard;
@@ -357,5 +378,6 @@
         private Label lblRankingTitle;
         private DataGridView dgvRanking;
         private Button btnRefresh;
+        private Button btnBackToLobby;
     }
 }

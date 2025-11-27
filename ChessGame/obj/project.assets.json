@@ -294,11 +294,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\ChessGame.csproj",
+      "projectUniqueName": "D:\\DoAnTest\\ChessGame\\ChessGame.csproj",
       "projectName": "ChessGame",
-      "projectPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\ChessGame.csproj",
+      "projectPath": "D:\\DoAnTest\\ChessGame\\ChessGame.csproj",
       "packagesPath": "C:\\Users\\Shiba\\.nuget\\packages\\",
-      "outputPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessGame\\obj\\",
+      "outputPath": "D:\\DoAnTest\\ChessGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Shiba\\AppData\\Roaming\\NuGet\\NuGet.Config",

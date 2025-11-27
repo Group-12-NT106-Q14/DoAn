@@ -638,5 +638,10 @@ namespace ChessGame
                 // nuốt lỗi, không cho crash form chỉ vì âm thanh
             }
         }
+
+        private void btnBackToLobby_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

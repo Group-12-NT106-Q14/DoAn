@@ -419,5 +419,10 @@ namespace ChessGame
 
             return list;
         }
+
+        private void btnBackToLobby_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

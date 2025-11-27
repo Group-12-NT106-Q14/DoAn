@@ -13,6 +13,8 @@
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
@@ -34,6 +36,7 @@
             lblDraws = new Label();
             lblLosses = new Label();
             lblWinRate = new Label();
+            btnBackToLobby = new Button();
             pnlHistory = new Panel();
             lblHistoryTitle = new Label();
             dgvHistory = new DataGridView();
@@ -147,9 +150,10 @@
             pnlStats.Controls.Add(lblDraws);
             pnlStats.Controls.Add(lblLosses);
             pnlStats.Controls.Add(lblWinRate);
+            pnlStats.Controls.Add(btnBackToLobby);
             pnlStats.Location = new Point(20, 140);
             pnlStats.Name = "pnlStats";
-            pnlStats.Size = new Size(380, 261);
+            pnlStats.Size = new Size(380, 559);
             pnlStats.TabIndex = 1;
             // 
             // lblStatsTitle
@@ -216,6 +220,21 @@
             lblWinRate.Size = new Size(340, 41);
             lblWinRate.TabIndex = 5;
             lblWinRate.Text = "Tỷ lệ thắng: 56.2%";
+            // 
+            // btnBackToLobby
+            // 
+            btnBackToLobby.BackColor = Color.FromArgb(160, 106, 88);
+            btnBackToLobby.FlatAppearance.BorderSize = 0;
+            btnBackToLobby.FlatStyle = FlatStyle.Flat;
+            btnBackToLobby.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnBackToLobby.ForeColor = Color.White;
+            btnBackToLobby.Location = new Point(20, 490);
+            btnBackToLobby.Name = "btnBackToLobby";
+            btnBackToLobby.Size = new Size(340, 50);
+            btnBackToLobby.TabIndex = 6;
+            btnBackToLobby.Text = "QUAY VỀ SẢNH";
+            btnBackToLobby.UseVisualStyleBackColor = false;
+            btnBackToLobby.Click += btnBackToLobby_Click;
             // 
             // pnlHistory
             // 
@@ -301,6 +320,8 @@
             ResumeLayout(false);
         }
 
+        #endregion
+
         private Panel pnlTop;
         private Label lblTitle;
         private Label lblFilter;
@@ -316,6 +337,7 @@
         private Label lblDraws;
         private Label lblLosses;
         private Label lblWinRate;
+        private Button btnBackToLobby;
         private Panel pnlHistory;
         private Label lblHistoryTitle;
         private DataGridView dgvHistory;
