@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\DoAnTest\\ChessGame\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\dashboard\\room\\roomlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\room\\roomlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\dashboard\\room\\roomlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\room\\roomlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doantest\\chessgame\\dashboard\\room\\inroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\room\\inroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,43 +30,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RoomList.cs",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Dashboard\\Room\\RoomList.cs",
-              "RelativeDocumentMoniker": "Dashboard\\Room\\RoomList.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Dashboard\\Room\\RoomList.cs",
-              "RelativeToolTip": "Dashboard\\Room\\RoomList.cs",
-              "ViewState": "AgIAAJsBAAAAAAAAAAD4v6gBAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T04:54:12.523Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RoomList.cs [Design]",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Dashboard\\Room\\RoomList.cs",
-              "RelativeDocumentMoniker": "Dashboard\\Room\\RoomList.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Dashboard\\Room\\RoomList.cs [Design]",
-              "RelativeToolTip": "Dashboard\\Room\\RoomList.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T04:54:10.17Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InRoom.cs [Design]",
-              "DocumentMoniker": "D:\\DoAnTest\\ChessGame\\Dashboard\\Room\\InRoom.cs",
-              "RelativeDocumentMoniker": "Dashboard\\Room\\InRoom.cs",
-              "ToolTip": "D:\\DoAnTest\\ChessGame\\Dashboard\\Room\\InRoom.cs [Design]",
-              "RelativeToolTip": "Dashboard\\Room\\InRoom.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T04:54:09.495Z",
-              "EditorCaption": " [Design]"
             }
           ]
         },

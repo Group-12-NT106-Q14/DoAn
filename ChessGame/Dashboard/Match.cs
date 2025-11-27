@@ -51,11 +51,12 @@ namespace ChessGame
         private void Match_Load(object sender, EventArgs e)
         {
             lblActiveUsers.Text = "";
-            lblOnlineCount.Text = "Nhấn \"Chơi Ngay\" để tìm đối thủ";
+            lblOnlineCount.Text = "Nhấn \"TÌM ĐỐI THỦ\" để tìm đối thủ";
             pnlSearching.Visible = false;
             pnlMatchFound.Visible = false;
             btnCancelSearch.Visible = false;    // <- thêm
             btnStartMatch.Visible = true;       // <- cho chắc
+            UpdateBackToLobbyButtonState();
 
             // Kết nối server
             requestClient = new TCPClient();
@@ -100,6 +101,7 @@ namespace ChessGame
         {
             if (isSearching || gameStarted) return;
             isSearching = true;
+            UpdateBackToLobbyButtonState();
 
             pnlSearching.Visible = true;
             pnlMatchFound.Visible = false;
@@ -165,8 +167,15 @@ namespace ChessGame
             btnStartMatch.Enabled = true;
             btnStartMatch.Visible = true;       // <- hiện lại
             btnCancelSearch.Visible = false;    // <- ẩn nút hủy
+            UpdateBackToLobbyButtonState();
         }
-
+        private void UpdateBackToLobbyButtonState()
+        {
+            if (btnBackToLobby != null)
+            {
+                btnBackToLobby.Enabled = !isSearching && !gameStarted;
+            }
+        }
         // ============ PUSH HANDLING ============
 
         private void UiTimer_Tick(object sender, EventArgs e)
@@ -275,7 +284,7 @@ namespace ChessGame
         {
             isSearching = false;
             gameStarted = true;
-
+            UpdateBackToLobbyButtonState();
             PlayMatchFoundSound();
 
             currentGameId = root.GetProperty("gameId").GetInt32();
