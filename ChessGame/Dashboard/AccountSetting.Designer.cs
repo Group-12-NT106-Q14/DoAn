@@ -427,7 +427,7 @@ namespace ChessGame
             lblEditTitle.ForeColor = Color.FromArgb(121, 85, 72);
             lblEditTitle.Location = new Point(3, 10);
             lblEditTitle.Name = "lblEditTitle";
-            lblEditTitle.Size = new Size(924, 35);
+            lblEditTitle.Size = new Size(852, 35);
             lblEditTitle.TabIndex = 0;
             lblEditTitle.Text = "CHỈNH SỬA THÔNG TIN";
             lblEditTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -554,7 +554,7 @@ namespace ChessGame
             btnCloseEdit.FlatStyle = FlatStyle.Flat;
             btnCloseEdit.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             btnCloseEdit.ForeColor = Color.Gray;
-            btnCloseEdit.Location = new Point(859, -2);
+            btnCloseEdit.Location = new Point(861, 3);
             btnCloseEdit.Name = "btnCloseEdit";
             btnCloseEdit.Size = new Size(57, 48);
             btnCloseEdit.TabIndex = 12;
