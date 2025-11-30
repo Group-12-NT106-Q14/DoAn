@@ -1335,31 +1335,36 @@ namespace ChessGame
             FinishGameByResign(localResigned: true);
         }
 
-        private void btnOfferDraw_Click(object sender, EventArgs e)
+        private async void btnOfferDraw_Click(object sender, EventArgs e)
         {
-            if (_board == null || _isGameOver) return;
+                if (_board == null || _isGameOver) return;
+
+            //Cho nut sleep khoan 120s
+            btnOfferDraw.Enabled = false;
 
             var confirm = MessageBox.Show(
-                "Bạn có muốn đề nghị hòa ván đấu này không?",
-                "Cầu hòa",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                    "Bạn có muốn đề nghị hòa ván đấu này không?",
+                    "Cầu hòa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-            if (confirm != DialogResult.Yes) return;
+                if (confirm != DialogResult.Yes) return;
 
-            try
-            {
-                LocalOfferDrawRequested?.Invoke();
-            }
-            catch
-            {
-            }
+                try
+                {
+                    LocalOfferDrawRequested?.Invoke();
+                }
+                catch
+                {
+                }
 
-            MessageBox.Show(this,
-                "Bạn đã gửi lời đề nghị hòa. Vui lòng chờ đối thủ trả lời.",
-                "Cầu hòa",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+                MessageBox.Show(this,
+                    "Bạn đã gửi lời đề nghị hòa. Vui lòng chờ đối thủ trả lời.",
+                    "Cầu hòa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            await Task.Delay(120000); // Chờ 5 giây, tùy chỉnh
+            btnOfferDraw.Enabled = true; // Bật lại
         }
 
         // ================== ÂM THANH ==================

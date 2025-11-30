@@ -3,8 +3,40 @@
   "WorkspaceRootPath": "D:\\doan\\DOAN\\DoAn\\ChessGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doan\\doan\\doan\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doan\\doan\\doan\\chessgame\\gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|D:\\doan\\DOAN\\DoAn\\ChessGame\\gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:gameplay\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|D:\\doan\\DOAN\\DoAn\\ChessGame\\dashboard\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\match.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doan\\doan\\doan\\chessgame\\authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|D:\\doan\\DOAN\\DoAn\\ChessGame\\authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:authentication\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|D:\\doan\\DOAN\\DoAn\\ChessGame\\dashboard\\accountsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\accountsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|D:\\doan\\DOAN\\DoAn\\ChessGame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|D:\\doan\\DOAN\\DoAn\\ChessGame\\dashboard\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|D:\\doan\\DOAN\\DoAn\\ChessGame\\dashboard\\ranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|solutionrelative:dashboard\\ranking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0AE3C03F-2458-B8A9-16C6-A82FAEC8AB84}|ChessGame.csproj|d:\\doan\\doan\\doan\\chessgame\\dashboard\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,28 +74,119 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameBoard.cs",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs",
+              "RelativeDocumentMoniker": "GamePlay\\GameBoard.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs",
+              "RelativeToolTip": "GamePlay\\GameBoard.cs",
+              "ViewState": "AgIAAEAFAAAAAAAAAAAnwD0FAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:30:06.666Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GameBoard.cs [Design]",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs",
+              "RelativeDocumentMoniker": "GamePlay\\GameBoard.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\GamePlay\\GameBoard.cs [Design]",
+              "RelativeToolTip": "GamePlay\\GameBoard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:30:03.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.cs",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Authentication\\Login.cs",
+              "RelativeDocumentMoniker": "Authentication\\Login.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Authentication\\Login.cs",
+              "RelativeToolTip": "Authentication\\Login.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:28:07.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Authentication\\Login.cs",
+              "RelativeDocumentMoniker": "Authentication\\Login.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Authentication\\Login.cs [Design]",
+              "RelativeToolTip": "Authentication\\Login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:28:04.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "History.cs [Design]",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\History.cs",
+              "RelativeDocumentMoniker": "Dashboard\\History.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\History.cs [Design]",
+              "RelativeToolTip": "Dashboard\\History.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:27:56.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Match.cs [Design]",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Match.cs",
+              "RelativeDocumentMoniker": "Dashboard\\Match.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Match.cs [Design]",
+              "RelativeToolTip": "Dashboard\\Match.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:27:54.86Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Ranking.cs [Design]",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Ranking.cs",
+              "RelativeDocumentMoniker": "Dashboard\\Ranking.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Ranking.cs [Design]",
+              "RelativeToolTip": "Dashboard\\Ranking.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:27:53.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountSetting.cs [Design]",
+              "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\AccountSetting.cs",
+              "RelativeDocumentMoniker": "Dashboard\\AccountSetting.cs",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\AccountSetting.cs [Design]",
+              "RelativeToolTip": "Dashboard\\AccountSetting.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T16:27:47.776Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Dashboard.cs",
               "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
               "RelativeDocumentMoniker": "Dashboard\\Dashboard.cs",
-              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs*",
-              "RelativeToolTip": "Dashboard\\Dashboard.cs*",
-              "ViewState": "AgIAAOwBAAAAAAAAAAAtwAcCAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
+              "RelativeToolTip": "Dashboard\\Dashboard.cs",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAiwKwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-30T16:23:49.959Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Dashboard.cs [Design]",
               "DocumentMoniker": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs",
               "RelativeDocumentMoniker": "Dashboard\\Dashboard.cs",
-              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs [Design]*",
-              "RelativeToolTip": "Dashboard\\Dashboard.cs [Design]*",
+              "ToolTip": "D:\\doan\\DOAN\\DoAn\\ChessGame\\Dashboard\\Dashboard.cs [Design]",
+              "RelativeToolTip": "Dashboard\\Dashboard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-30T16:23:39.334Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-30T16:23:39.334Z"
             }
           ]
         },

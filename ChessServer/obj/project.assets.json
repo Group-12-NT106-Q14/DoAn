@@ -388,19 +388,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Shiba\\.nuget\\packages\\": {}
+    "C:\\Users\\HI PC\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj",
+      "projectUniqueName": "D:\\doan\\DOAN\\DoAn\\ChessServer\\ChessServer.csproj",
       "projectName": "ChessServer",
-      "projectPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\ChessServer.csproj",
-      "packagesPath": "C:\\Users\\Shiba\\.nuget\\packages\\",
-      "outputPath": "D:\\Group-12-NT106.Q14\\DoAn\\ChessServer\\obj\\",
+      "projectPath": "D:\\doan\\DOAN\\DoAn\\ChessServer\\ChessServer.csproj",
+      "packagesPath": "C:\\Users\\HI PC\\.nuget\\packages\\",
+      "outputPath": "D:\\doan\\DOAN\\DoAn\\ChessServer\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Shiba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HI PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -461,7 +466,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
