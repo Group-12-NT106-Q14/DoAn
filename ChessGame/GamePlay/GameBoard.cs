@@ -1341,12 +1341,13 @@ namespace ChessGame
 
             //Cho nut sleep khoan 120s
             btnOfferDraw.Enabled = false;
-
-            var confirm = MessageBox.Show(
-                    "Bạn có muốn đề nghị hòa ván đấu này không?",
-                    "Cầu hòa",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+            try
+            {
+                var confirm = MessageBox.Show(
+                        "Bạn có muốn đề nghị hòa ván đấu này không?",
+                        "Cầu hòa",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
 
                 if (confirm != DialogResult.Yes) return;
 
@@ -1363,8 +1364,13 @@ namespace ChessGame
                     "Cầu hòa",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-            await Task.Delay(120000); // Chờ 5 giây, tùy chỉnh
-            btnOfferDraw.Enabled = true; // Bật lại
+                   
+                await Task.Delay(120000); // Chờ 5 giây, tùy chỉnh
+            }
+            finally
+            {
+                btnOfferDraw.Enabled = true; // Bật lại
+            }
         }
 
         // ================== ÂM THANH ==================
