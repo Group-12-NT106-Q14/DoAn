@@ -217,7 +217,7 @@ namespace ChessGame
             var frm = new History
             {
                 UserId = this.UserId,
-                Username = this.Username  
+                Username = this.Username
             };
             frm.ShowDialog();
             this.Show();
@@ -427,7 +427,7 @@ namespace ChessGame
         {
             pnlEmojiPicker.Visible = false;
             pnlEmojiPicker.Controls.Clear();
-            pnlEmojiPicker.AutoScroll = true;     
+            pnlEmojiPicker.AutoScroll = true;
         }
 
 
@@ -509,6 +509,11 @@ namespace ChessGame
                 e.SuppressKeyPress = true;
                 pnlEmojiPicker.Visible = false;
             }
+        }
+
+        private void txtChatInput_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

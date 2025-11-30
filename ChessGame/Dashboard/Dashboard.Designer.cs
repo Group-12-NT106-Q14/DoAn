@@ -336,6 +336,7 @@
             txtChatInput.PlaceholderText = "Nhập tin nhắn...";
             txtChatInput.Size = new Size(200, 30);
             txtChatInput.TabIndex = 2;
+            txtChatInput.TextChanged += txtChatInput_TextChanged;
             txtChatInput.KeyDown += txtChatInput_KeyDown;
             // 
             // btnSendChat
@@ -345,9 +346,9 @@
             btnSendChat.FlatStyle = FlatStyle.Flat;
             btnSendChat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSendChat.ForeColor = Color.White;
-            btnSendChat.Location = new Point(223, 465);
+            btnSendChat.Location = new Point(211, 462);
             btnSendChat.Name = "btnSendChat";
-            btnSendChat.Size = new Size(54, 80);
+            btnSendChat.Size = new Size(54, 44);
             btnSendChat.TabIndex = 4;
             btnSendChat.Text = "Gửi";
             btnSendChat.UseVisualStyleBackColor = false;
