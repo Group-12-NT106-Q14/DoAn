@@ -68,6 +68,9 @@ namespace ChessGame
         private TimeSpan _whiteTime;
         private TimeSpan _blackTime;
         private System.Windows.Forms.Timer _clockTimer;
+        private const int DrawOfferCooldownSeconds = 120;
+        private System.Windows.Forms.Timer _drawOfferTimer;
+        private int _drawOfferCooldownRemaining;
 
         private readonly Dictionary<string, Image> _pieceImageCache = new Dictionary<string, Image>();
         private SoundPlayer _moveSound;
@@ -150,6 +153,8 @@ namespace ChessGame
             SetupEmojiPickerPanel();
             LoadMoveSound();
             this.FormClosing += GameBoard_FormClosing;
+
+            InitDrawOfferTimer();
 
             // vẽ viền vàng cho panel người chơi khi tới lượt
             if (pnlPlayer1 != null)
@@ -1198,6 +1203,7 @@ namespace ChessGame
         {
             _isGameOver = true;
             _clockTimer?.Stop();
+            _drawOfferTimer?.Stop();
 
             var info = _board.EndGame;
             string msg;
@@ -1241,6 +1247,7 @@ namespace ChessGame
         {
             _isGameOver = true;
             _clockTimer?.Stop();
+            _drawOfferTimer?.Stop();
             UpdateTimeLabels();
 
             PieceColor winner = sideFlagged == PieceColor.White ? PieceColor.Black : PieceColor.White;
@@ -1275,6 +1282,7 @@ namespace ChessGame
 
             _isGameOver = true;
             _clockTimer?.Stop();
+            _drawOfferTimer?.Stop();
             UpdateTimeLabels();
 
             PieceColor localColor = _localIsWhite ? PieceColor.White : PieceColor.Black;
@@ -1335,42 +1343,82 @@ namespace ChessGame
             FinishGameByResign(localResigned: true);
         }
 
-        private async void btnOfferDraw_Click(object sender, EventArgs e)
+        private void InitDrawOfferTimer()
         {
-                if (_board == null || _isGameOver) return;
+            _drawOfferTimer = new System.Windows.Forms.Timer();
+            _drawOfferTimer.Interval = 1000; // 1s
+            _drawOfferTimer.Tick += DrawOfferTimer_Tick;
+        }
 
-            //Cho nut sleep khoan 120s
-            btnOfferDraw.Enabled = false;
+        private void StartDrawOfferCooldown()
+        {
+            _drawOfferCooldownRemaining = DrawOfferCooldownSeconds;
+
+            if (btnOfferDraw != null)
+            {
+                btnOfferDraw.Enabled = false;
+                btnOfferDraw.Text = $"Cầu hòa ({_drawOfferCooldownRemaining}s)";
+            }
+
+            _drawOfferTimer.Start();
+        }
+
+        private void DrawOfferTimer_Tick(object sender, EventArgs e)
+        {
+            if (_drawOfferCooldownRemaining <= 0)
+            {
+                _drawOfferTimer.Stop();
+                if (btnOfferDraw != null)
+                {
+                    btnOfferDraw.Enabled = true;
+                    btnOfferDraw.Text = "Cầu hòa";
+                }
+                return;
+            }
+
+            _drawOfferCooldownRemaining--;
+
+            if (btnOfferDraw == null) return;
+
+            if (_drawOfferCooldownRemaining <= 0)
+            {
+                _drawOfferTimer.Stop();
+                btnOfferDraw.Enabled = true;
+                btnOfferDraw.Text = "Cầu hòa";
+            }
+            else
+            {
+                btnOfferDraw.Text = $"Cầu hòa ({_drawOfferCooldownRemaining}s)";
+            }
+        }
+
+        private void btnOfferDraw_Click(object sender, EventArgs e)
+        {
+            if (_board == null || _isGameOver) return;
+
+            var confirm = MessageBox.Show(
+                    "Bạn có muốn đề nghị hòa ván đấu này không?",
+                    "Cầu hòa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes) return;
+
             try
             {
-                var confirm = MessageBox.Show(
-                        "Bạn có muốn đề nghị hòa ván đấu này không?",
-                        "Cầu hòa",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
-
-                if (confirm != DialogResult.Yes) return;
-
-                try
-                {
-                    LocalOfferDrawRequested?.Invoke();
-                }
-                catch
-                {
-                }
-
-                MessageBox.Show(this,
-                    "Bạn đã gửi lời đề nghị hòa. Vui lòng chờ đối thủ trả lời.",
-                    "Cầu hòa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                   
-                await Task.Delay(120000); // Chờ 5 giây, tùy chỉnh
+                LocalOfferDrawRequested?.Invoke();
             }
-            finally
+            catch
             {
-                btnOfferDraw.Enabled = true; // Bật lại
             }
+
+            MessageBox.Show(this,
+                "Bạn đã gửi lời đề nghị hòa. Vui lòng chờ đối thủ trả lời.",
+                "Cầu hòa",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            StartDrawOfferCooldown();
         }
 
         // ================== ÂM THANH ==================
@@ -1449,16 +1497,6 @@ namespace ChessGame
             catch
             {
             }
-        }
-
-        private void PlayMoveSound()
-        {
-            PlayMoveSound(false, false);
-        }
-
-        private void PlayMoveSound(bool isCapture)
-        {
-            PlayMoveSound(isCapture, false);
         }
 
         // ================== CHAT + STICKER ==================
@@ -1594,6 +1632,7 @@ namespace ChessGame
 
             _isGameOver = true;
             _clockTimer?.Stop();
+            _drawOfferTimer?.Stop();
             UpdateTimeLabels();
 
             string resultStr;
@@ -1640,6 +1679,7 @@ namespace ChessGame
 
             _isGameOver = true;
             _clockTimer?.Stop();
+            _drawOfferTimer?.Stop();
             UpdateTimeLabels();
 
             PieceColor localColor = _localIsWhite ? PieceColor.White : PieceColor.Black;
@@ -1675,6 +1715,7 @@ namespace ChessGame
 
             _isGameOver = true;
             _clockTimer?.Stop();
+            _drawOfferTimer?.Stop();
             UpdateTimeLabels();
 
             string resultStr = "draw";
@@ -1903,17 +1944,6 @@ namespace ChessGame
                 foreach (var p in _panels)
                 {
                     p.BackColor = p == selected ? _highlightColor : _basePanelColor;
-                }
-            }
-
-            protected override void OnShown(EventArgs e)
-            {
-                base.OnShown(e);
-
-                if (_panels.Count > 0)
-                {
-                    HighlightPanel(_panels[_panels.Count - 1]);
-                    _hoverLabel.Text = "Phong thành Hậu";
                 }
             }
         }
