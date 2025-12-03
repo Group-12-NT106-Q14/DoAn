@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -10,6 +11,29 @@ namespace ChessGame
 {
     public partial class Match : Form
     {
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+        [DllImport("user32.dll")]
+        private static extern bool EnableMenuItem(IntPtr hMenu, uint uIDEnableItem, uint uEnable);
+
+        private const uint SC_CLOSE = 0xF060;
+        private const uint MF_BYCOMMAND = 0x00000000;
+        private const uint MF_GRAYED = 0x00000001;
+        private const uint MF_ENABLED = 0x00000000;
+
+        private void SetCloseButtonEnabled(bool enabled)
+        {
+            IntPtr hMenu = GetSystemMenu(this.Handle, false);
+            if (hMenu != IntPtr.Zero)
+            {
+                EnableMenuItem(
+                    hMenu,
+                    SC_CLOSE,
+                    MF_BYCOMMAND | (enabled ? MF_ENABLED : MF_GRAYED)
+                );
+            }
+        }
         // Inject từ Dashboard
         public string Username { get; set; }
         public string DisplayName { get; set; }
@@ -35,6 +59,20 @@ namespace ChessGame
         private int pendingIncrement;
         private SoundPlayer _matchFoundSound;
 
+        private void Match_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (isSearching && e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                // Optional: báo nhẹ cho user
+                MessageBox.Show(
+                    "Đang tìm đối thủ, hãy hủy tìm kiếm trước khi thoát.",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+        }
 
         public Match()
         {
@@ -43,6 +81,7 @@ namespace ChessGame
 
             Load += Match_Load;
             FormClosed += Match_FormClosed;
+            FormClosing += Match_FormClosing;
 
             btnStartMatch.Click += BtnStartMatch_Click;
             btnCancelSearch.Click += BtnCancelSearch_Click;
@@ -80,6 +119,7 @@ namespace ChessGame
             uiTimer.Interval = 50;
             uiTimer.Tick += UiTimer_Tick;
             uiTimer.Start();
+            SetCloseButtonEnabled(true);
         }
 
         private void Match_FormClosed(object sender, FormClosedEventArgs e)
@@ -110,6 +150,7 @@ namespace ChessGame
             btnCancelSearch.Visible = true;     // <- để người chơi thấy nút hủy
             lblSearching.Text = "Đang tìm đối thủ phù hợp...";
             progressBar.Style = ProgressBarStyle.Marquee;
+            SetCloseButtonEnabled(false);
 
             try
             {
@@ -168,6 +209,7 @@ namespace ChessGame
             btnStartMatch.Visible = true;       // <- hiện lại
             btnCancelSearch.Visible = false;    // <- ẩn nút hủy
             UpdateBackToLobbyButtonState();
+            SetCloseButtonEnabled(true);
         }
         private void UpdateBackToLobbyButtonState()
         {
