@@ -34,11 +34,11 @@
             colBlackMove = new ColumnHeader();
             lblMoveHistoryTitle = new Label();
             pnlChat = new Panel();
+            rtbChatMessages = new RichTextBox();
             txtChatInput = new TextBox();
             btnSendChat = new Button();
             lblChatTitle = new Label();
             btnEmoji = new Button();
-            rtbChatMessages = new RichTextBox();
             pnlEmojiPicker = new Panel();
             btnSurrender = new Button();
             btnOfferDraw = new Button();
@@ -204,16 +204,29 @@
             // pnlChat
             // 
             pnlChat.BackColor = Color.FromArgb(118, 74, 61);
+            pnlChat.Controls.Add(rtbChatMessages);
             pnlChat.Controls.Add(txtChatInput);
             pnlChat.Controls.Add(btnSendChat);
             pnlChat.Controls.Add(lblChatTitle);
             pnlChat.Controls.Add(btnEmoji);
-            pnlChat.Controls.Add(rtbChatMessages);
             pnlChat.Controls.Add(pnlEmojiPicker);
             pnlChat.Location = new Point(680, 20);
             pnlChat.Name = "pnlChat";
             pnlChat.Size = new Size(360, 700);
             pnlChat.TabIndex = 4;
+            // 
+            // rtbChatMessages
+            // 
+            rtbChatMessages.BackColor = Color.FromArgb(247, 234, 214);
+            rtbChatMessages.BorderStyle = BorderStyle.None;
+            rtbChatMessages.Font = new Font("Segoe UI", 10F);
+            rtbChatMessages.ForeColor = Color.FromArgb(78, 49, 41);
+            rtbChatMessages.Location = new Point(15, 53);
+            rtbChatMessages.Name = "rtbChatMessages";
+            rtbChatMessages.ReadOnly = true;
+            rtbChatMessages.Size = new Size(330, 586);
+            rtbChatMessages.TabIndex = 1;
+            rtbChatMessages.Text = "";
             // 
             // txtChatInput
             // 
@@ -270,25 +283,12 @@
             btnEmoji.UseVisualStyleBackColor = false;
             btnEmoji.Click += btnEmoji_Click;
             // 
-            // rtbChatMessages
-            // 
-            rtbChatMessages.BackColor = Color.FromArgb(247, 234, 214);
-            rtbChatMessages.BorderStyle = BorderStyle.None;
-            rtbChatMessages.Font = new Font("Segoe UI", 10F);
-            rtbChatMessages.ForeColor = Color.FromArgb(78, 49, 41);
-            rtbChatMessages.Location = new Point(15, 50);
-            rtbChatMessages.Name = "rtbChatMessages";
-            rtbChatMessages.ReadOnly = true;
-            rtbChatMessages.Size = new Size(330, 586);
-            rtbChatMessages.TabIndex = 1;
-            rtbChatMessages.Text = "";
-            // 
             // pnlEmojiPicker
             // 
             pnlEmojiPicker.BackColor = Color.FromArgb(247, 234, 214);
-            pnlEmojiPicker.Location = new Point(15, 551);
+            pnlEmojiPicker.Location = new Point(15, 444);
             pnlEmojiPicker.Name = "pnlEmojiPicker";
-            pnlEmojiPicker.Size = new Size(330, 88);
+            pnlEmojiPicker.Size = new Size(330, 195);
             pnlEmojiPicker.TabIndex = 5;
             pnlEmojiPicker.Visible = false;
             // 
